@@ -7,6 +7,7 @@ TOOL_ROOTDIR=$HOME/work_area/PERSONAL_WORKAREA/shcf
 LIB_DIR=$TOOL_ROOTDIR/lib
 CONF_DIR=$TOOL_ROOTDIR/etc
 
+. $CONF_DIR/init.conf
 . $LIB_DIR/autoload_functions.bash.inc
 
 ## in each utility script, this controller should be  sourced + functions to autoload as follows:

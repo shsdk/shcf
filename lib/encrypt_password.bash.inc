@@ -6,7 +6,7 @@ encrypt_password()
   local clear_text="$1"
   local retval=$INVALID
 
-  retval=$(echo "$clear_text"|$OPENSSL des3 -k "$PASSWD_SALT"|$BASE64_BIN)
+  retval=$(echo "$clear_text"|$OPENSSL_BIN des3 -k "$PASSWD_SALT"|$BASE64_BIN)
 
   echo "$retval"
 } ## END: encrypt_password()
