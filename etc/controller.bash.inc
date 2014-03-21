@@ -3,7 +3,7 @@
 ## PURPOSE : controller (mediator) script between the models(individual functions) and view(each individual scripts)
 ## =================================================================================================================
 
-TOOL_ROOTDIR=$HOME/work_area/PERSONAL_WORKAREA/shcf
+TOOL_ROOTDIR=$HOME/tools/shcf
 LIB_DIR=$TOOL_ROOTDIR/lib
 CONF_DIR=$TOOL_ROOTDIR/etc
 
