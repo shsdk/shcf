@@ -28,11 +28,11 @@ sqlQuery() {
   fi
 
   ## now, do the query
-  query_output=$(echo "$given_query" | mysql --host     $mysql_server   \
-                                             --database $mysql_database \
-                                             --user     $mysql_user     \
-                                             --password=$mysql_password \
-                                             --skip-column-name)
+  query_output=$(echo "$given_query" | $MYSQL_BIN --host     $mysql_server   \
+                                                  --database $mysql_database \
+                                                  --user     $mysql_user     \
+                                                  --password=$mysql_password \
+                                                  --skip-column-name)
 
   ## return output
   echo "$query_output"
