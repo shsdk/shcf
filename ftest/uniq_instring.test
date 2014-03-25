@@ -1,0 +1,11 @@
+#!/bin/bash
+
+. `dirname $0`/../etc/controller.bash.inc
+autoload_functions "uniq_instring"
+
+echo '[testing] uniq_instring()'
+ok_str='alpha, bravo, charlie, delta, echo, foxtrot'
+str2test='alpha, charlie, bravo, charlie, delta, alpha, echo, foxtrot, delta'
+remove_dups=$(uniq_instring COMMA $str2test)
+echo -n ' only scenario - '
+[[ "$remove_dups" = "$ok_str" ]] && echo "OK" || echo "fail"
