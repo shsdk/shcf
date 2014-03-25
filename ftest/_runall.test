@@ -7,3 +7,4 @@ $rootdir/encrypt_password.test ## this includes encrypt_password()
 $rootdir/uniq_instring.test
 $rootdir/valid_ip.test
 $rootdir/delitem_inarray.test
+$rootdir/mresult_sql.test

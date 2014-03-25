@@ -1,0 +1,10 @@
+#!/bin/bash
+
+. `dirname $0`/../etc/controller.bash.inc
+autoload_functions "mresult_sql"
+
+echo '[testing] mresult_sql()'
+echo -n ' scenario 1 - '
+RAW_province2capital='leyte tacloban cebu cebu bohol tagbilaran'
+PROC_province2capital='leyte/tacloban cebu/cebu bohol/tagbilaran'
+[[ "$(mresult_sql 2 $RAW_province2capital)" = "$PROC_province2capital" ]] && echo "OK" || echo "fail"
