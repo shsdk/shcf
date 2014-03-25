@@ -7,7 +7,7 @@
 ishost_up() {
   local which_host=$1
 
-  local host_type=`uname`
+  local host_type=`$UNAME_BIN`
   case "$host_type" in
     Linux)
        retval=`$PING_BIN -c 5 $which_host|$AWK_BIN -F\, '/received/ {print $2}'|$CUT_BIN -d' ' -f2`
