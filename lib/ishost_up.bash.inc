@@ -9,7 +9,7 @@ ishost_up() {
 
   local host_type=`$UNAME_BIN`
   case "$host_type" in
-    Linux)
+    Linux|Darwin)
        retval=`$PING_BIN -c 5 $which_host|$AWK_BIN -F\, '/received/ {print $2}'|$CUT_BIN -d' ' -f2`
        ;;
      CYGWIN*)
