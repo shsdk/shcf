@@ -1,0 +1,6 @@
+#!/bin/bash
+
+rootdir=`dirname $0`
+
+$rootdir/ishost_up.test
+$rootdir/encrypt_password.test
