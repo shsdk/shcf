@@ -10,10 +10,10 @@ ishost_up() {
   local host_type=`$UNAME_BIN`
   case "$host_type" in
     Linux|Darwin)
-       retval=`$PING_BIN -c 5 $which_host|$AWK_BIN -F\, '/received/ {print $2}'|$CUT_BIN -d' ' -f2`
+       retval=`$PING_BIN -c 5 $which_host 2>/dev/null|$AWK_BIN -F\, '/received/ {print $2}'|$CUT_BIN -d' ' -f2`
        ;;
      CYGWIN*)
-       retval=`$PING_BIN -n 5 $which_host|$AWK_BIN -F\, '/Received/ {print $2}'|$CUT_BIN -d' ' -f4`
+       retval=`$PING_BIN -n 5 $which_host 2>/dev/null|$AWK_BIN -F\, '/Received/ {print $2}'|$CUT_BIN -d' ' -f4`
        ;;
   esac
 
