@@ -29,13 +29,13 @@ for each_func in $(ls $lib_rootdir/*.bash.inc); do
     ftest_name=$(echo $funcname|cut -d'.' -f1).test
 
     if [ "$(isIgnored $funcname)" = "1" ]; then
-      echo -n '[OK]* - '
+      echo -n '*[OK] - '
     else
-      [[ -e $ftest_rootdir/$ftest_name ]] && echo -n '[OK] - ' || echo -n '>>> [missing] - '
+      [[ -e $ftest_rootdir/$ftest_name ]] && echo -n ' [OK] - ' || echo -n '>>> [missing] - '
     fi
     echo "`basename $each_func`"
 done
 
 echo "
-NOTE: [OK]* - means that this function is ignored/no function tests planned for the short term
+NOTE: *[OK] - means that this function is ignored/no function tests planned for the short term
 "
