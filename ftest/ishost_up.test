@@ -3,8 +3,8 @@
 . `dirname $0`/../etc/controller.bash.inc
 autoload_functions "ishost_up"
 
-echo '[testing] ishost_up()'
+echo '[testing] ishost_up()     ## check if you have internet connection. If none, this test here normally fails'
 echo -n ' scenario 1 - '  ## valid host
-[[ $(ishost_up www.google.com) -gt 0 ]] && echo "OK" || echo "fail"
+[[ $(ishost_up www.google.com) -gt 0 ]] && echo 'OK' || echo 'fail'
 echo -n ' scenario 2 - '  ## invalid host
-[[ $(ishost_up 169.254.1.1) -eq 0 ]] && echo "OK" || echo "fail"
+[[ $(ishost_up 169.254.1.1) -eq 0 ]] && echo 'OK' || echo 'fail'
