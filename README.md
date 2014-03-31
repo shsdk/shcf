@@ -8,7 +8,7 @@ However, just to be sure that the framework works, do a quick check.
 Go to ftest directory and run *_runall.test*.
 You should see something like below if framework is not broken:
 
-<pre>
+```
 $ ./_runall.test
 
 ------------------------------------------------
@@ -44,7 +44,7 @@ NOTE: *[OK] - means that this function is ignored/no function tests planned for 
  scenario 1 - OK
 [testing] mresult_sql()
  scenario 1 - OK
-</pre>
+```
 
 
 ###QUICK USAGE GUIDE
@@ -54,13 +54,13 @@ to get started
 
 1. Set the location of framework first. Assuming it is in $HOME/tools/shcf, you should
    do something like:
-<pre>
+```
     tooldir=$HOME/tools/shcf              ## set rootdir of framework
-</pre>
+```
 2. From your script, source the controller:
-<pre> 
+```
     . etc/controller.bash.inc              ## source the controller
-</pre>
+```
 3. If you have framework functions to auto-include, declare it(separating each function
    with a space). Make sure though that the functions can be found in lib. For instance,
    a function with the name "func1" should be found as lib/func1.bash.inc. Do it like:
@@ -68,11 +68,11 @@ to get started
     autoload_functions "func1 func2 func3"  ## declare functions to use
 
 4. In summary, you should have these 3 lines now in your script:
-<pre>
+```
     tooldir=$HOME/tools/shcf                ## set rootdir of framework
     . etc/controller.bash.inc               ## source the controller
     autoload_functions "func1 func2 func3"  ## declare functions to use
-</pre>
+```
 
 
 
@@ -104,8 +104,8 @@ to get started
 
     In this framework, it can be seen in *lib/autoload_functions.bash.inc* and will be called in script something
     like 
-<pre>
+```
        ...
        autoload_functions "func1 func2 func3 etc"
        ...
-</pre>
+```
