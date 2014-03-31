@@ -1,21 +1,19 @@
-shcf
+#shcf - (Simplified) Shell Coding Framework
 ====
 
-(Smplified) Shell Coding Framework
-
-BEFORE ANYTHING ELSE
+###BEFORE ANYTHING ELSE
 
 Framework is code so that it would work wherever it is checked-out.
 However, just to be sure that the framework works, do a quick check.
-Go to ftest directory and run "_runall.test".
+Go to ftest directory and run *_runall.test*.
 You should see something like below if framework is not broken:
 
-
+<pre>
 $ ./_runall.test
 
 ------------------------------------------------
 FUNCTION TEST COMPLIANCE:
-<pre>
+
 *[OK] - autoload_functions.bash.inc
 *[OK] - check_mandatory_commands.bash.inc
 *[OK] - decrypt_password.bash.inc
@@ -49,7 +47,7 @@ NOTE: *[OK] - means that this function is ignored/no function tests planned for 
 </pre>
 
 
-QUICK USAGE GUIDE
+###QUICK USAGE GUIDE
 
 Assuming framework is OK in your system after doing the "BEFORE ANYTHING ELSE" above, you have to do the following
 to get started
@@ -78,9 +76,10 @@ to get started
 
 
 
-INSPIRATIONS
+###INSPIRATIONS
 
-1. Model-View-Controller(MVC) pattern
+1. **Model-View-Controller(MVC) pattern**
+
     I am not fully sure if I understand the MVC pattern correctly, but in my own understanding:
       * Model      - is the business logic or the "how" of this framework. It is the one that bears
                      the burden on how a specific functionality is to be carried out. In this framework,
@@ -93,16 +92,17 @@ INSPIRATIONS
                      The script(also called the 'view'), having been asked by the demanding customer to do
                      an SQL query, would look up through the 'controller' if an sql-query 'model' can be found.
                      Controller then knows how to locate such 'model'. In this framework, controller is called
-                     etc/controller.bash.inc which should be included in every scripts that uses this framework.
+                     *etc/controller.bash.inc* which should be included in every scripts that uses this framework.
                      
-2. auto-loading in PHP
+2. **auto-loading in PHP**
+
     Having seen a lot of shell scripts with functions being duplicated across scripts made me realize how
     it is a maintenance nightmare. A slight change in functionality on the main tool it is supporting would 
     mean changing a lot of scripts. So I made a roughly similar functionality in  this framework so that 
     only one function would be made and will simply be called in each script that needs it. Maintenance would 
     be easily done quickly.
 
-    In this framework, it can be seen in lib/autoload_functions.bash.inc and will be called in script something
+    In this framework, it can be seen in *lib/autoload_functions.bash.inc* and will be called in script something
     like 
 <pre>
        ...
