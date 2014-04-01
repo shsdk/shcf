@@ -13,7 +13,7 @@ get_datarow()
   local dsource=$2
 
   local ret_val=$INVALID
-  ret_val=$(grep "${col1}:" $dsource)
+  ret_val=$($GREP_BIN "${col1}:" $dsource)
 
   ## return value
   echo $ret_val
