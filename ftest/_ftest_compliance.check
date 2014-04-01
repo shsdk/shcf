@@ -24,7 +24,7 @@ isIgnored()
 } ## END: isIgnored()
 
 
-for each_func in $(ls $lib_rootdir/*.bash.inc); do
+for each_func in $(find $lib_rootdir/*|grep bash.inc); do
     funcname=$(basename $each_func)
     ftest_name=$(echo $funcname|cut -d'.' -f1).test
 

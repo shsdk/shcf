@@ -1,7 +1,7 @@
 #!/bin/bash
 
 . `dirname $0`/../etc/controller.bash.inc
-autoload_functions "mresult_sql"
+autoload_functions "db/sql/mysql/mresult_sql"
 
 echo '[testing] mresult_sql()'
 echo -n ' scenario 1 - '

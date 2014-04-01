@@ -109,3 +109,16 @@ to get started
        autoload_functions "func1 func2 func3 etc"
        ...
 ```
+
+    The above way to call *autoload_function* means that functions is directly accessible from *lib* and NOT
+    inside directories within *lib*. To reference a function stored in a directory within *lib* prefix it with
+    the directory relative to *lib*. For example to use *sqlQuery* function which is stored in *lib/db/sql/mysql*
+    and *ishost_up* located in *lib/box_mgt* you will call *autoload_function* like
+```
+       ...
+       autoload_functions "lib/db/sql/mysql/sqlQuery box_mgt/ishost_up"
+       ...
+```
+
+    In short, calling stays relatively the same, only that you have to prefix each function with directory name
+    in which it is stored
