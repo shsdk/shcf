@@ -17,11 +17,12 @@ autoload_functions()
     ## iterate through all $req_func, set $ret_val to 1
     ## if any required function cannot be autoloaded
     for each_func in $req_func; do
+        func_name=`basename $each_func`
         ## if function undefined, try to auto-include (reference from specified location)
-        type $each_func &> /dev/null || source $LIB_DIR/${each_func}.bash.inc
+        type $func_name &> /dev/null || source $LIB_DIR/${each_func}.bash.inc
 
         ## recheck, ensure it has been defined.
-        type $each_func &> /dev/null || (echo "ERROR: Missing required ${each_func}"; ret_val=1)
+        type $func_name &> /dev/null || (echo "ERROR: Missing required ${each_func}"; ret_val=1)
     done
 
     ## abort (exit 1) if any required func cannot be autoloaded
