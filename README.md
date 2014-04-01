@@ -3,8 +3,8 @@
 
 ###BEFORE ANYTHING ELSE
 
-Framework is code so that it would work wherever it is checked-out.
-However, just to be sure that the framework works, do a quick check.
+This framework is designed such that it will work regardless of the directory path.
+However, just to be sure that the framework works, you need to do a quick check.
 Go to ftest directory and run *_runall.test*.
 You should see something like below if framework is not broken:
 
@@ -66,11 +66,20 @@ to get started
    a function with the name "func1" should be found as lib/func1.bash.inc. Do it like:
 
     autoload_functions "func1 func2 func3"  ## declare functions to use
+    
+    Framework functions are also grouped according to functionality. So make sure to put
+    it in the right path. Example, for *sqlQuery* it is in *lib/db/sql/mysql/sqlQuery.bash.inc* 
+    so you should describe it top autoload_function as
+    
+```
+autoload_functions "db/sql/mysql/sqlQuery"
+```
 
 4. In summary, you should have these 3 lines now in your script:
+
 ```
     tooldir=$HOME/tools/shcf                ## set rootdir of framework
-    . $tooldir/etc/controller.bash.inc               ## source the controller
+    . $tooldir/etc/controller.bash.inc      ## source the controller
     autoload_functions "func1 func2 func3"  ## declare functions to use
 ```
 
@@ -104,20 +113,19 @@ to get started
 
     In this framework, it can be seen in *lib/autoload_functions.bash.inc* and will be called in script something
     like 
-```
-       ...
-       autoload_functions "func1 func2 func3 etc"
-       ...
+
+``` 
+autoload_functions "func1 func2 func3 etc"
+
 ```
 
     The above way to call *autoload_function* means that functions is directly accessible from *lib* and NOT
     inside directories within *lib*. To reference a function stored in a directory within *lib* prefix it with
     the directory relative to *lib*. For example to use *sqlQuery* function which is stored in *lib/db/sql/mysql*
     and *ishost_up* located in *lib/box_mgt* you will call *autoload_function* like
+
 ```
-       ...
        autoload_functions "lib/db/sql/mysql/sqlQuery box_mgt/ishost_up"
-       ...
 ```
 
     In short, calling stays relatively the same, only that you have to prefix each function with directory name
