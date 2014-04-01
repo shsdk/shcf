@@ -1,7 +1,7 @@
 #!/bin/bash
 
 . `dirname $0`/../etc/controller.bash.inc
-autoload_functions "ishost_up"
+autoload_functions "box_mgt/ishost_up"
 
 echo '[testing] ishost_up()     ## check if you have internet connection. If none, this test here normally fails'
 echo -n ' scenario 1 - '  ## valid host

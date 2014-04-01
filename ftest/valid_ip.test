@@ -1,7 +1,7 @@
 #!/bin/bash
 
 . `dirname $0`/../etc/controller.bash.inc
-autoload_functions "valid_ip"
+autoload_functions "box_mgt/valid_ip"
 
 echo '[testing] valid_ip()'
 ok_ip='192.168.5.40'
