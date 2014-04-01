@@ -9,7 +9,7 @@
 ## ============================================================
 get_datarow()
 {
-  local col1=$(echo $1|tr a-z A-Z)
+  local col1=$1
   local dsource=$2
 
   local ret_val=$INVALID
