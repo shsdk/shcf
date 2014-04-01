@@ -59,7 +59,7 @@ to get started
 ```
 2. From your script, source the controller:
 ```
-    . etc/controller.bash.inc              ## source the controller
+    . $tooldir/etc/controller.bash.inc              ## source the controller
 ```
 3. If you have framework functions to auto-include, declare it(separating each function
    with a space). Make sure though that the functions can be found in lib. For instance,
@@ -70,7 +70,7 @@ to get started
 4. In summary, you should have these 3 lines now in your script:
 ```
     tooldir=$HOME/tools/shcf                ## set rootdir of framework
-    . etc/controller.bash.inc               ## source the controller
+    . $tooldir/etc/controller.bash.inc               ## source the controller
     autoload_functions "func1 func2 func3"  ## declare functions to use
 ```
 
