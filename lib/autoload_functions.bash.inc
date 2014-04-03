@@ -7,7 +7,6 @@
 ##          library location.
 ##
 ## TODO: (1) Allow loading functions from non-framework standard location
-##       (2) allow directories inside standard location (e.g. mysql, network, etc)
 ## ==========================================================================================
 autoload_functions()
 {
