@@ -5,13 +5,21 @@
 ## INPUT: array of $req_func
 ## OUTPUT: exit 1 - if any required function cannot be autoloaded (meaning, not found in standard
 ##          library location.
-##
-## TODO: (1) Allow loading functions from non-framework standard location
 ## ==========================================================================================
 autoload_functions()
 {
     local req_func=$*
     local ret_val=0
+
+    ## check first parameter. If it's a directory, then
+    ## it is where functions should be loaded from
+    local new_libdir=$1
+    [[ -d $new_libdir ]] && {
+      shift
+      LIB_DIR=$new_libdir
+     }
+    
+    req_func=$* ## redeclare
 
     ## iterate through all $req_func, set $ret_val to 1
     ## if any required function cannot be autoloaded

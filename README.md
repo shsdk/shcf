@@ -83,7 +83,17 @@ autoload_functions "db/sql/mysql/sqlQuery"
     autoload_functions "func1 func2 func3"  ## declare functions to use
 ```
 
+###AUTO-LOAD YOUR OWN FUNCTIONS FROM YOUR OWN SCRIPTS
 
+Take note, if you will be auto-loading your own functions *autoload_functions* is to be used as
+
+```
+    autoload_functions /full/path/to/own/functions func1 func2
+```
+
+Note that the difference is that you don't put double quotes to the parameters as *autoload_functions*
+will get confused (TODO: I may have to fix this difference later so that regardless of the way you 
+declare, for as long as the 1st argument is a directory, functions will be checked from there)
 
 ###INSPIRATIONS
 
