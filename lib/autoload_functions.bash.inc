@@ -8,8 +8,7 @@
 ## ==========================================================================================
 autoload_functions()
 {
-    local req_func=$*
-    local ret_val=0
+    local exit_code=0
 
     ## check first parameter. If it's a directory, then
     ## it is where functions should be loaded from
@@ -19,19 +18,17 @@ autoload_functions()
       LIB_DIR=$new_libdir
      }
     
-    req_func=$* ## redeclare
-
-    ## iterate through all $req_func, set $ret_val to 1
+    ## iterate through all $*, set $exit_code to 1
     ## if any required function cannot be autoloaded
-    for each_func in $req_func; do
-        func_name=`basename $each_func`
+    for func_relpath in $*; do
+        func_name=$(basename $func_relpath)
         ## if function undefined, try to auto-include (reference from specified location)
-        type $func_name &> /dev/null || source $LIB_DIR/${each_func}.bash.inc
+        type $func_name &> /dev/null || source "$LIB_DIR"/${func_relpath}.bash.inc
 
         ## recheck, ensure it has been defined.
-        type $func_name &> /dev/null || (echo "ERROR: Missing required ${each_func}"; ret_val=1)
+        type $func_name &> /dev/null || {echo "ERROR: Missing required ${func_relpath}"; exit_code=1}
     done
 
     ## abort (exit 1) if any required func cannot be autoloaded
-    [ $ret_val -eq 1 ] && exit $ret_val
+    [[ $exit_code -eq 1 ]] && exit $exit_code
 } ## END: autoload_functions()
