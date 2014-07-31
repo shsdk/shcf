@@ -26,7 +26,10 @@ autoload_functions()
         type $func_name &> /dev/null || source "$LIB_DIR"/${func_relpath}.bash.inc
 
         ## recheck, ensure it has been defined.
-        type $func_name &> /dev/null || {echo "ERROR: Missing required ${func_relpath}"; exit_code=1}
+        type $func_name &> /dev/null || {
+          echo "ERROR: Missing required $func_relpath"
+          exit_code=1
+        }
     done
 
     ## abort (exit 1) if any required func cannot be autoloaded
