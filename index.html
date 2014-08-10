@@ -36,7 +36,7 @@
 
 <p>This framework is designed such that it will work regardless of the directory path.
 However, just to be sure that the framework works, you need to do a quick check.
-Go to ftest directory and run *_runall.test*.
+Go to ftest directory and run <i>_runall.test</i>.
 You should see something like below if framework is not broken:</p>
 
 <pre><code>
@@ -104,7 +104,7 @@ to get started<br />
   </code>  
   
     Framework functions are also grouped according to functionality. So make sure to put
-    it in the right path. Example, for *sqlQuery* it is in *lib/db/sql/mysql/sqlQuery.bash.inc* 
+    it in the right path. Example, for <i>sqlQuery</i> it is in <i>lib/db/sql/mysql/sqlQuery.bash.inc</i>
     so you should describe it top autoload_function as
     
   <code>
@@ -126,7 +126,7 @@ to get started<br />
 <a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>AUTO-LOAD YOUR OWN FUNCTIONS FROM YOUR OWN SCRIPTS</h3>
 
 <p>
-  Take note, if you will be auto-loading your own functions *autoload_functions* is to be used as
+  Take note, if you will be auto-loading your own functions <i>autoload_functions</i> is to be used as
   
   <code>
     <pre>autoload_functions /full/path/to/own/functions func1 func2</pre>
@@ -139,7 +139,7 @@ to get started<br />
 <a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>INSPIRATIONS</h3>
 
 <p>
-1. **Model-View-Controller(MVC) pattern**
+1. <b>Model-View-Controller(MVC) pattern</b>
 
 I am not fully sure if I understand the MVC pattern correctly, but in my own understanding:
 
@@ -158,7 +158,7 @@ I am not fully sure if I understand the MVC pattern correctly, but in my own und
                      *etc/controller.bash.inc* which should be included in every scripts that uses this framework.  
 </pre>
 
-2. **auto-loading in PHP**
+2. <b>auto-loading in PHP</b>
 
 Having seen a lot of shell scripts with functions being duplicated across scripts made me realize how
 it is a maintenance nightmare. A slight change in functionality on the main tool it is supporting would 
@@ -166,16 +166,16 @@ mean changing a lot of scripts. So I made a roughly similar functionality in  th
 only one function would be made and will simply be called in each script that needs it. Maintenance would 
 be easily done quickly.
 
-In this framework, it can be seen in *lib/autoload_functions.bash.inc* and will be called in script something
+In this framework, it can be seen in <i>lib/autoload_functions.bash.inc</i> and will be called in script something
 like 
 <code>
   <pre>autoload_functions "func1 func2 func3 etc"</pre>
 </code>
 
-    The above way to call *autoload_function* means that functions is directly accessible from *lib* and NOT
-    inside directories within *lib*. To reference a function stored in a directory within *lib* prefix it with
-    the directory relative to *lib*. For example to use *sqlQuery* function which is stored in *lib/db/sql/mysql*
-    and *ishost_up* located in *lib/box_mgt* you will call *autoload_function* like
+    The above way to call <i>autoload_function</i> means that functions is directly accessible from <i>lib</i> and NOT
+    inside directories within <i>lib</i>. To reference a function stored in a directory within <i>lib</i> prefix it with
+    the directory relative to <i>lib</i>. For example to use <i>sqlQuery</i> function which is stored in <i>lib/db/sql/mysql</i>
+    and <i>ishost_up</i> located in <i>lib/box_mgt</i> you will call <i>autoload_function</i> like
 
 <code>
   <pre>autoload_functions "lib/db/sql/mysql/sqlQuery box_mgt/ishost_up"</pre>
