@@ -26,7 +26,7 @@ isIgnored()
 
 for each_func in $(find $lib_rootdir/*|grep bash.inc); do
     funcname=$(basename $each_func)
-    ftest_name=$(echo $funcname|cut -d'.' -f1).test
+    ftest_name=$(echo $funcname|cut -d'.' -f1).tester
 
     if [ "$(isIgnored $funcname)" = "1" ]; then
       echo -n '*[OK] - '

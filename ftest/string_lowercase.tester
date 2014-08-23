@@ -1,0 +1,12 @@
+#!/bin/bash
+
+. `dirname $0`/../etc/controller.bash.inc
+autoload_functions "string/string_lowercase"
+
+echo '[testing] string_lowercase()'
+str1="the Quick bROwn FOx"
+allup=$(echo $str1|tr A-Z a-z)
+locase_test=$(string_lowercase "$str1")
+
+echo -n " [scenario 1] - "
+[[ "$locase_test" = "$locase_test" ]] && echo "OK" || echo "fail"

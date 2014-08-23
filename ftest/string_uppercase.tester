@@ -1,0 +1,12 @@
+#!/bin/bash
+
+. `dirname $0`/../etc/controller.bash.inc
+autoload_functions "string/string_uppercase"
+
+echo '[testing] string_uppercase()'
+str1="the Quick bROwn FOx"
+allup=$(echo $str1|tr a-z A-Z)
+upcase_test=$(string_uppercase "$str1")
+
+echo -n " [scenario 1] - "
+[[ "$upcase_test" = "$upcase_test" ]] && echo "OK" || echo "fail"
