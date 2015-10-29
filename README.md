@@ -8,7 +8,7 @@ However, just to be sure that the framework works, you need to do a quick check.
 Go to ftest directory and run *_runall.test*.
 You should see something like below if framework is not broken:
 
-```
+```bash
 $ ./_runall.test
 
 ------------------------------------------------
@@ -52,32 +52,27 @@ NOTE: *[OK] - means that this function is ignored/no function tests planned for 
 Assuming framework is OK in your system after doing the "BEFORE ANYTHING ELSE" above, you have to do the following
 to get started
 
-1. Set the location of framework first. Assuming it is in $HOME/tools/shcf, you should
-   do something like:
-```
+1. Set the location of framework first. Assuming it is in $HOME/tools/shcf, you should do something like:
+```bash
     tooldir=$HOME/tools/shcf              ## set rootdir of framework
 ```
-2. From your script, source the controller:
-```
+1. From your script, source the controller:
+```bash
     . $tooldir/etc/controller.bash.inc              ## source the controller
 ```
-3. If you have framework functions to auto-include, declare it(separating each function
-   with a space). Make sure though that the functions can be found in lib. For instance,
-   a function with the name "func1" should be found as lib/func1.bash.inc. Do it like:
+1. If you have framework functions to auto-include, declare it(separating each function with a space). Make sure though that the functions can be found in lib. For instance, a function with the name "func1" should be found as lib/func1.bash.inc. Do it like:
 
+```bash
     autoload_functions "func1 func2 func3"  ## declare functions to use
-    
-    Framework functions are also grouped according to functionality. So make sure to put
-    it in the right path. Example, for *sqlQuery* it is in *lib/db/sql/mysql/sqlQuery.bash.inc* 
-    so you should describe it top autoload_function as
-    
 ```
+Framework functions are also grouped according to functionality. So make sure to put it in the right path. Example, for *sqlQuery* it is in *lib/db/sql/mysql/sqlQuery.bash.inc* so you should describe it top autoload_function as
+
+```bash
 autoload_functions "db/sql/mysql/sqlQuery"
 ```
-
 4. In summary, you should have these 3 lines now in your script:
 
-```
+```bash
     tooldir=$HOME/tools/shcf                ## set rootdir of framework
     . $tooldir/etc/controller.bash.inc      ## source the controller
     autoload_functions "func1 func2 func3"  ## declare functions to use
@@ -87,7 +82,7 @@ autoload_functions "db/sql/mysql/sqlQuery"
 
 Take note, if you will be auto-loading your own functions *autoload_functions* is to be used as
 
-```
+```bash
     autoload_functions /full/path/to/own/functions func1 func2
 ```
 
@@ -124,19 +119,14 @@ declare, for as long as the 1st argument is a directory, functions will be check
     In this framework, it can be seen in *lib/autoload_functions.bash.inc* and will be called in script something
     like 
 
-``` 
+```bash
 autoload_functions "func1 func2 func3 etc"
-
 ```
 
-    The above way to call *autoload_function* means that functions is directly accessible from *lib* and NOT
-    inside directories within *lib*. To reference a function stored in a directory within *lib* prefix it with
-    the directory relative to *lib*. For example to use *sqlQuery* function which is stored in *lib/db/sql/mysql*
-    and *ishost_up* located in *lib/box_mgt* you will call *autoload_function* like
+The above way to call *autoload_function* means that functions is directly accessible from *lib* and NOT inside directories within *lib*. To reference a function stored in a directory within *lib* prefix it with the directory relative to *lib*. For example to use *sqlQuery* function which is stored in *lib/db/sql/mysql* and *ishost_up* located in *lib/box_mgt* you will call *autoload_function* like
 
-```
+```bash
        autoload_functions "lib/db/sql/mysql/sqlQuery box_mgt/ishost_up"
 ```
 
-    In short, calling stays relatively the same, only that you have to prefix each function with directory name
-    in which it is stored
+In short, calling stays relatively the same, only that you have to prefix each function with directory name in which it is stored
