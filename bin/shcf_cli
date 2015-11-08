@@ -1,0 +1,42 @@
+## ----------------------------------------------
+## shcf_cli - central tool that does the creation
+##            of quick shcf-based shell script
+##
+## INPUT: $1 - 'new'
+##        $2 - project path + name
+## OUTPUT:
+## AUTHOR: Ismael Angelo A. Casimpan Jr.
+##         ismael.angelo@casimpan.com
+##
+## TODO: Support command 'finalize' that would
+##       make a script  standalone
+## ----------------------------------------------
+#!/bin/bash
+
+command=$1 
+project=$2 
+
+usage() {
+  echo "$0 <cmd> [<cmd_params>]" 
+  echo " where:"
+  echo "  * cmd        - command supported. Now just 'new'"
+  echo "  * cmd_params - 'new' command accepts 'project_name'"  
+  echo         
+  exit 1
+} ## END: usage()
+
+## supported for now is only the command 'new'
+##
+if [[ "$command" = "new" ]]; then
+  template_rootdir=../tpl/shcf_cli/$command
+
+  mkdir -p $project
+  cp -Rfp $template_rootdir/* $project
+  [[ $? -eq 0 ]] && echo "Successful creation of $project" || { echo "Failure creating $project"; exit 1; }
+else
+  err_msg="ERROR: Unsupported command ($command)"
+  [[ $# -eq 0 ]] && err_msg="ERROR: input parameter(s) missing!"
+  echo $err_msg
+  usage
+  exit 1
+fi
