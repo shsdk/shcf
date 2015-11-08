@@ -6,13 +6,75 @@ WHAT IS SHCF?
 
 
 USAGE GUIDE:
-  ~$ git clone https://github.com/icasimpan/shcf.git
-  ~$ ./shcf/bin/shcf_cli new your_project_dir/hello_world
+  1. Clone the shcf project:
+        $ git clone https://github.com/icasimpan/shcf.git
+
+  2. Create a new project, example, `hello_world'
+        $ ./shcf/bin/shcf_cli new your_project_dir/hello_world
+
+    A successful creation should be something like below:
+
+        $ ./shcf/bin/shcf_cli new your_project_dir/hello_world
+        template script created in your_project_dir/hello_world/bin/hello_world
+        Successful creation of your_project_dir/hello_world
+
+  3. Make the template binary in `bin' executable
+        $ chmod u+x ./your_project_dir/bin/hello_world
+
+  4. Run `hello_world'
+        $ ./hello_world
+
+     Expect to see the following error:
+
+         /home/your_username/your_project_dir/hello_world/lib/autoload_functions.bash.inc: line 26: /home/your_username/your_project_dir/hello_world/lib/rename_function1.bash.inc: No such file or directory
+         ERROR: Missing required rename_function1
+         /home/your_username/your_project_dir/hello_world/lib/autoload_functions.bash.inc: line 26: /home/your_username/your_project_dir/hello_world/lib/rename_function2.bash.inc: No such file or directory
+         ERROR: Missing required rename_function2
+         /home/your_username/your_project_dir/hello_world/lib/autoload_functions.bash.inc: line 26: /home/your_username/your_project_dir/hello_world/lib/rename_functionX.bash.inc: No such file or directory
+         ERROR: Missing required rename_functionX
+
+     Template `View' (see MVC patter in `INSPIRATION' section below) included 3
+     functions that where meant to be replaced or removed, hence the error.
+     To fix the problem, go to the `Model' (or `lib' directory) and create a
+     function named 'greeter()' (as file greeter.bash.inc) with contents below:
+
+        greeter() {
+           local message=$1
+           echo "$message!"
+        }
+
+     In `bin/hello_world', remove the 3 template functions namely:
+       rename_function1
+       rename_function2
+       rename_functionX
+
+     and replace it with `greeter'.
+
+     Below, the comment block:
+
+       ## ..............................
+       ## main utility tool starts below
+       ## ..............................
+
+     add the line:
+
+       greeter "Hello, World"
+
+     Of course, save the file.
+
+     Rerun, again.
   
+        $ ./hello_world
+
+     If you followed the instructions correctly, you should see the greeting:
+
+        $ ./hello_world
+        Hello, World!
+
   TODO: 
-    * Add how to create simple function
+    * Add how to create simple function that returns a string
     * Add how to get libraries from shcf_lib
-  
+
 CONTRIBUTING:
   See docs/howto_contribute.txt
 
