@@ -7,7 +7,7 @@ WHAT IS SHCF?
 
 USAGE GUIDE:
   ~$ git clone https://github.com/icasimpan/shcf.git
-  ~$ ./shcf/bin/shcf_init new your_project_dir/hello_world
+  ~$ ./shcf/bin/shcf_cli new your_project_dir/hello_world
   
   TODO: 
     * Add how to create simple function
@@ -40,7 +40,7 @@ INSPIRATIONS
                    framework, controller is called etc/controller.bash.inc which
                    should be included in every scripts that uses this framework.
                      
-2. auto-loading in PHP
+  2. auto-loading in PHP
 
     Having seen a lot of shell scripts with functions being duplicated across 
     scripts made me realize how it is a maintenance nightmare. A slight change 
