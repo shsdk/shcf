@@ -1,0 +1,4 @@
+v0.1.1 
+  Nov 7, 2015 - Last release for monolithic framework
+v0.1
+  Apr 3, 2014 - original creation. Big and contains unneeded libraries

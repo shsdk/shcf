@@ -1,4 +1,4 @@
-## ----------------------------------------------
+## -------------------------------------------------
 ## shcf_cli - central tool that does the creation
 ##            of quick shcf-based shell script
 ##
@@ -10,31 +10,52 @@
 ##
 ## TODO: Support command 'finalize' that would
 ##       make a script  standalone
-## ----------------------------------------------
+## -------------------------------------------------
 #!/bin/bash
 
-command=$1 
-project=$2 
+## -------- source common library ---------
+PROJECT_ROOTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/../ && pwd )"
+. $PROJECT_ROOTDIR/etc/controller.bash.inc
 
+
+## list of functions to auto-load
+autoload_functions "create_bin"
+
+
+## parameters
+command=$1
+project=$2
+
+## ..............................
+## main utility tool starts below
+## ..............................
 usage() {
-  echo "$0 <cmd> [<cmd_params>]" 
+  echo "$0 <cmd> [<cmd_params>]"
   echo " where:"
   echo "  * cmd        - command supported. Now just 'new'"
-  echo "  * cmd_params - 'new' command accepts 'project_name'"  
-  echo         
+  echo "  * cmd_params - 'new' command accepts 'project_name'"
+  echo
   exit 1
 } ## END: usage()
-
-TOOL_ROOTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/../ && pwd )"
 
 ## supported for now is only the command 'new'
 ##
 if [[ "$command" = "new" ]]; then
-  template_rootdir=$TOOL_ROOTDIR/tpl/shcf_cli/$command
+  template_rootdir=$PROJECT_ROOTDIR/tpl/shcf_cli/$command
 
   mkdir -p $project
   cp -Rfp $template_rootdir/* $project
-  [[ $? -eq 0 ]] && echo "Successful creation of $project" || { echo "Failure creating $project"; exit 1; }
+  initial_skeleton=$?
+
+  bin_dir=$project/bin
+  pure_projname=$(basename $project)
+  create_bin $bin_dir/$pure_projname
+  if [[ $initial_skeleton -eq 0 ]] && [[ $? -eq 0 ]]; then
+     echo "Successful creation of $project"
+  else
+     echo "Failure creating $project"
+     exit 1
+  fi
 else
   err_msg="ERROR: Unsupported command ($command)"
   [[ $# -eq 0 ]] && err_msg="ERROR: input parameter(s) missing!"
