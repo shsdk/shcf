@@ -25,10 +25,12 @@ usage() {
   exit 1
 } ## END: usage()
 
+TOOL_ROOTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/../ && pwd )"
+
 ## supported for now is only the command 'new'
 ##
 if [[ "$command" = "new" ]]; then
-  template_rootdir=../tpl/shcf_cli/$command
+  template_rootdir=$TOOL_ROOTDIR/tpl/shcf_cli/$command
 
   mkdir -p $project
   cp -Rfp $template_rootdir/* $project
