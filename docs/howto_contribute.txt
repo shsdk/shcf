@@ -1,2 +1,14 @@
+HOW TO CONTRIBUTE:
+
 If you want to help out, please don't hesitate to give a sensible pull request.
 I will be happy to review and incorporate as needed.
+
+Just a reminder on the pull request that you would send:
+ * Patch should be a unified change that you think would improve the shcf codebase
+  and your Fullname or github account name in docs/contributor.txt
+
+ * Put a comment as to why this pull request of yours should be merged to current 
+  master branch.
+
+Thanks in advance.
+Ismael Angelo A. Casimpan Jr. (maintainer)

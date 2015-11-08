@@ -21,7 +21,7 @@ USAGE GUIDE:
   3. Make the template binary in `bin' executable
         $ chmod u+x ./your_project_dir/bin/hello_world
 
-  4. Run `hello_world'
+  4. Template script is not yet ready. If you insist on running it like below:
         $ ./hello_world
 
      Expect to see the following error:
