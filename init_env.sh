@@ -13,6 +13,7 @@
 
 ## allow custom path for development purposes.
 [[ ! -z $1 ]] && export SHCF_PLATFORM_ROOT=$1 || export SHCF_PLATFORM_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/ && pwd )"
-echo "SHCF_PLATFORM_ROOT=$SHCF_PLATFORM_ROOT"
+echo "Platform environment has been set. See below:"
+echo "  SHCF_PLATFORM_ROOT=$SHCF_PLATFORM_ROOT"
 bash
 
