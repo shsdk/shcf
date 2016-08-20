@@ -14,13 +14,13 @@
 #!/bin/bash
 
 ## -------- source common library ---------
-PROJECT_ROOTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/../ && pwd )"
-. $PROJECT_ROOTDIR/etc/controller.bash.inc
+## Ensure environment has been set:
+[[ -z $SHCF_PLATFORM_ROOT ]] && { echo "[ERROR] SHCF environment not set. Run ./init_env.sh"; exit 1; }
 
+. $SHCF_PLATFORM_ROOT/etc/controller.bash.inc
 
 ## list of functions to auto-load
 autoload_functions "create_bin"
-
 
 ## parameters
 command=$1
@@ -41,7 +41,7 @@ usage() {
 ## supported for now is only the command 'new'
 ##
 if [[ "$command" = "new" ]]; then
-  template_rootdir=$PROJECT_ROOTDIR/tpl/shcf_cli/$command
+  template_rootdir=$SHCF_PLATFORM_ROOT/tpl/shcf_cli/$command
 
   mkdir -p $project
   cp -Rfp $template_rootdir/* $project
