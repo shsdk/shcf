@@ -46,7 +46,7 @@ case $command in
   "new")
     ## Ensure no conflicting shcf_appname in ~/.shcf_rc
     ## Namespacing is achieved by creating a subdirectory for same name
-    upcase_prj=$(case_shift upper $project|$SED 's|/|_|g')
+    upcase_prj=$(case_shift upper $project|$SED_BIN 's|/|_|g')
     rc_entry="${upcase_prj}_SHCF_APPROOT=$(pwd)/$project"
     if [[ ! -e $rc_file ]]; then
        echo $rc_entry > $rc_file
@@ -66,6 +66,7 @@ case $command in
     create_bin $bin_dir/$pure_projname
     if [[ $initial_skeleton -eq 0 ]] && [[ $? -eq 0 ]]; then
        echo "Successful creation of $project"
+       . $rc_file      ## to refresh what is known to shcf without consulting $rcP_file
     else
        echo "Failure creating $project"
        exit 1
