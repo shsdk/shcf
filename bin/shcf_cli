@@ -13,10 +13,10 @@
 ## -------------------------------------------------
 #!/bin/bash
 
-## -------- source common library ---------
 ## Ensure environment has been set:
 [[ -z $SHCF_PLATFORM_ROOT ]] && { echo "[ERROR] SHCF environment not set. Run ./init_env.sh"; exit 1; }
 
+## -------- source common library ---------
 . $SHCF_PLATFORM_ROOT/etc/controller.bash.inc
 
 ## list of functions to auto-load
@@ -36,7 +36,7 @@ usage() {
   echo "  * cmd        - command supported: 'new', 'lib'"
   echo "  * cmd_params - 'new' command accepts 'project_name'"
   echo
-  exit 1
+  exit $FAILED
 } ## END: usage()
 
 ## supported commands:
@@ -44,7 +44,7 @@ usage() {
 ##  lib - creation of skeleton lib to a project
 case $command in
   "new")
-    ## Ensure no conflicting shcf_appname in ~/.shcf_rc
+    ## Ensure no conflicting shcf_appname in $rc_file
     ## Namespacing is achieved by creating a subdirectory for same name
     upcase_prj=$(case_shift upper $project|$SED_BIN 's|/|_|g')
     rc_entry="${upcase_prj}_SHCF_APPROOT=$(pwd)/$project"
@@ -52,7 +52,7 @@ case $command in
        echo $rc_entry > $rc_file
     else
        prj_exist=$(grep -c ${upcase_prj}_ $rc_file)
-       [[ $prj_exist -gt 0 ]] && { echo "ERROR: Project $project exist. Aborting;"; exit 1; } || echo $rc_entry >> $rc_file 
+       [[ $prj_exist -gt 0 ]] && { echo "ERROR: Project $project exist. Aborting."; exit $FAILED; } || echo $rc_entry >> $rc_file 
     fi
 
     template_rootdir=$SHCF_PLATFORM_ROOT/tpl/shcf_cli/$command
@@ -62,14 +62,14 @@ case $command in
     initial_skeleton=$?
 
     bin_dir=$project/bin
-    pure_projname=$(basename $project)
+    pure_projname=$($BASENAME_BIN $project)
     create_bin $bin_dir/$pure_projname
-    if [[ $initial_skeleton -eq 0 ]] && [[ $? -eq 0 ]]; then
+    if [[ $initial_skeleton -eq $SUCCESS ]] && [[ $? -eq $SUCCESS ]]; then
        echo "Successful creation of $project"
-       . $rc_file      ## to refresh what is known to shcf without consulting $rcP_file
+       . $rc_file      ## to refresh what is known to shcf without consulting $rc_file
     else
        echo "Failure creating $project"
-       exit 1
+       exit $FAILED
     fi
   ;;
   "lib")
@@ -80,6 +80,6 @@ case $command in
     [[ $# -eq 0 ]] && err_msg="ERROR: input parameter(s) missing!"
     echo $err_msg
     usage
-    exit 1
+    exit $FAILED
    ;;
 esac
