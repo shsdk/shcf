@@ -20,11 +20,12 @@
 . $SHCF_PLATFORM_ROOT/etc/controller.bash.inc
 
 ## list of functions to auto-load
-autoload_functions "create_bin case_shift"
+autoload_functions "create_bin case_shift create_lib"
 
 ## parameters
 command=$1
 project=$2
+libname=$3
 
 ## ..............................
 ## main utility tool starts below
@@ -32,45 +33,52 @@ project=$2
 usage() {
   echo "$0 <cmd> [<cmd_params>]"
   echo " where:"
-  echo "  * cmd        - command supported. Now just 'new'"
+  echo "  * cmd        - command supported: 'new', 'lib'"
   echo "  * cmd_params - 'new' command accepts 'project_name'"
   echo
   exit 1
 } ## END: usage()
 
-## supported for now is only the command 'new'
-##
-if [[ "$command" = "new" ]]; then
-  ## Ensure no conflicting shcf_appname in ~/.shcf_rc
-  ## Namespacing is achieved by creating a subdirectory for same name
-  upcase_prj=$(case_shift upper $project|sed 's|/|_|g')
-  rc_entry="${upcase_prj}_SHCF_APPROOT=$(pwd)/$project"
-  if [[ ! -e $rc_file ]]; then
-     echo $rc_entry > $rc_file
-  else
-     prj_exist=$(grep -c ${upcase_prj}_ $rc_file)
-     [[ $prj_exist -gt 0 ]] && { echo "ERROR: Project $project exist. Aborting;"; exit 1; } || echo $rc_entry >> $rc_file 
-  fi
+## supported commands:
+##  new - to create a new shcf-based shell project
+##  lib - creation of skeleton lib to a project
+case $command in
+  "new")
+    ## Ensure no conflicting shcf_appname in ~/.shcf_rc
+    ## Namespacing is achieved by creating a subdirectory for same name
+    upcase_prj=$(case_shift upper $project|$SED 's|/|_|g')
+    rc_entry="${upcase_prj}_SHCF_APPROOT=$(pwd)/$project"
+    if [[ ! -e $rc_file ]]; then
+       echo $rc_entry > $rc_file
+    else
+       prj_exist=$(grep -c ${upcase_prj}_ $rc_file)
+       [[ $prj_exist -gt 0 ]] && { echo "ERROR: Project $project exist. Aborting;"; exit 1; } || echo $rc_entry >> $rc_file 
+    fi
 
-  template_rootdir=$SHCF_PLATFORM_ROOT/tpl/shcf_cli/$command
+    template_rootdir=$SHCF_PLATFORM_ROOT/tpl/shcf_cli/$command
 
-  mkdir -p $project
-  cp -Rfp $template_rootdir/* $project
-  initial_skeleton=$?
+    mkdir -p $project
+    cp -Rfp $template_rootdir/* $project
+    initial_skeleton=$?
 
-  bin_dir=$project/bin
-  pure_projname=$(basename $project)
-  create_bin $bin_dir/$pure_projname
-  if [[ $initial_skeleton -eq 0 ]] && [[ $? -eq 0 ]]; then
-     echo "Successful creation of $project"
-  else
-     echo "Failure creating $project"
-     exit 1
-  fi
-else
-  err_msg="ERROR: Unsupported command ($command)"
-  [[ $# -eq 0 ]] && err_msg="ERROR: input parameter(s) missing!"
-  echo $err_msg
-  usage
-  exit 1
-fi
+    bin_dir=$project/bin
+    pure_projname=$(basename $project)
+    create_bin $bin_dir/$pure_projname
+    if [[ $initial_skeleton -eq 0 ]] && [[ $? -eq 0 ]]; then
+       echo "Successful creation of $project"
+    else
+       echo "Failure creating $project"
+       exit 1
+    fi
+  ;;
+  "lib")
+    create_lib $project $libname 
+  ;;
+  *)
+    err_msg="ERROR: Unsupported command ($command)"
+    [[ $# -eq 0 ]] && err_msg="ERROR: input parameter(s) missing!"
+    echo $err_msg
+    usage
+    exit 1
+   ;;
+esac

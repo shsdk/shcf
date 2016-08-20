@@ -1,11 +1,24 @@
 WHAT IS SHCF?
 
-  It is a lightweight shell scripting framework which means, it interfere less 
-  with how you do the bash shell-scripting. In the near future, it would even 
-  allow you to make standalone bash shell script.
+  It is a lightweight shell scripting framework for bash which means, it lets
+  you concetrate more on bash shell scripting, not on how to use the framework.
+  In the near future, it would even allow you to make standalone bash shell script.
 
 
-USAGE GUIDE:
+QUICK GUIDE:
+  1. Create a new shcf-based shell script
+       ~$ git clone https://github.com/icasimpan/shcf.git
+       ~$ ./shcf/init_env.sh
+       ~$ shcf_cli new hello_world
+
+  2. Add basic logic, say the greeter() function
+       ~$ shcf_cli lib hello_world greeter
+  3. Modify hello_world/lib/greeter.bash.inc to say 'hello world'
+  4. Update main script hello_world/bin/hello_world so it calls `greeter'
+       TIP: Add it to `autoload_functions' line
+
+
+DETAILED USAGE GUIDE:
   1. Clone the shcf project:
         $ git clone https://github.com/icasimpan/shcf.git
 
@@ -51,6 +64,8 @@ USAGE GUIDE:
            echo "$message!"
         }
 
+     TIP: Another approach is to create a template file using command `shcf_cli lib hello_world greeter'
+
      In `bin/hello_world', remove the 3 template functions namely:
        rename_function1
        rename_function2
@@ -83,8 +98,10 @@ USAGE GUIDE:
     * Add how to create simple function that returns a string
     * Add how to get libraries from shcf_lib
 
+
 CONTRIBUTING:
   See docs/howto_contribute.txt
+
 
 INSPIRATIONS
 
