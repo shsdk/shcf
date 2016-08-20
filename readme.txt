@@ -9,19 +9,27 @@ USAGE GUIDE:
   1. Clone the shcf project:
         $ git clone https://github.com/icasimpan/shcf.git
 
-  2. Create a new project, example, `hello_world'
+  2. Initialize the environment
+        $ ./shcf/init_env.sh
+        Platform environment has been set. See below:
+          SHCF_PLATFORM_ROOT=/home/your_username/shcf
+     
+     At this point, you can use `shcf_cli'(located in `./shcf/bin') from any path 
+     so long as you didn't use `exit'.
+
+  3. Now, create a new project. Example, `hello_world'
         $ ./shcf/bin/shcf_cli new your_project_dir/hello_world
 
-    A successful creation should be something like below:
+     A successful creation should be something like below:
 
         $ ./shcf/bin/shcf_cli new your_project_dir/hello_world
         template script created in your_project_dir/hello_world/bin/hello_world
         Successful creation of your_project_dir/hello_world
 
-  3. Make the template binary in `bin' executable
+  4. Make the template binary in `bin' executable
         $ chmod u+x ./your_project_dir/bin/hello_world
 
-  4. Template script is not yet ready. If you insist on running it like below:
+  5. Template script is not yet ready. If you insist on running it like below:
         $ ./hello_world
 
      Expect to see the following error:
