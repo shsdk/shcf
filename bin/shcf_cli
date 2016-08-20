@@ -20,7 +20,7 @@
 . $SHCF_PLATFORM_ROOT/etc/controller.bash.inc
 
 ## list of functions to auto-load
-autoload_functions "create_bin"
+autoload_functions "create_bin case_shift"
 
 ## parameters
 command=$1
@@ -41,6 +41,17 @@ usage() {
 ## supported for now is only the command 'new'
 ##
 if [[ "$command" = "new" ]]; then
+  ## Ensure no conflicting shcf_appname in ~/.shcf_rc
+  ## Namespacing is achieved by creating a subdirectory for same name
+  upcase_prj=$(case_shift upper $project|sed 's|/|_|g')
+  rc_entry="${upcase_prj}_SHCF_APPROOT=$(pwd)/$project"
+  if [[ ! -e $rc_file ]]; then
+     echo $rc_entry > $rc_file
+  else
+     prj_exist=$(grep -c ${upcase_prj}_ $rc_file)
+     [[ $prj_exist -gt 0 ]] && { echo "ERROR: Project $project exist. Aborting;"; exit 1; } || echo $rc_entry >> $rc_file 
+  fi
+
   template_rootdir=$SHCF_PLATFORM_ROOT/tpl/shcf_cli/$command
 
   mkdir -p $project
