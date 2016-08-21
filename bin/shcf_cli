@@ -40,6 +40,9 @@ _p3=$3
 ##  help - shows the usage per command
 ##  show - shows some entity's content, like $rc_file
 
+## For use in help files
+main_cmd=$($BASENAME_BIN $0)
+
 case $cmd in
   "new")
     project=$_p2
