@@ -20,7 +20,7 @@
 . $SHCF_PLATFORM_ROOT/etc/controller.bash.inc
 
 ## list of functions to auto-load
-autoload_functions "create_bin case_shift create_lib create_namespace"
+autoload_functions "create_bin case_shift create_lib create_namespace error_message"
 
 ## parameters
 command=$1
@@ -45,14 +45,13 @@ usage() {
 case $command in
   "new")
     ## Ensure no conflicting shcf_appname in $rc_file
-    ## Namespacing is achieved by creating a subdirectory for same name
     prj_namespace=$(create_namespace $project)
     rc_entry="${prj_namespace}=$(pwd)/$project"
     if [[ ! -e $rc_file ]]; then
        echo $rc_entry > $rc_file
     else
        prj_exist=$(grep -c ${prj_namespace} $rc_file)
-       [[ $prj_exist -gt 0 ]] && { echo "ERROR: Project $project exist. Aborting."; exit $FAILED; } || echo $rc_entry >> $rc_file 
+       [[ $prj_exist -gt 0 ]] && { error_message "ERROR: Project $project exist. Aborting."; } || echo $rc_entry >> $rc_file
     fi
 
     template_rootdir=$SHCF_PLATFORM_ROOT/tpl/shcf_cli/$command
@@ -68,8 +67,7 @@ case $command in
        echo "Successful creation of $project"
        . $rc_file      ## to refresh what is known to shcf without consulting $rc_file
     else
-       echo "Failure creating $project"
-       exit $FAILED
+       error_message "Failure creating $project"
     fi
   ;;
   "lib")
@@ -80,6 +78,5 @@ case $command in
     [[ $# -eq 0 ]] && err_msg="ERROR: input parameter(s) missing!"
     echo $err_msg
     usage
-    exit $FAILED
    ;;
 esac
