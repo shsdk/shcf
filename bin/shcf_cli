@@ -44,6 +44,11 @@ usage() {
 ##  lib - creation of skeleton lib to a project
 case $command in
   "new")
+    ## Ban usage of 'shcf' in project name. Reserve for communicating with shcf tool
+    [[ $(case_shift low $project | $GREP_BIN -c shcf) -gt 0 ]] && {
+      error_message "ERROR: Reserved name 'shcf' cannot be used. Aborting.";
+    }
+
     ## Ensure no conflicting shcf_appname in $rc_file
     prj_namespace=$(create_namespace $project)
     rc_entry="${prj_namespace}=$(pwd)/$project"
