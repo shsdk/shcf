@@ -20,12 +20,12 @@
 . $SHCF_PLATFORM_ROOT/etc/controller.bash.inc
 
 ## list of functions to auto-load
-autoload_functions "create_bin case_shift create_lib create_namespace error_message"
+autoload_functions "create_bin case_shift create_lib create_namespace error_message get_rcfile"
 
 ## parameters
 command=$1
 project=$2
-libname=$3
+new_entity=$3
 
 ## ..............................
 ## main utility tool starts below
@@ -41,6 +41,7 @@ usage() {
 
 ## supported commands:
 ##  new - to create a new shcf-based shell project
+##  bin - creation of new 'bin' scripts
 ##  lib - creation of skeleton lib to a project
 case $command in
   "new")
@@ -49,7 +50,7 @@ case $command in
       error_message "ERROR: Reserved name 'shcf' cannot be used. Aborting.";
     }
 
-    ## Ensure no conflicting shcf_appname in $rc_file
+    ## Ensure no conflicting namespace in $rc_file
     prj_namespace=$(create_namespace $project)
     rc_entry="${prj_namespace}=$(pwd)/$project"
     if [[ ! -e $rc_file ]]; then
@@ -65,9 +66,8 @@ case $command in
     cp -Rfp $template_rootdir/* $project
     initial_skeleton=$?
 
-    bin_dir=$project/bin
-    pure_projname=$($BASENAME_BIN $project)
-    create_bin $bin_dir/$pure_projname
+    new_entity=$($BASENAME_BIN $project)
+    create_bin $project $new_entity
     if [[ $initial_skeleton -eq $SUCCESS ]] && [[ $? -eq $SUCCESS ]]; then
        echo "Successful creation of $project"
        . $rc_file      ## to refresh what is known to shcf without consulting $rc_file
@@ -76,7 +76,10 @@ case $command in
     fi
   ;;
   "lib")
-    create_lib $project $libname 
+    create_lib $project $new_entity
+  ;;
+  "bin")
+    create_bin $project $new_entity
   ;;
   *)
     err_msg="ERROR: Unsupported command ($command)"
