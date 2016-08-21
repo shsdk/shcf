@@ -20,7 +20,7 @@
 . $SHCF_PLATFORM_ROOT/etc/controller.bash.inc
 
 ## list of functions to auto-load
-autoload_functions "create_bin case_shift create_lib create_namespace error_message get_rcfile"
+autoload_functions "create_bin case_shift create_lib create_namespace error_message"
 
 ## parameters
 command=$1
