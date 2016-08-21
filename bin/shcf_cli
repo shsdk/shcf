@@ -14,35 +14,28 @@
 #!/bin/bash
 
 ## Ensure environment has been set:
-[[ -z $SHCF_PLATFORM_ROOT ]] && { echo "[ERROR] SHCF environment not set. Run ./init_env.sh"; exit 1; }
+[[ -z $SHCF_PLATFORM_ROOT ]] && { echo "[ERROR] SHCF environment not set. Run 'init_env.sh'"; exit 1; }
 
 ## -------- source common library ---------
 . $SHCF_PLATFORM_ROOT/etc/controller.bash.inc
 
 ## list of functions to auto-load
-autoload_functions "create_new create_bin case_shift create_lib create_namespace error_message"
+autoload_functions "usage create_new create_bin case_shift create_lib create_namespace error_message"
 
 ## parameters
-command=$1
+command=$(case_shift down $1)
 project=$2
 new_entity=$3
 
 ## ..............................
-## main utility tool starts below
+## tool main()
 ## ..............................
-usage() {
-  echo "$0 <cmd> [<cmd_params>]"
-  echo " where:"
-  echo "  * cmd        - command supported: 'new', 'lib'"
-  echo "  * cmd_params - 'new' command accepts 'project_name'"
-  echo
-  exit $FAILED
-} ## END: usage()
 
 ## supported commands:
 ##  new - to create a new shcf-based shell project
 ##  bin - creation of new 'bin' scripts
 ##  lib - creation of skeleton lib to a project
+
 case $command in
   "new")
     create_new $project
@@ -55,8 +48,8 @@ case $command in
   ;;
   *)
     err_msg="ERROR: Unsupported command ($command)"
-    [[ $# -eq 0 ]] && err_msg="ERROR: input parameter(s) missing!"
+    [[ $# -eq 0 ]] && err_msg='ERROR: input parameter(s) missing!'
     echo $err_msg
     usage
-   ;;
+  ;;
 esac
