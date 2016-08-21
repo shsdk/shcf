@@ -5,7 +5,7 @@ create_lib() {
     autoload_functions "usage get_rcfile"
 
     #show help if no parameters given
-    [[ $# -lt 2 ]] && usage 'lib'
+    [[ $# -lt 2 ]] && { echo "ERROR: Parameter(s) missing!"; usage lib; exit $FAILED; }
 
     local shortname_newlib=$($BASENAME_BIN ${new_lib}|$CUT_BIN -d'.' -f1)
     local lib_fullpath=$(get_rcfile proot $projname)/lib/${new_lib}.bash.inc

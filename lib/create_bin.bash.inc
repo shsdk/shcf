@@ -5,7 +5,7 @@ create_bin() {
     autoload_functions "usage get_rcfile"
    
     #show help if no parameters given
-    [[ $# -lt 2 ]] && usage 'bin'
+    [[ $# -lt 2 ]] && { echo "ERROR: Parameter(s) missing!"; usage bin; exit $FAILED; }
  
     local shortname_newscript=$($BASENAME_BIN ${new_script})
     local script_fullrootdir=$(get_rcfile proot $project)'/bin'

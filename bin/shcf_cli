@@ -19,7 +19,7 @@
 . $SHCF_PLATFORM_ROOT/etc/controller.bash.inc
 
 ## list of functions to auto-load
-autoload_functions "usage create_help create_new create_bin case_shift create_lib create_namespace error_message"
+autoload_functions "create_show usage create_help create_new create_bin case_shift create_lib create_namespace error_message"
 
 ## parameters. Parameters 2 & 3 depends on $cmd need, hence,
 ## the notation. Clarificatory declarations in respective
@@ -34,10 +34,11 @@ _p3=$3
 ## ..............................
 
 ## supported commands:
-##  new - to create a new shcf-based shell project
-##  bin - creation of new 'bin' scripts
-##  lib - creation of skeleton lib to a project
+##  new  - to create a new shcf-based shell project
+##  bin  - creation of new 'bin' scripts
+##  lib  - creation of skeleton lib to a project
 ##  help - shows the usage per command
+##  show - shows some entity's content, like $rc_file
 
 case $cmd in
   "new")
@@ -57,6 +58,10 @@ case $cmd in
   "help")
     command=$_p2
     create_help $command
+  ;;
+  "show")
+    what_entity=$_p2
+    create_show $what_entity
   ;;
   *)
     err_msg="ERROR: Unsupported command ($cmd)"

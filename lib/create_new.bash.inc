@@ -6,7 +6,7 @@ create_new() {
     local project=$(case_shift low $1)
 
     ## show help if no parameters given
-    [[ $# -eq 0 ]] && usage 'new'
+    [[ $# -eq 0 ]] && { echo "ERROR: Parameter(s) missing!"; usage new; exit $FAILED; }
 
     ##
     ## core logic below...

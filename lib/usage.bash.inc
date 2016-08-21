@@ -33,16 +33,27 @@ _BLOCK_
 
     'help')
 $CAT_BIN << _BLOCK_
-Show the help files for supported commands.
+Show the help instructions for supported commands.
 usage: shcf_cli help <cmd>
 
   Supported <cmd> as follows:
      new
      bin
      lib
+     show
 _BLOCK_
-
     ;;
+
+    'show')
+$CAT_BIN << _BLOCK_
+Displays the contents of an entity.
+usage: shcf_cli show <entity>
+
+  Supported <entity> as follows:
+    rcfile
+_BLOCK_
+    ;;
+
    *)
 $CAT_BIN << _BLOCK_
 usage: $($BASENAME_BIN $0) <cmd> [<cmd_params>]
@@ -54,6 +65,7 @@ usage: $($BASENAME_BIN $0) <cmd> [<cmd_params>]
     new       requires <project_name>
     bin       requires <project_name> <script_name>
     lib       requires <project_name> <lib_name>
+    show      requires <entity>
 
   For usage per command, use 'shcf_cli help <cmd>'
 _BLOCK_

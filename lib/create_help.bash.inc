@@ -4,6 +4,10 @@ create_help() {
 
   ## parameter
   local on_what=$(case_shift low $1)
+
+  #show help if no parameters given
+  [[ $# -lt 1 ]] && { echo "ERROR: Parameter(s) missing!"; usage help; exit $FAILED; }
+
   
   case $on_what in
       'new')
@@ -15,7 +19,11 @@ create_help() {
       'lib')
         usage bin
       ;;
-       *)
+      'show')
+        usage show
+      ;;
+      *)
+        echo "ERROR: Unknown command ($on_what)."
         usage help
       ;;
   esac
