@@ -1,3 +1,5 @@
+v0.2.0
+  Aug 22, 2016 - shcf major rework to create a Shell Scripting Development Kit (ShSDK).
 v0.1.1 
   Nov 7, 2015 - Last release for monolithic framework
 v0.1
