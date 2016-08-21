@@ -25,6 +25,9 @@ QUICK GUIDE:
   5. For additional scripts into your project say `whoami':
        ~$ shcf_cli hello_world whoami
 
+  6. Further usage, help is available. Just run:
+       ~$ shcf_cli help
+
 
 DETAILED USAGE GUIDE:
   1. Clone the shcf project:
@@ -109,6 +112,9 @@ DETAILED USAGE GUIDE:
      
       Same instructions as above, put the logic, make it executable and you're on.
 
+   7. For other usage, help is available. Just run:
+
+       $ shcf_cli help
 
   TODO: 
     * Add how to create simple function that returns a string

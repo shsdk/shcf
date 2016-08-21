@@ -31,17 +31,31 @@ usage: shcf_cli bin <project_name> <script_name>
 _BLOCK_
     ;;
 
+    'help')
+$CAT_BIN << _BLOCK_
+Show the help files for supported commands.
+usage: shcf_cli help <cmd>
+
+  Supported <cmd> as follows:
+     new
+     bin
+     lib
+_BLOCK_
+
+    ;;
    *)
 $CAT_BIN << _BLOCK_
 usage: $($BASENAME_BIN $0) <cmd> [<cmd_params>]
  where:
-   * cmd        - command supported: 'new', 'lib', 'bin'
-   * cmd_params - Depends on command. See below:
+   * cmd        - Command supported, see below.
+   * cmd_params - Depends on command. See below.
 
   Command specific parameters:
     new       requires <project_name>
     bin       requires <project_name> <script_name>
     lib       requires <project_name> <lib_name>
+
+  For usage per command, use 'shcf_cli help <cmd>'
 _BLOCK_
     ;;
 esac

@@ -20,7 +20,7 @@
 . $SHCF_PLATFORM_ROOT/etc/controller.bash.inc
 
 ## list of functions to auto-load
-autoload_functions "usage create_new create_bin case_shift create_lib create_namespace error_message"
+autoload_functions "usage create_help create_new create_bin case_shift create_lib create_namespace error_message"
 
 ## parameters
 command=$(case_shift down $1)
@@ -45,6 +45,10 @@ case $command in
   ;;
   "bin")
     create_bin $project $new_entity
+  ;;
+  "help")
+    command=$project
+    create_help $command
   ;;
   *)
     err_msg="ERROR: Unsupported command ($command)"
