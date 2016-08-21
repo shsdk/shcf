@@ -50,6 +50,6 @@ case $command in
     err_msg="ERROR: Unsupported command ($command)"
     [[ $# -eq 0 ]] && err_msg='ERROR: input parameter(s) missing!'
     echo $err_msg
-    usage
+    usage main
   ;;
 esac

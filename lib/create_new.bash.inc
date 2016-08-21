@@ -1,9 +1,12 @@
 create_new() {
     ## load dependencies
-    autoload_functions "create_bin case_shift error_message create_namespace"
+    autoload_functions "usage create_bin case_shift error_message create_namespace"
 
     ## function parameters
     local project=$(case_shift low $1)
+
+    ## show help if no parameters given
+    [[ $# -eq 0 ]] && usage 'new'
 
     ##
     ## core logic below...

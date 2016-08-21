@@ -2,12 +2,14 @@ create_bin() {
     local project=$1
     local new_script=$2
 
-    autoload_functions "get_rcfile"
-    
+    autoload_functions "usage get_rcfile"
+   
+    #show help if no parameters given
+    [[ $# -lt 2 ]] && usage 'bin'
+ 
     local shortname_newscript=$($BASENAME_BIN ${new_script})
     local script_fullrootdir=$(get_rcfile proot $project)'/bin'
     local script_fullpath=$script_fullrootdir/$shortname_newscript
-
 
     ## make sure not to overwrite existing bin scripts
     [[ -e $script_fullpath ]] && {

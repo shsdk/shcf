@@ -2,11 +2,13 @@ create_lib() {
     local projname=$1
     local new_lib=$2
 
-    autoload_functions "get_rcfile"
+    autoload_functions "usage get_rcfile"
+
+    #show help if no parameters given
+    [[ $# -lt 2 ]] && usage 'lib'
 
     local shortname_newlib=$($BASENAME_BIN ${new_lib}|$CUT_BIN -d'.' -f1)
     local lib_fullpath=$(get_rcfile proot $projname)/lib/${new_lib}.bash.inc
-
 
     ## make sure not to overwrite existing libraries
     [[ -e $lib_fullpath ]] && {
