@@ -60,7 +60,7 @@ case $command in
        [[ $prj_exist -gt 0 ]] && { error_message "ERROR: Project $project exist. Aborting."; } || echo $rc_entry >> $rc_file
     fi
 
-    template_rootdir=$SHCF_PLATFORM_ROOT/tpl/shcf_cli/$command
+    template_rootdir=$SHCF_PLATFORM_ROOT/etc/tpl/shcf_cli/$command
 
     mkdir -p $project
     cp -Rfp $template_rootdir/* $project
