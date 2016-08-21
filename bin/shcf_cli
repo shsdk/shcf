@@ -2,9 +2,8 @@
 ## shcf_cli - central tool that does the creation
 ##            of quick shcf-based shell script
 ##
-## INPUT: $1 - 'new'
-##        $2 - project path + name
-## OUTPUT:
+## Usage: shcf_cli help
+##
 ## AUTHOR: Ismael Angelo A. Casimpan Jr.
 ##         ismael.angelo@casimpan.com
 ##
@@ -22,10 +21,13 @@
 ## list of functions to auto-load
 autoload_functions "usage create_help create_new create_bin case_shift create_lib create_namespace error_message"
 
-## parameters
-command=$(case_shift down $1)
-project=$2
-new_entity=$3
+## parameters. Parameters 2 & 3 depends on $cmd need, hence,
+## the notation. Clarificatory declarations in respective
+## command sections.
+##
+cmd=$(case_shift down $1)
+_p2=$2
+_p3=$3
 
 ## ..............................
 ## tool main()
@@ -35,25 +37,31 @@ new_entity=$3
 ##  new - to create a new shcf-based shell project
 ##  bin - creation of new 'bin' scripts
 ##  lib - creation of skeleton lib to a project
+##  help - shows the usage per command
 
-case $command in
+case $cmd in
   "new")
+    project=$_p2
     create_new $project
   ;;
   "lib")
+    project=$_p2
+    new_entity=$_p3
     create_lib $project $new_entity
   ;;
   "bin")
+    project=$_p2
+    new_entity=$_p3
     create_bin $project $new_entity
   ;;
   "help")
-    command=$project
+    command=$_p2
     create_help $command
   ;;
   *)
-    err_msg="ERROR: Unsupported command ($command)"
+    err_msg="ERROR: Unsupported command ($cmd)"
     [[ $# -eq 0 ]] && err_msg='ERROR: input parameter(s) missing!'
     echo $err_msg
-    usage main
+    usage
   ;;
 esac
