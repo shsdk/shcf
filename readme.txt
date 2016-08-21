@@ -65,7 +65,7 @@ DETAILED USAGE GUIDE:
          /home/your_username/your_project_dir/hello_world/lib/autoload_functions.bash.inc: line 26: /home/your_username/your_project_dir/hello_world/lib/rename_functionX.bash.inc: No such file or directory
          ERROR: Missing required rename_functionX
 
-     Template `View' (see MVC patter in `INSPIRATION' section below) included 3
+     Template `View' (see MVC pattern in `INSPIRATION' section below) included 3
      functions that where meant to be replaced or removed, hence the error.
      To fix the problem, go to the `Model' (or `lib' directory) and create a
      function named 'greeter()' (as file greeter.bash.inc) with contents below:
@@ -152,11 +152,11 @@ INSPIRATIONS
   2. auto-loading in PHP
 
     Having seen a lot of shell scripts with functions being duplicated across 
-    scripts made me realize how it is a maintenance nightmare. A slight change 
-    in functionality on the main tool it is supporting would mean changing a lot
-    of scripts. So I made a roughly similar functionality in  this framework so
-    that only one function would be made and will simply be called in each script 
-    that needs it. Maintenance would be easily done quickly.
+    scripts made me recognize a shell maintenance nightmare. A slight change 
+    in functionality on the main tool would mean changing a lot scripts.
+    So I made a roughly similar functionality in  this framework so that only
+    one function would be made and will simply be called in each script that 
+    needs it. Maintenance would be quickly and easy.
 
     In this framework, it can be seen in lib/autoload_functions.bash.inc and will 
     be called in script something like 
@@ -173,5 +173,6 @@ INSPIRATIONS
 
        autoload_functions "lib/db/sql/mysql/sqlQuery box_mgt/ishost_up"
 
-    In short, calling stays relatively the same, only that you have to prefix each
-    function with directory name in which it is stored.
+    In short, auto-loading stays relatively the same. Just prefix a function with
+    with the directory where it is stored and no directory name prefix if it is 
+    in same level as autoload_functions.bash.inc.
