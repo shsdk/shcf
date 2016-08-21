@@ -20,7 +20,7 @@
 . $SHCF_PLATFORM_ROOT/etc/controller.bash.inc
 
 ## list of functions to auto-load
-autoload_functions "create_bin case_shift create_lib"
+autoload_functions "create_bin case_shift create_lib create_namespace"
 
 ## parameters
 command=$1
@@ -46,12 +46,12 @@ case $command in
   "new")
     ## Ensure no conflicting shcf_appname in $rc_file
     ## Namespacing is achieved by creating a subdirectory for same name
-    upcase_prj=$(case_shift upper $project|$SED_BIN 's|/|_|g')
-    rc_entry="${upcase_prj}_SHCF_APPROOT=$(pwd)/$project"
+    prj_namespace=$(create_namespace $project)
+    rc_entry="${prj_namespace}=$(pwd)/$project"
     if [[ ! -e $rc_file ]]; then
        echo $rc_entry > $rc_file
     else
-       prj_exist=$(grep -c ${upcase_prj}_ $rc_file)
+       prj_exist=$(grep -c ${prj_namespace} $rc_file)
        [[ $prj_exist -gt 0 ]] && { echo "ERROR: Project $project exist. Aborting."; exit $FAILED; } || echo $rc_entry >> $rc_file 
     fi
 
