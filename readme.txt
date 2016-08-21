@@ -1,8 +1,11 @@
 WHAT IS SHCF?
+  It is Shell Scripting Development Kit (ShSDK) that currently supports bash.
+  ShCF gives you the ability to develop shell scripts in bash in a lightweight
+  manner, meaning, you can concentrate on the core logic of your scripts, NOT
+  on how you would use the framework. ShCF is learnable in an hour, provided
+  you already know how to do shell scripting and programming.
 
-  It is a lightweight shell scripting framework for bash which means, it lets
-  you concetrate more on bash shell scripting, not on how to use the framework.
-  In the near future, it would even allow you to make standalone bash shell script.
+  In the near future, it would even allow you to make standalone bash shell scripts.
 
 
 QUICK GUIDE:
