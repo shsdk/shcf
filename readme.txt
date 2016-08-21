@@ -13,9 +13,14 @@ QUICK GUIDE:
 
   2. Add basic logic, say the greeter() function
        ~$ shcf_cli lib hello_world greeter
+
   3. Modify hello_world/lib/greeter.bash.inc to say 'hello world'
+
   4. Update main script hello_world/bin/hello_world so it calls `greeter'
        TIP: Add it to `autoload_functions' line
+
+  5. For additional scripts into your project say `whoami':
+       ~$ shcf_cli hello_world whoami
 
 
 DETAILED USAGE GUIDE:
@@ -93,6 +98,14 @@ DETAILED USAGE GUIDE:
 
         $ ./hello_world
         Hello, World!
+
+   6. Now, if you want to add additional script to your project, that is easy. Let's assume
+      you want to create `whoami'. Just run the command:
+
+        $ shcf_cli bin hello_world whoami
+     
+      Same instructions as above, put the logic, make it executable and you're on.
+
 
   TODO: 
     * Add how to create simple function that returns a string
