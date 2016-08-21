@@ -5,7 +5,7 @@ create_lib() {
     autoload_functions "get_rcfile"
 
     local shortname_newlib=$($BASENAME_BIN ${new_lib}|$CUT_BIN -d'.' -f1)
-    local lib_fullpath=$(get_rcfile $projname)/lib/${new_lib}.bash.inc 
+    local lib_fullpath=$(get_rcfile proot $projname)/lib/${new_lib}.bash.inc
 
 
     ## make sure not to overwrite existing libraries

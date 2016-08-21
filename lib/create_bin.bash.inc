@@ -5,7 +5,7 @@ create_bin() {
     autoload_functions "get_rcfile"
     
     local shortname_newscript=$($BASENAME_BIN ${new_script})
-    local script_fullrootdir=$(get_rcfile $project)'/bin'
+    local script_fullrootdir=$(get_rcfile proot $project)'/bin'
     local script_fullpath=$script_fullrootdir/$shortname_newscript
 
 
