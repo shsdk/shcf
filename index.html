@@ -10,7 +10,7 @@
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <title>SHCF - Open Source Shell Coding Framework by icasimpan</title>
+    <title>SHCF: Open Source Shell Scripting Dev't Kit and Coding Framework by icasimpan</title>
   </head>
 
   <body>
@@ -19,7 +19,7 @@
 
         <header>
           <h1>SHCF</h1>
-          <h2>simplified shell coding framework</h2>
+          <h2>Shell Coding Simplified!</h2>
         </header>
 
         <section id="downloads" class="clearfix">
@@ -32,108 +32,175 @@
 
         <section id="main_content">
           <h3>
-<h1><center>TO BE UPDATED. Check for now the <a href="https://github.com/icasimpan/shcf">code in github</a>.</center></h1><br><br><br>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>BEFORE ANYTHING ELSE</h3>
-<p>This framework is designed such that it will work regardless of the directory path.
-However, just to be sure that the framework works, you need to do a quick check.
-Go to ftest directory and run <i>_runall.test</i>.
-You should see something like below if framework is not broken:</p>
+<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>WHAT'S SHCF?</h3>
+<p>If you've used the previous version of SHCF, now you would use it even more. SHCF is no longer just a Shell Coding Framework but a Shell Scripting Development Kit as well. Where before you used to get one for free, now you'll get two and still for free!</p>
 
-<pre><code>
-$ ./_runall.test
+<p>Ok, enough of the convincing lines. Seriously, I wrote this tool as I needed it myself and I've noticed that there's practically nothing that satisfies my definition of light and simple framework for shell scripting. I'm sharing this with you so that hopefully, it would help you create shell scripts faster and with focus on your scripting and not on how this framework works.</p>
 
-------------------------------------------------
-FUNCTION TEST COMPLIANCE:
+<p>A little disclaimer though: we currently supports bash as of the moment.</p>
 
-*[OK] - autoload_functions.bash.inc
-*[OK] - check_mandatory_commands.bash.inc
-*[OK] - decrypt_password.bash.inc
- [OK] - delitem_inarray.bash.inc
- [OK] - encrypt_password.bash.inc
- [OK] - ishost_up.bash.inc
- [OK] - mresult_sql.bash.inc
-*[OK] - sqlQuery.bash.inc
- [OK] - uniq_instring.bash.inc
- [OK] - valid_ip.bash.inc
-
-NOTE: *[OK] - means that this function is ignored/no function tests planned for the short term
-
--------------------------------------------------
-
-[testing] ishost_up()     ## check if you have internet connection. If none, this test here normally fails
- scenario 1 - OK
- scenario 2 - OK
-[testing] encrypt_password() and decrypt_password()
- testing only scenario - OK
-[testing] uniq_instring()
- only scenario - OK
-[testing] valid_ip()
- scenario 1 - OK
- scenario 2 - OK
- scenario 3 - OK
-[testing] delitem_inarray()
- scenario 1 - OK
-[testing] mresult_sql()
- scenario 1 - OK
-</code></pre>
-
+<p>Anyway, as I've already told you, this is no longer just a shell coding framework. This is a scripting development kit and you generate the coding framework out of it. I'll show you how it works</p>
 
 <h3>
 <a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>QUICK USAGE GUIDE</h3>
 
-<p> Assuming framework is OK in your system after doing the "BEFORE ANYTHING ELSE" above, you have to do the following
-to get started<br />
-
-1. Set the location of framework first. Assuming it is in $HOME/tools/shcf, you should
-   do something like:
-   <code>
-     <pre>tooldir=$HOME/tools/shcf              ## set rootdir of framework</pre>
-   </code>
-   
-2. From your script, source the controller:
+  1. Create a new shcf-based shell script
     <code>
-      <pre>. $tooldir/etc/controller.bash.inc              ## source the controller</pre>
+	   <pre>
+  ~$ git clone https://github.com/icasimpan/shcf.git
+  ~$ ./shcf/init_env.sh
+  ~$ shcf_cli new hello_world
+	   </pre>
     </code>
 
-3. If you have framework functions to auto-include, declare it(separating each function
-   with a space). Make sure though that the functions can be found in lib. For instance,
-   a function with the name "func1" should be found as lib/func1.bash.inc. Do it like:
+	2. Add basic logic, say the greeter() function
+    <code>
+		<pre>
+  ~$ shcf_cli lib hello_world greeter
+        </pre>
+    </code>
 
-  <code>
-    <pre>autoload_functions "func1 func2 func3"  ## declare functions to use</pre>
-  </code>  
-  
-    Framework functions are also grouped according to functionality. So make sure to put
-    it in the right path. Example, for <i>sqlQuery</i> it is in <i>lib/db/sql/mysql/sqlQuery.bash.inc</i>
-    so you should describe it top autoload_function as
-    
-  <code>
-    <pre>autoload_functions "db/sql/mysql/sqlQuery"</pre>
-  </code>
-  
-4. In summary, you should have these 3 lines now in your script:
+	3. Modify hello_world/lib/greeter.bash.inc to say 'hello world'<br /><br />
 
-  <code>
-    <pre>
-      tooldir=$HOME/tools/shcf                ## set rootdir of framework
-      . $tooldir/etc/controller.bash.inc      ## source the controller
-      autoload_functions "func1 func2 func3"  ## declare functions to use
-    </pre>
-  </code>
-</p>
+  4. Update main script hello_world/bin/hello_world so it calls `greeter'<br />
+       TIP: Add it to `autoload_functions' line<br /><br />
+
+  5. For additional scripts into your project say `whoami':
+    <code>
+	  <pre>
+  ~$ shcf_cli hello_world whoami
+	  </pre>
+    </code>
+
+  6. Further usage, help is available. Just run:
+    <code>
+	   <pre>
+  ~$ shcf_cli help
+	   </pre>
+    </code>
+
 
 <h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>AUTO-LOAD YOUR OWN FUNCTIONS FROM YOUR OWN SCRIPTS</h3>
+<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>DETAILED USAGE GUIDE</h3>
 
-<p>
-  Take note, if you will be auto-loading your own functions <i>autoload_functions</i> is to be used as
-  
-  <code>
-    <pre>autoload_functions /full/path/to/own/functions func1 func2</pre>
-  </code>
-  
-  Note that the difference is that you don't put double quotes to the parameters as *autoload_functions* will get confused (TODO: I may have to fix this difference later so that regardless of the way you declare, for as long as the 1st argument is a directory, functions will be checked from there)
-</p>
+  1. Clone the shcf project:
+    <code>
+	   <pre>
+   $ git clone https://github.com/icasimpan/shcf.git
+	   </pre>
+    </code>
+
+  2. Initialize the environment
+    <code>
+	   <pre> 
+   $ ./shcf/init_env.sh
+     Platform environment has been set. See below:
+        SHCF_PLATFORM_ROOT=/home/your_username/shcf
+ 	   </pre>
+    </code>
+    
+   At this point, you can use `shcf_cli'(located in `./shcf/bin') from any path so long as you didn't use `exit'.<br /><br />
+
+  3. Now, create a new project. Example, `hello_world'
+    <code>
+	   <pre>   
+   $ ./shcf/bin/shcf_cli new your_project_dir/hello_world
+ 	   </pre>
+    </code>
+     A successful creation should be something like below:
+    <code>
+	   <pre> 
+   $ ./shcf/bin/shcf_cli new your_project_dir/hello_world
+   template script created in your_project_dir/hello_world/bin/hello_world
+   Successful creation of your_project_dir/hello_world
+ 	   </pre>
+    </code>
+	
+  4. Make the template binary in `bin' executable
+    <code>
+	   <pre>
+   $ chmod u+x ./your_project_dir/bin/hello_world
+ 	   </pre>
+    </code>
+	
+  5. Template script is not yet ready. If you insist on running it like below:
+    <code>
+	   <pre>  
+   $ ./hello_world
+ 	   </pre>
+    </code>
+	
+     Expect to see the following error:
+    <code>
+	   <pre> 
+ /home/your_username/your_project_dir/hello_world/lib/autoload_functions.bash.inc: line 26: /home/your_username/your_project_dir/hello_world/lib/rename_function1.bash.inc: No such file or directory
+ ERROR: Missing required rename_function1
+ /home/your_username/your_project_dir/hello_world/lib/autoload_functions.bash.inc: line 26: /home/your_username/your_project_dir/hello_world/lib/rename_function2.bash.inc: No such file or directory
+ ERROR: Missing required rename_function2
+ /home/your_username/your_project_dir/hello_world/lib/autoload_functions.bash.inc: line 26: /home/your_username/your_project_dir/hello_world/lib/rename_functionX.bash.inc: No such file or directory
+ ERROR: Missing required rename_functionX
+ 	   </pre>
+    </code>
+     Template `View' (see MVC pattern in `INSPIRATION' section below) included 3
+     functions that where meant to be replaced or removed, hence the error.
+     To fix the problem, go to the `Model' (or `lib' directory) and create a
+     function named 'greeter()' (as file greeter.bash.inc) with contents below:
+    <code>
+	   <pre> 
+	greeter() {
+	   local message=$1
+	   echo "$message!"
+	}
+ 	   </pre>
+    </code>
+	
+     TIP: Another approach is to create a template file using command <code><pre>shcf_cli lib hello_world greeter</pre></code>
+
+     In `bin/hello_world', remove the 3 template functions namely:
+	 <pre>
+       rename_function1
+       rename_function2
+       rename_functionX
+     </pre>
+	 
+     and replace it with `greeter'.<br /><br />
+
+     Below, the comment block:<br />
+    <pre>
+       ## ..............................
+       ## main utility tool starts below
+       ## ..............................
+    </pre>
+     add the line:<br />
+    <pre>
+       greeter "Hello, World"
+    </pre>
+	
+     Of course, save the file.<br />
+
+     Rerun, again.
+    <pre>
+        $ ./hello_world
+    </pre>
+	
+     If you followed the instructions correctly, you should see the greeting:
+    <pre>
+        $ ./hello_world
+        Hello, World!
+    </pre>
+	
+   6. Now, if you want to add additional script to your project, that is easy. Let's assume
+      you want to create `whoami'. Just run the command:
+    <pre>
+        $ shcf_cli bin hello_world whoami
+    </pre>
+	
+      Same instructions as above, put the logic, make it executable and you're on.
+
+   7. For other usage, help is available. Just run:
+    <pre>
+       $ shcf_cli help
+    </pre>
 
 <h3>
 <a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>INSPIRATIONS</h3>
