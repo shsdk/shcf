@@ -27,7 +27,7 @@ create_new() {
     fi
 
     ## copy template for new shcf
-    local template_rootdir=$SHCF_PLATFORM_ROOT/etc/tpl/shcf_cli/$command
+    local template_rootdir=$SHCF_PLATFORM_ROOT/etc/tpl/shcf_cli/new
 
     mkdir -p $project
     cp -Rfp $template_rootdir/* $project
