@@ -16,9 +16,13 @@ create_new() {
       error_message "ERROR: Reserved name 'shcf' cannot be used. Aborting.";
     }
 
+    ## put projects in predictable location by default
+    ## TODO: Allow from outside using a switch
+    local project_root=$SHCF_PLATFORM_ROOT/projects/$project
+
     ## Ensure no conflicting namespace in $rc_file
     local prj_namespace=$(create_namespace $project)
-    local rc_entry="${prj_namespace}=$(pwd)/$project"
+    local rc_entry="${prj_namespace}=$project_root"
     if [[ ! -e $rc_file ]]; then
        echo $rc_entry > $rc_file
     else
@@ -29,8 +33,8 @@ create_new() {
     ## copy template for new shcf
     local template_rootdir=$SHCF_PLATFORM_ROOT/etc/tpl/shcf_cli/new
 
-    mkdir -p $project
-    cp -Rfp $template_rootdir/* $project
+    mkdir -p $project_root
+    cp -Rfp $template_rootdir/* $project_root
     local initial_skeleton=$?
 
     new_entity=$($BASENAME_BIN $project)
