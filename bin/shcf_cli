@@ -50,7 +50,7 @@ _p3=$3
 # --------------------------------------------------
 # tool main()
 #
-# supported commands:
+# supported sub-commands:
 #  new  - to create a new shcf-based shell project
 #  bin  - creation of new 'bin' scripts
 #  lib  - creation of skeleton lib to a project
@@ -62,7 +62,7 @@ _p3=$3
 main_cmd=$($BASENAME_BIN $0)
 
 # Define common usage of shcf_cli parameter(s).
-# Override in respective command as needed
+# Override in respective sub-command as needed
 #
 project=$_p2
 new_entity=$_p3
@@ -80,12 +80,10 @@ case $cmd in
     create_bin $project $new_entity
   ;;
   "help")
-    command=$_p2
-    create_help $command
+    create_help $_p2
   ;;
   "show")
-    what_entity=$_p2
-    create_show $what_entity
+    create_show $_p2
   ;;
   *)
     err_msg="ERROR: Unsupported command ($cmd)"
