@@ -1,3 +1,11 @@
+##=======================================================
+##~For creating a library in an existing project.
+##~usage: shcf_cli lib <project_name> <script_name>
+##~ * project name - should be an existing project as can
+##~                  be seen from 'shcf_cli show rcfile'.
+##~
+##=======================================================
+
 create_lib() {
     local projname=$1
     local new_lib=$2

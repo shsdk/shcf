@@ -1,3 +1,15 @@
+##===================================================
+##~Show the help instructions for supported commands.
+##~usage: shcf_cli help <cmd>
+##~
+##~Supported <cmd> as follows:
+##~     new
+##~     bin
+##~     lib
+##~     show
+##~
+##===================================================
+
 create_help() {
   ## include dependencies
   autoload_functions "usage case_shift"
@@ -17,7 +29,7 @@ create_help() {
         usage bin
       ;;
       'lib')
-        usage bin
+        usage lib
       ;;
       'show')
         usage show

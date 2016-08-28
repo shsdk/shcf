@@ -1,46 +1,50 @@
-## -------------------------------------------------
-## shcf_cli - central tool that does the creation
-##            of quick shcf-based shell script
-##
-## Usage: shcf_cli help
-##
-## AUTHOR: Ismael Angelo A. Casimpan Jr.
-##         ismael.angelo@casimpan.com
-##
-## TODO: Support command 'finalize' that would
-##       make a script  standalone
-## -------------------------------------------------
 #!/bin/bash
 
-## Ensure environment has been set:
+##===================================================
+##~usage: shcf_cli <cmd> [<cmd_params>]
+##~where:
+##~  * cmd        - Command supported, see below.
+##~  * cmd_params - Depends on command. See below.
+##~
+##~ Command specific parameters:
+##~   new       requires <project_name>
+##~   bin       requires <project_name> <script_name>
+##~   lib       requires <project_name> <lib_name>
+##~   show      requires <entity>
+##~
+##~ For usage per command, use 'shcf_cli help <cmd>'
+##~
+##===================================================
+
+# Ensure environment has been set:
 [[ -z $SHCF_PLATFORM_ROOT ]] && { echo "[ERROR] SHCF environment not set. Run 'init_env.sh'"; exit 1; }
 
-## -------- source common library ---------
+# -------- source common library ---------
 . $SHCF_PLATFORM_ROOT/etc/controller.bash.inc
 
-## list of functions to auto-load
+# list of functions to auto-load
 autoload_functions "create_show usage create_help create_new create_bin case_shift create_lib create_namespace error_message"
 
-## parameters. Parameters 2 & 3 depends on $cmd need, hence,
-## the notation. Clarificatory declarations in respective
-## command sections.
-##
+# shcf_cli parameters. Parameters 2 & 3 depends on $cmd need,
+# hence, the notation. Clarificatory declarations in respective
+# command sections.
+#
 cmd=$(case_shift down $1)
 _p2=$2
 _p3=$3
 
-## ..............................
-## tool main()
-## ..............................
+# --------------------------------------------------
+# tool main()
+#
+# supported commands:
+#  new  - to create a new shcf-based shell project
+#  bin  - creation of new 'bin' scripts
+#  lib  - creation of skeleton lib to a project
+#  help - shows the usage per command
+#  show - shows some entity's content, like $rc_file
+# --------------------------------------------------
 
-## supported commands:
-##  new  - to create a new shcf-based shell project
-##  bin  - creation of new 'bin' scripts
-##  lib  - creation of skeleton lib to a project
-##  help - shows the usage per command
-##  show - shows some entity's content, like $rc_file
-
-## For use in help files
+# For use in help files
 main_cmd=$($BASENAME_BIN $0)
 
 case $cmd in

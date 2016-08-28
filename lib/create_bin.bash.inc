@@ -1,3 +1,10 @@
+##========================================================
+##~For creating a shell script in an existing project.
+##~usage: shcf_cli bin <project_name> <script_name>
+##~ * project name - should be an existing project as can
+##~                  be seen from 'shcf_cli show rcfile'.
+##~
+##========================================================
 create_bin() {
     local project=$1
     local new_script=$2

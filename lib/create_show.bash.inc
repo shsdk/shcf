@@ -1,3 +1,12 @@
+##=====================================
+##~Displays the contents of an entity.
+##~usage: shcf_cli show <entity>
+##~
+##~  Supported <entity> as follows:
+##~    rcfile
+##~
+##=====================================
+
 create_show() {
   autoload_functions "usage case_shift"
 
