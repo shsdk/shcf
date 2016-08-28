@@ -1,22 +1,23 @@
-##=======================================================
-##~For creating a library in an existing project.
-##~usage: shcf_cli lib <project_name> <script_name>
-##~ * project name - should be an existing project as can
-##~                  be seen from 'shcf_cli show rcfile'.
+##==============================================================================
+##~For creating a library function in either an existing project or in ShSDK.
 ##~
-##=======================================================
+##~usage: shcf_cli lib <project_name> <lib_name>
+##~  project_name    * existing project must be listed in 'shcf_cli show rcfile'
+##~                  * 'shcf' or '-' would mean relative to ShSDK root
+##~
+##==============================================================================
 
 create_lib() {
     local projname=$1
     local new_lib=$2
 
-    autoload_functions "usage get_rcfile"
+    autoload_functions "usage define_rootpath"
 
     #show help if no parameters given
     [[ $# -lt 2 ]] && { echo "ERROR: Parameter(s) missing!"; usage lib; exit $FAILED; }
 
     local shortname_newlib=$($BASENAME_BIN ${new_lib}|$CUT_BIN -d'.' -f1)
-    local lib_fullpath=$(get_rcfile proot $projname)/lib/${new_lib}.bash.inc
+    local lib_fullpath=$(define_rootpath $projname)/lib/${new_lib}.bash.inc
 
     ## make sure not to overwrite existing libraries
     [[ -e $lib_fullpath ]] && {

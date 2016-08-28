@@ -1,21 +1,23 @@
-##========================================================
-##~For creating a shell script in an existing project.
-##~usage: shcf_cli bin <project_name> <script_name>
-##~ * project name - should be an existing project as can
-##~                  be seen from 'shcf_cli show rcfile'.
+##==============================================================================
+##~For creating a shell script in either an existing project or in ShSDK.
 ##~
-##========================================================
+##~usage: shcf_cli bin <project_name> <script_name>
+##~  project_name    * existing project must be listed in 'shcf_cli show rcfile'
+##~                  * 'shcf' or '-' would mean relative to ShSDK root
+##~
+##==============================================================================
+
 create_bin() {
     local project=$1
     local new_script=$2
 
-    autoload_functions "usage get_rcfile"
+    autoload_functions "usage define_rootpath"
    
     #show help if no parameters given
     [[ $# -lt 2 ]] && { echo "ERROR: Parameter(s) missing!"; usage bin; exit $FAILED; }
  
     local shortname_newscript=$($BASENAME_BIN ${new_script})
-    local script_fullrootdir=$(get_rcfile proot $project)'/bin'
+    local script_fullrootdir=$(define_rootpath $project)'/bin'
     local script_fullpath=$script_fullrootdir/$shortname_newscript
 
     ## make sure not to overwrite existing bin scripts
