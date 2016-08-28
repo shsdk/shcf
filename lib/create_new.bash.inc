@@ -21,7 +21,7 @@ create_new() {
     ## core logic below...
     ##
     ## Ban usage of 'shcf' in project name. Reserve for communicating with shcf tool
-    [[ $(case_shift low $project | $GREP_BIN -c shcf) -gt 0 ]] && {
+    [[ $(echo $project | $GREP_BIN -c shcf) -gt 0 ]] && {
       error_message "ERROR: Reserved name 'shcf' cannot be used. Aborting.";
     }
 
