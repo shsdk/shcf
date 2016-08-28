@@ -10,13 +10,15 @@ autoload_functions()
 {
     local exit_code=0
 
-    ## check first parameter. If it's a directory, then
+    ## Check first parameter. If a directory outside controller defined $LIB_DIR, then
     ## it is where functions should be loaded from
+    ## TODO: Add functionality for directory relative to controller $LIB_DIR. Perhaps
+    ## something like ~g2 to simplify autoloading further.
     local new_libdir=$1
     [[ -d $new_libdir ]] && {
       shift
       LIB_DIR=$new_libdir
-     }
+    }
     
     ## iterate through all $*, set $exit_code to 1
     ## if any required function cannot be autoloaded
