@@ -1,0 +1,11 @@
+IN PROGRESS
+* Ability to create a 'lib' or 'bin' within the ShSDK environment
+
+GROOMED
+* Copy a 'lib' from one SHCF_APP to another 
+* Copy an ShSDK lib or bin to SHCF_APP
+
+NICE TO HAVE
+* Create a 'standalone' option to shcf_cli 
+
+DONE
