@@ -17,13 +17,27 @@
 ##===================================================
 
 # Ensure environment has been set:
+#
 [[ -z $SHCF_PLATFORM_ROOT ]] && { echo "[ERROR] SHCF environment not set. Run 'init_env.sh'"; exit 1; }
 
-# -------- source common library ---------
+# source framework orchestrator
+#
 . $SHCF_PLATFORM_ROOT/etc/controller.bash.inc
 
 # list of functions to auto-load
-autoload_functions "create_show usage create_help create_new create_bin case_shift create_lib create_namespace error_message"
+#
+function_to_autoload="
+case_shift
+create_bin
+create_help
+create_lib
+create_namespace
+create_new
+create_show
+error_message
+usage
+"
+autoload_functions "$function_to_autoload"
 
 # shcf_cli parameters. Parameters 2 & 3 depends on $cmd need,
 # hence, the notation. Clarificatory declarations in respective
@@ -47,19 +61,22 @@ _p3=$3
 # For use in help files
 main_cmd=$($BASENAME_BIN $0)
 
+# Define common usage of shcf_cli parameter(s).
+# Override in respective command as needed
+#
+project=$_p2
+new_entity=$_p3
+
+# Now, start selection of sub-commands
+#
 case $cmd in
   "new")
-    project=$_p2
     create_new $project
   ;;
   "lib")
-    project=$_p2
-    new_entity=$_p3
     create_lib $project $new_entity
   ;;
   "bin")
-    project=$_p2
-    new_entity=$_p3
     create_bin $project $new_entity
   ;;
   "help")
