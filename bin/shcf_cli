@@ -34,6 +34,7 @@ create_lib
 create_namespace
 create_new
 create_show
+create_spawn
 error_message
 usage
 "
@@ -78,6 +79,9 @@ case $cmd in
   ;;
   "bin")
     create_bin $project $new_entity
+  ;;
+  "spawn")
+    create_spawn $project $new_entity
   ;;
   "help")
     create_help $_p2
