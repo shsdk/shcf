@@ -41,7 +41,7 @@ create_spawn() {
   ##           highest dependents down to lowest
   ##           --> order doesn't matter as per observation
   for each_func in $(get_dependencies $project $script_name); do
-      get_stripped_funcblock $this_rootpath/lib/$each_func.bash.inc $tmp_file   ## the function minus 'autoload' part
+      get_stripped_funcblock $this_rootpath/lib/$each_func.bash.inc $temp_file   ## the function minus 'autoload' part
   done
 
   ## [TODO] 5. Load lines after 'autoload_functions' line till EOF

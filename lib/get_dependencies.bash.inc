@@ -1,12 +1,11 @@
 ## assumed uniq (but not sorted from highest dependents to lowest)
 get_dependencies() {
     ## required dependencies...
-    autoload_functions "define_rootpath #get_stripped_funcblock list_alldeps"
+    autoload_functions "define_rootpath list_alldeps"
 
     ## accept script parameters
     local project=$1
     local script_name=$2
-#    local tmp_fullspawn=$TMP_DIR/maeng-spawn.sh  ## TODO: hardcoded for now...
 
     # start from $shell_script
     local dynamic_rootpath=$(define_rootpath $project)
@@ -52,10 +51,5 @@ get_dependencies() {
 
     ## return uniq deps via echo
     echo $parse1_file|$TR_BIN "\n" " "
-
-#    ## process $parse1_file, the final list of uniq deps
-#    for each_func in $($CAT_BIN $parse1_file); do
-#       get_stripped_funcblock $dynamic_rootpath/lib/$each_func.bash.inc $tmp_fullspawn   ## the function minus 'autoload' part
-#    done
 
 } ## END: get_dependencies()
