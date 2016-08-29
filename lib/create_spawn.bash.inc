@@ -7,7 +7,7 @@
 ### -------------------------------------------------
 create_spawn() {
   ## list of functions to auto-load
-  autoload_functions "case_shift define_rootpath get_dependencies get_stripped_funcblock"
+  autoload_functions "case_shift define_rootpath get_dependencies get_stripped_funcblock fileblock_after_autoload"
 
   ## ----- function parameter
   ##
@@ -45,5 +45,8 @@ create_spawn() {
   done
 
   ## [TODO] 5. Load lines after 'autoload_functions' line till EOF
+  fileblock_after_autoload $this_rootpath/bin/$script_name $temp_file
+
   ## [TODO] 6. Rename $temp_file to $SPAWNED_DIR/$script_name
+  cp $temp_file $SPAWNED_DIR/$script_name
 } ## END: create_spawn()
