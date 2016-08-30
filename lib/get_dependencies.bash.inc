@@ -45,11 +45,11 @@ get_dependencies() {
         done
         ## check if $parse2_file created as it signifies there's more sub-dependencies seen
         [[ ! -e $parse2_file ]] && break
-        cat $parse2_file >> $parse1_file
+        $CAT_BIN $parse2_file >> $parse1_file
         rm $parse2_file
     done 
 
     ## return uniq deps via echo
-    cat $parse1_file|$TR_BIN "\n" " "
+    $CAT_BIN $parse1_file|$TR_BIN "\n" " "
 
 } ## END: get_dependencies()
