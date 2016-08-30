@@ -17,7 +17,7 @@ get_dependencies() {
     echo $func_all | $TR_BIN ' ' '\n' > $parse1_file
 
     ## DEBUGGING LINES SO FAR...
-    echo "[debug] func_all |$func_all|" 
+#    echo "[debug] func_all |$func_all|" 
 
     ### ===> LOOP THROUGH ALL DEPS
     local parse2_file=$full_temproot/p2_func.txt
@@ -31,7 +31,7 @@ get_dependencies() {
         for each_func in $($CAT_BIN $parse1_file); do
             fullpath_lib=$dynamic_rootpath/lib/$each_func.bash.inc
             dep_of_dep=$(list_alldeps $fullpath_lib)
-            echo "[debug] dep_of_dep |$dep_of_dep|"
+     #       echo "[debug] dep_of_dep |$dep_of_dep|"
 
             for each_subdep in $dep_of_dep; do  ## deps of deps, check and retain only those not in $parse1_file
                if [[ $(grep -c ^${each_subdep}$ $parse1_file) -eq 0 ]]; then
@@ -50,6 +50,6 @@ get_dependencies() {
     done 
 
     ## return uniq deps via echo
-    echo $parse1_file|$TR_BIN "\n" " "
+    cat $parse1_file|$TR_BIN "\n" " "
 
 } ## END: get_dependencies()
