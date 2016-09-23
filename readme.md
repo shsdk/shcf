@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/icasimpan/shcf/badges/gpa.svg)](https://codeclimate.com/github/icasimpan/shcf)
+
 WHAT IS SHCF?
   It is Shell Scripting Development Kit (ShSDK) that currently supports bash.
   ShCF gives you the ability to develop shell scripts in bash in a lightweight
