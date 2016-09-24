@@ -12,93 +12,92 @@
 
 
 #QUICK GUIDE:
-  1. Create a new shcf-based shell script
+### 1. Create a new shcf-based shell script
 ```sh
-       ~$ git clone https://github.com/icasimpan/shcf.git
-       ~$ ./shcf/init_env.sh
-       ~$ shcf_cli new hello_world
+  ~$ git clone https://github.com/icasimpan/shcf.git
+  ~$ ./shcf/init_env.sh
+  ~$ shcf_cli new hello_world
 ```
-  2. Add basic logic, say the greeter() function
+### 2. Add basic logic, say the greeter() function
 ```sh
-       ~$ shcf_cli lib hello_world greeter
+  ~$ shcf_cli lib hello_world greeter
 ```
-  3. Modify hello_world/lib/greeter.bash.inc to say 'hello world'
+### 3. Modify hello_world/lib/greeter.bash.inc to say 'hello world'
 
-  4. Update main script hello_world/bin/hello_world so it calls `greeter'
+### 4. Update main script hello_world/bin/hello_world so it calls `greeter'
        TIP: Add it to `autoload_functions' line
 
-  5. For additional scripts into your project say `whoami':
+### 5. To create additional scripts into your project, say `whoami':
 ```sh
-       ~$ shcf_cli hello_world whoami
+  ~$ shcf_cli hello_world whoami
 ```
 
-  6. Further usage, help is available. Just run:
+### 6. Further usage, help is available. Just run:
 ```sh
-       ~$ shcf_cli help
+  ~$ shcf_cli help
 ```
 
 #DETAILED USAGE GUIDE:
-  1. Clone the shcf project:
-        $ git clone https://github.com/icasimpan/shcf.git
-
-  2. Initialize the environment
+### 1. Clone the shcf project:
 ```sh
-        ~$ ./shcf/init_env.sh
-        Platform environment has been set. See below:
-          SHCF_PLATFORM_ROOT=/home/your_username/shcf
+  ~$ git clone https://github.com/icasimpan/shcf.git
+```
+
+### 2. Initialize the environment
+```sh
+  ~$ ./shcf/init_env.sh
+   Platform environment has been set. See below:
+   SHCF_PLATFORM_ROOT=/home/your_username/shcf
 ```
  At this point, you can use `shcf_cli'(located in `./shcf/bin') from any path so long as you didn't use `exit'.
 
-  3. Now, create a new project. Example, `hello_world'
+### 3. Now, create a new project. Example, `hello_world'
 ```sh
-        ~$ ./shcf/bin/shcf_cli new your_project_dir/hello_world
+  ~$ ./shcf/bin/shcf_cli new your_project_dir/hello_world
 ```
 A successful creation should be something like below:
 
 ```sh
-        $ ./shcf/bin/shcf_cli new your_project_dir/hello_world
-        template script created in your_project_dir/hello_world/bin/hello_world
-        Successful creation of your_project_dir/hello_world
+  ~$ ./shcf/bin/shcf_cli new your_project_dir/hello_world
+    template script created in your_project_dir/hello_world/bin/hello_world
+    Successful creation of your_project_dir/hello_world
 ```
-  4. Make the template binary in `bin' executable
+### 4. Make the template binary in `bin' executable
 ```sh
-        $ chmod u+x ./your_project_dir/bin/hello_world
+    ~$ chmod u+x ./your_project_dir/bin/hello_world
 ```
-  5. Template script is not yet ready. If you insist on running it like below:
+### 5. Template script is not yet ready. If you insist on running it like below:
 ```sh
-        $ ./hello_world
+  ~ $ ./hello_world
 ```
 
 Expect to see the following error:
 
 ```sh
-         /home/your_username/your_project_dir/hello_world/lib/autoload_functions.bash.inc: line 26: /home/your_username/your_project_dir/hello_world/lib/rename_function1.bash.inc: No such file or directory
-         ERROR: Missing required rename_function1
-         /home/your_username/your_project_dir/hello_world/lib/autoload_functions.bash.inc: line 26: /home/your_username/your_project_dir/hello_world/lib/rename_function2.bash.inc: No such file or directory
-         ERROR: Missing required rename_function2
-         /home/your_username/your_project_dir/hello_world/lib/autoload_functions.bash.inc: line 26: /home/your_username/your_project_dir/hello_world/lib/rename_functionX.bash.inc: No such file or directory
-         ERROR: Missing required rename_functionX
+    /home/your_username/your_project_dir/hello_world/lib/autoload_functions.bash.inc: line 26: /home/your_username/your_project_dir/hello_world/lib/rename_function1.bash.inc: No such file or directory
+    ERROR: Missing required rename_function1
+    /home/your_username/your_project_dir/hello_world/lib/autoload_functions.bash.inc: line 26: /home/your_username/your_project_dir/hello_world/lib/rename_function2.bash.inc: No such file or directory
+    ERROR: Missing required rename_function2
+    /home/your_username/your_project_dir/hello_world/lib/autoload_functions.bash.inc: line 26: /home/your_username/your_project_dir/hello_world/lib/rename_functionX.bash.inc: No such file or directory
+    ERROR: Missing required rename_functionX
 ```
 
-Template `View' (see MVC pattern in `INSPIRATION' section below) included 3
-     functions that where meant to be replaced or removed, hence the error.
-     To fix the problem, go to the `Model' (or `lib' directory) and create a
-     function named 'greeter()' (as file greeter.bash.inc) with contents below:
+Template `View' (see MVC pattern in `INSPIRATION' section below) included 3 functions that where meant to be replaced or removed, hence the error. To fix the problem, go to the `Model' (or `lib' directory) and create a function named 'greeter()' (as file greeter.bash.inc) with contents below:
 
 ```sh
-        greeter() {
-           local message=$1
-           echo "$message!"
-        }
+    greeter() {
+       local message=$1
+       echo "$message!"
+    }
 ```
 
 TIP: Another approach is to create a template file using command `shcf_cli lib hello_world greeter'
 
 In `bin/hello_world', remove the 3 template functions namely:
 ```sh     
-       rename_function1
-       rename_function2
-       rename_functionX
+    rename_function1
+    rename_function2
+    rename_functionX
 ```
 
 and replace it with `greeter'.
@@ -106,15 +105,15 @@ and replace it with `greeter'.
 Below, the comment block:
 
 ```sh
-       ## ..............................
-       ## main utility tool starts below
-       ## ..............................
+    ## ..............................
+    ## main utility tool starts below
+    ## ..............................
 ```
 
 add the line:
 
 ```sh
-       greeter "Hello, World"
+    greeter "Hello, World"
 ```
 
 Of course, save the file.
@@ -122,25 +121,25 @@ Of course, save the file.
 Rerun, again.
 
 ```sh
-        $ ./hello_world
+    ~ $ ./hello_world
 ```
 If you followed the instructions correctly, you should see the greeting:
 ```sh
-        ~$ ./hello_world
-        Hello, World!
+    ~$ ./hello_world
+      Hello, World!
 ```
 
-   6. Now, if you want to add additional script to your project, that is easy. Let's assume
+### 6. Now, if you want to add additional script to your project, that is easy. Let's assume
       you want to create `whoami'. Just run the command:
 ```sh
-        ~$ shcf_cli bin hello_world whoami
+    ~$ shcf_cli bin hello_world whoami
 ```
 
 Same instructions as above, put the logic, make it executable and you're on.
 
-   7. For other usage, help is available. Just run:
+### 7. For other usage, help is available. Just run:
 ```sh
-       $ shcf_cli help
+    $ shcf_cli help
 ```
 
   TODO: 
@@ -158,15 +157,15 @@ Same instructions as above, put the logic, make it executable and you're on.
 
 I am not fully sure if I understand the MVC pattern correctly, but in my own
     understanding:
-* Model      - is the business logic or the "how" of this framework. It is 
+* **Model**      - is the business logic or the "how" of this framework. It is 
                    the one that bears the burden on how a specific functionality 
                    is to be carried out. In this framework, you can see the 
                    'model' inside "lib", like 'sqlQuery.bash.inc'
 
-* View       - is the frontliner, the one that faces the demanding customer,
+* **View**       - is the frontliner, the one that faces the demanding customer,
                    the end-user. Example is the script created in 'bin'
 
-* Controller - is the mediator/middle-man directing the requests of the 
+* **Controller** - is the mediator/middle-man directing the requests of the 
                    demanding customer(via 'View') to the corresponding 'model'. 
                    For instance, we have a script that does an SQL query. The
                    script(also called the 'view'), having been asked by the 
@@ -176,30 +175,24 @@ I am not fully sure if I understand the MVC pattern correctly, but in my own
                    framework, controller is called etc/controller.bash.inc which
                    should be included in every scripts that uses this framework.
                      
-## 2. auto-loading in PHP
+## 2. Autoloading in PHP
 
-    Having seen a lot of shell scripts with functions being duplicated across 
+Having seen a lot of shell scripts with functions being duplicated across 
     scripts made me recognize a shell maintenance nightmare. A slight change 
     in functionality on the main tool would mean changing a lot scripts.
     So I made a roughly similar functionality in  this framework so that only
     one function would be made and will simply be called in each script that 
     needs it. Maintenance would be quickly and easy.
 
-    In this framework, it can be seen in lib/autoload_functions.bash.inc and will 
-    be called in script something like 
+In this framework, it can be seen in lib/autoload_functions.bash.inc and will be called in script something like 
 
-       autoload_functions "func1 func2 func3 etc"
+```sh
+   autoload_functions "func1 func2 func3 etc"
+```
 
+The above way to call 'autoload_function' means that functions is directly accessible from 'lib' and NOT inside directories within 'lib'. To reference a function stored in a directory within 'lib' prefix it with the directory relative to 'lib'. For example to use sqlQuery function which is stored in 'lib/db/sql/mysql' and 'ishost_up' located in 'lib/box_mgt' you will call 'autoload_function' like
 
-    The above way to call 'autoload_function' means that functions is directly 
-    accessible from 'lib' and NOT inside directories within 'lib'. To reference a
-    function stored in a directory within 'lib' prefix it with the directory 
-    relative to 'lib'. For example to use sqlQuery function which is stored in 
-    'lib/db/sql/mysql' and 'ishost_up' located in 'lib/box_mgt' you will call 
-    'autoload_function' like
-
-       autoload_functions "lib/db/sql/mysql/sqlQuery box_mgt/ishost_up"
-
-    In short, auto-loading stays relatively the same. Just prefix a function with
-    with the directory where it is stored and no directory name prefix if it is 
-    in same level as autoload_functions.bash.inc.
+```sh
+   autoload_functions "lib/db/sql/mysql/sqlQuery box_mgt/ishost_up"
+```
+In short, auto-loading stays relatively the same. Just prefix a function with the directory where it is stored and no directory name prefix if it is in same level as autoload_functions.bash.inc.
