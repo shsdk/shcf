@@ -9,4 +9,4 @@ before_script:
     - echo "greeter" >> /home/travis/build/icasimpan/shcf/shcf/projects/hello_world/bin/hello_world
 
 script:
-    - export SHCF_PLATFORM_ROOT=/home/travis/build/icasimpan/shcf/shcf; $SHCF_PLATFORM_ROOT/projects/hello_world/bin/hello_world
+    - bash /home/travis/build/icasimpan/shcf/shcf/projects/hello_world/bin/hello_world
