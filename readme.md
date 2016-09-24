@@ -12,27 +12,33 @@
 
 
 #QUICK GUIDE:
-### 1. Create a new shcf-based shell script
+### 1. Create new script
+Create a new shcf-based shell script
 ```sh
   ~$ git clone https://github.com/icasimpan/shcf.git
   ~$ ./shcf/init_env.sh
   ~$ shcf_cli new hello_world
 ```
-### 2. Add basic logic, say the greeter() function
+### 2. Add basic logic
+Add basic logic, let's say the greeter() function
 ```sh
   ~$ shcf_cli lib hello_world greeter
 ```
-### 3. Modify hello_world/lib/greeter.bash.inc to say 'hello world'
+#### 2.1. Modify greeter function file
+Modify hello_world/lib/greeter.bash.inc to say 'hello world'
 
-### 4. Update main script hello_world/bin/hello_world so it calls `greeter'
+#### 2.2. Update main script
+Update main script hello_world/bin/hello_world so it calls `greeter'
        TIP: Add it to `autoload_functions' line
 
-### 5. To create additional scripts into your project, say `whoami':
+### 3. For adding another script
+To create additional scripts into your project, say `whoami':
 ```sh
   ~$ shcf_cli hello_world whoami
 ```
 
-### 6. Further usage, help is available. Just run:
+### 4. Further help
+Further usage, help is available. Just run:
 ```sh
   ~$ shcf_cli help
 ```
@@ -179,7 +185,7 @@ I am not fully sure if I understand the MVC pattern correctly, but in my own
 
 Having seen a lot of shell scripts with functions being duplicated across 
     scripts made me recognize a shell maintenance nightmare. A slight change 
-    in functionality on the main tool would mean changing a lot scripts.
+    in functionality on the main tool would mean changing a lot of scripts.
     So I made a roughly similar functionality in  this framework so that only
     one function would be made and will simply be called in each script that 
     needs it. Maintenance would be quickly and easy.
