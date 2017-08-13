@@ -25,9 +25,9 @@ create_new() {
       error_message "ERROR: Reserved name 'shcf' cannot be used. Aborting.";
     }
 
-    ## put projects in predictable location by default
+    ## put projects in predictable location by default, outside 'core ShSDK'
     ## TODO: Allow from outside using a switch
-    local project_root=$SHCF_PLATFORM_ROOT/projects/$project
+    local project_root=$($DIRNAME_BIN $SHCF_PLATFORM_ROOT)/projects/$project
 
     ## Ensure no conflicting namespace in $rc_file
     local prj_namespace=$(create_namespace $project)

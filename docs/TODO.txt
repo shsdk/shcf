@@ -3,12 +3,12 @@ IN PROGRESS
 GROOMED
 * Copy a 'lib' or 'bin' from one SHCF_APP to another 
 * Copy an ShSDK lib or bin to SHCF_APP
-* Change structure so that 'core ShSDK' and project is clearly demarcated, ie:
-    > core     - core ShSDK scripts (intended NOT to be touched) 
-    > projects - individual group of scripts
 
 NICE TO HAVE
 * Create a 'standalone' option to shcf_cli 
 
 DONE
+* Change structure so that 'core ShSDK' and project is clearly demarcated, ie:
+    > core     - core ShSDK scripts (intended NOT to be touched) 
+    > projects - individual group of scripts
 * Ability to create a 'lib' or 'bin' within the ShSDK environment
