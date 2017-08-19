@@ -3,10 +3,10 @@ language: bash
 before_script:
     - git clone https://github.com/icasimpan/shcf.git
     - export SHCF_PLATFORM_ROOT=/home/travis/build/icasimpan/shcf/shcf/core; $SHCF_PLATFORM_ROOT/bin/shcf_cli new hello_world
-    - echo "greeter() { echo 'Hello World'; }" > /home/travis/build/icasimpan/shcf/shcf/core/projects/hello_world/lib/greeter.bash.inc
-    - sed -i 's/rename_function1/greeter/g' /home/travis/build/icasimpan/shcf/shcf/core/projects/hello_world/bin/hello_world
-    - sed -i '/rename_function/d' /home/travis/build/icasimpan/shcf/shcf/core/projects/hello_world/bin/hello_world
-    - echo "greeter" >> /home/travis/build/icasimpan/shcf/shcf/core/projects/hello_world/bin/hello_world
+    - echo "greeter() { echo 'Hello World'; }" > /home/travis/build/icasimpan/shcf/shcf/projects/hello_world/lib/greeter.bash.inc
+    - sed -i 's/rename_function1/greeter/g' /home/travis/build/icasimpan/shcf/shcf/projects/hello_world/bin/hello_world
+    - sed -i '/rename_function/d' /home/travis/build/icasimpan/shcf/shcf/projects/hello_world/bin/hello_world
+    - echo "greeter" >> /home/travis/build/icasimpan/shcf/shcf/projects/hello_world/bin/hello_world
 
 script:
-    - bash /home/travis/build/icasimpan/shcf/shcf/core/projects/hello_world/bin/hello_world
+    - bash /home/travis/build/icasimpan/shcf/shcf/projects/hello_world/bin/hello_world
