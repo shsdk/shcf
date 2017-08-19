@@ -16,9 +16,17 @@
 ##~
 ##===================================================
 
-# Ensure environment has been set:
+## Are you asking to initialize environment?
+## TODO: Check if this block can be implemented better
+[[ "init" = "$1" ]] && {
+  . $(dirname $(pwd))/lib/create_init.bash.inc
+  create_init $*
+  exit 0
+}
+
+# Otherwise, ensure environment has been set:
 #
-[[ -z $SHCF_PLATFORM_ROOT ]] && { echo "[ERROR] SHCF environment not set. Run 'init_env.sh'"; exit 1; }
+[[ -z $SHCF_PLATFORM_ROOT ]] && { echo "[ERROR] SHCF environment not set. Run './shcf_cli init'"; exit 1; }
 
 # source framework orchestrator
 #
