@@ -19,7 +19,7 @@
 ## Are you asking to initialize environment?
 ## TODO: Check if this block can be implemented better
 [[ "init" = "$1" ]] && {
-  . $(dirname $(pwd))/lib/create_init.bash.inc
+  . $(dirname $(dirname $0))/lib/create_init.bash.inc
   create_init $*
   exit 0
 }
