@@ -1,4 +1,0 @@
-sqlQuery.bash.inc
-autoload_functions.bash.inc
-check_mandatory_commands.bash.inc
-decrypt_password.bash.inc
