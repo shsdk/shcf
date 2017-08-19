@@ -19,7 +19,9 @@
 ## Are you asking to initialize environment?
 ## TODO: Check if this block can be implemented better
 [[ "init" = "$1" ]] && {
-  . $(dirname $(dirname $0))/lib/create_init.bash.inc
+  tmp_platform_root=$(dirname $(dirname $0))                              ## outside run, e.g ./shcf/core/bin/shcf_cli init
+  [[ '.' = "$tmp_platform_root" ]] && tmp_platform_root=$(dirname $(pwd)) ## inside run, e.g ./shcf_cli init
+  . $tmp_platform_root/lib/create_init.bash.inc
   create_init $*
   exit 0
 }
