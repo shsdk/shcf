@@ -37,7 +37,7 @@
 
 <p>Ok, enough of the convincing lines. Seriously, I wrote this tool as I needed it myself and I've noticed that there's practically nothing that satisfies my definition of light and simple framework for shell scripting. I'm sharing this with you so that hopefully, it would help you create shell scripts faster and with focus on your scripting and not on how this framework works.</p>
 
-<p>A little disclaimer though: we currently supports bash as of the moment.</p>
+<p>A little disclaimer though: we only support bash at the moment.</p>
 
 <p>Anyway, as I've already told you, this is no longer just a shell coding framework. This is a scripting development kit and you generate the coding framework out of it. I'll show you how it works</p>
 
@@ -48,7 +48,7 @@
     <code>
 	   <pre>
   ~$ git clone https://github.com/icasimpan/shcf.git
-  ~$ ./shcf/init_env.sh
+  ~$ ./shcf/core/bin/shcf_cli init
   ~$ shcf_cli new hello_world
 	   </pre>
     </code>
@@ -93,24 +93,24 @@
   2. Initialize the environment
     <code>
 	   <pre> 
-   $ ./shcf/init_env.sh
+   $ ./shcf/core/bin/shcf_cli init
      Platform environment has been set. See below:
-        SHCF_PLATFORM_ROOT=/home/your_username/shcf
+        SHCF_PLATFORM_ROOT=/home/your_username/shcf/core
  	   </pre>
     </code>
     
-   At this point, you can use `shcf_cli'(located in `./shcf/bin') from any path so long as you didn't use `exit'.<br /><br />
+   At this point, you can use `shcf_cli' from any path so long as you don't use `exit'.<br /><br />
 
   3. Now, create a new project. Example, `hello_world'
     <code>
 	   <pre>   
-   $ ./shcf/bin/shcf_cli new your_project_dir/hello_world
+   $ shcf_cli new your_project_dir/hello_world
  	   </pre>
     </code>
      A successful creation should be something like below:
     <code>
 	   <pre> 
-   $ ./shcf/bin/shcf_cli new your_project_dir/hello_world
+   $ shcf_cli new your_project_dir/hello_world
    template script created in your_project_dir/hello_world/bin/hello_world
    Successful creation of your_project_dir/hello_world
  	   </pre>
