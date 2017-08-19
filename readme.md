@@ -17,7 +17,7 @@
 Create a new shcf-based shell script
 ```sh
   ~$ git clone https://github.com/icasimpan/shcf.git
-  ~$ ./shcf/init_env.sh
+  ~$ ./shcf/core/bin/shcf_cli init
   ~$ shcf_cli new hello_world
 ```
 ### 2. Add basic logic
@@ -52,20 +52,20 @@ Further usage, help is available. Just run:
 
 ### 2. Initialize the environment
 ```sh
-  ~$ ./shcf/init_env.sh
+  ~$ ./shcf/core/bin/shcf_cli init
    Platform environment has been set. See below:
-   SHCF_PLATFORM_ROOT=/home/your_username/shcf
+   SHCF_PLATFORM_ROOT=/home/your_username/shcf/core
 ```
- At this point, you can use `shcf_cli'(located in `./shcf/bin') from any path so long as you didn't use `exit'.
+ At this point, you can use `shcf_cli' from any path so long as you don't`exit'.
 
 ### 3. Now, create a new project. Example, `hello_world'
 ```sh
-  ~$ ./shcf/bin/shcf_cli new your_project_dir/hello_world
+  ~$ shcf_cli new your_project_dir/hello_world
 ```
 A successful creation should be something like below:
 
 ```sh
-  ~$ ./shcf/bin/shcf_cli new your_project_dir/hello_world
+  ~$ shcf_cli new your_project_dir/hello_world
     template script created in your_project_dir/hello_world/bin/hello_world
     Successful creation of your_project_dir/hello_world
 ```
