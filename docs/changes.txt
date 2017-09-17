@@ -1,8 +1,24 @@
-v0.3.0
-  Aug 13, 2017 - separated 'core ShSDK' from project files directory 
-v0.2.0
-  Aug 22, 2016 - shcf major rework to create a Shell Scripting Development Kit (ShSDK).
-v0.1.1 
-  Nov 7, 2015 - Last release for monolithic framework
-v0.1
-  Apr 3, 2014 - original creation. Big and contains unneeded libraries
+=============================================
+** PRE-RELEASE (for 'shcf-v0.4.0')
+=============================================
+shcf-v0.4.0 => 
+  * project now simply resides in 'projects'
+
+=============================================
+** RELEASED
+=============================================
+shcf-v0.3.0 => Aug 13, 2017
+  Clear 'core' and 'projects' separation
+  * separated 'core' and 'projects' location
+  * integration of environment init to shcf_cli
+
+shcf-v0.2.0 => Aug 22, 2016
+  shcf as ShSDK
+  * shcf is now an ShSDK (Shell Scripting Development Kit)
+  * Heavily refactored internals for easy growing of features and functionality
+
+shcf-v0.1.1 => Nov 7, 2015
+  Last release for monolithic framework
+
+shcf-v0.1.0 => Apr 3, 2014
+  Original creation. Big and contains unneeded libraries

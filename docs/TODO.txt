@@ -1,6 +1,7 @@
 IN PROGRESS
 
 GROOMED
+* Separation of projects directory so it doesn't get deleted when shcf is deleted.
 * Copy a 'lib' or 'bin' from one SHCF_APP to another 
 * Copy an ShSDK lib or bin to SHCF_APP
 
