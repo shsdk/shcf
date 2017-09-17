@@ -10,7 +10,7 @@
 ##~   new       requires <project_name>
 ##~   bin       requires <project_name> <script_name>
 ##~   lib       requires <project_name> <lib_name>
-##~   show      requires <entity>
+##~   projects  <no_parameter>
 ##~
 ##~ For usage per command, use 'shcf_cli help <cmd>'
 ##~
@@ -43,9 +43,9 @@ create_help
 create_lib
 create_namespace
 create_new
-create_show
 error_message
 usage
+create_projects
 "
 autoload_functions "$function_to_autoload"
 
@@ -61,11 +61,11 @@ _p3=$3
 # tool main()
 #
 # supported sub-commands:
-#  new  - to create a new shcf-based shell project
-#  bin  - creation of new 'bin' scripts
-#  lib  - creation of skeleton lib to a project
-#  help - shows the usage per command
-#  show - shows some entity's content, like $rc_file
+#  new      - to create a new shcf-based shell project
+#  bin      - creation of new 'bin' scripts
+#  lib      - creation of skeleton lib to a project
+#  help     - shows the usage per command
+#  projects - list of projects
 # --------------------------------------------------
 
 # For use in help files
@@ -92,8 +92,8 @@ case $cmd in
   "help")
     create_help $_p2
   ;;
-  "show")
-    create_show $_p2
+  "projects")
+    create_projects
   ;;
   *)
     err_msg="ERROR: Unsupported command ($cmd)"
