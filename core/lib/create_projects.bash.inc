@@ -1,16 +1,15 @@
 ##=====================================
-##~ create_projects: List available projects
+##~ List down managed projects.
 ##~ usage: shcf_cli projects
 ##~
 ##=====================================
 
 create_projects() {
-  autoload_functions "usage define_rootpath"
+  autoload_functions "define_rootpath"
 
-  ## NO parameters
   local rootpath=$(define_rootpath)
   echo "Projects Root Location: $rootpath"
-  for each_project in $(ls -1d $rootpath/*); do
+  for each_project in $($LS_BIN -1d $rootpath/*); do
      echo " * $($BASENAME_BIN $each_project)"
   done
   echo
