@@ -2,8 +2,6 @@
 ##~For creating a new shcf-based shell project.
 ##~Usage: shcf_cli new <project_name>
 ##~ * project_name - cannot have an 'shcf' in it's name.
-##~                  Depending on usage, can be anywhere
-##~                  you have permission to write.
 ##~
 ##======================================================
 
