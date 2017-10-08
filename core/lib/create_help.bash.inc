@@ -6,7 +6,7 @@
 ##~     new
 ##~     bin
 ##~     lib
-##~     show
+##~     projects
 ##~
 ##===================================================
 
@@ -31,8 +31,8 @@ create_help() {
       'lib')
         usage lib
       ;;
-      'show')
-        usage show
+      'projects')
+        usage projects
       ;;
       *)
         echo "ERROR: Unknown command ($on_what)."

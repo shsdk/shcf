@@ -2,7 +2,7 @@
 ##~For creating a shell script in either an existing project or in ShSDK.
 ##~
 ##~usage: shcf_cli bin <project_name> <script_name>
-##~  project_name    * existing project must be listed in 'shcf_cli show rcfile'
+##~  project_name    * existing project must be listed in 'shcf_cli projects'
 ##~                  * 'shcf' or '-' would mean relative to ShSDK root
 ##~
 ##==============================================================================

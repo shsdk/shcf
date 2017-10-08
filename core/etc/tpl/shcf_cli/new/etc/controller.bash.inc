@@ -6,8 +6,10 @@
 TOOL_ROOTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/../ && pwd )"
 LIB_DIR=$TOOL_ROOTDIR/lib
 CONF_DIR=$TOOL_ROOTDIR/etc
-LOG_DIR=$TOOL_ROOTDIR/var/log
-TMP_DIR=$TOOL_ROOTDIR/var/tmp
+LOG_DIR=$TOOL_ROOTDIR/log
+TMP_DIR=$TOOL_ROOTDIR/tmp
+EXTTOOL_DIR=$TOOL_ROOTDIR/3rdparty                                  ## for '3rdparty'
+[[ -e $CONF_DIR/app_paths.conf ]] && . $CONF_DIR/app_paths.conf     # application specific paths
 
 . $CONF_DIR/init.conf
 . $LIB_DIR/autoload_functions.bash.inc

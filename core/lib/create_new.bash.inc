@@ -2,14 +2,12 @@
 ##~For creating a new shcf-based shell project.
 ##~Usage: shcf_cli new <project_name>
 ##~ * project_name - cannot have an 'shcf' in it's name.
-##~                  Depending on usage, can be anywhere
-##~                  you have permission to write.
 ##~
 ##======================================================
 
 create_new() {
     ## load dependencies
-    autoload_functions "usage create_bin case_shift error_message create_namespace"
+    autoload_functions "usage create_bin case_shift error_message create_namespace define_rootpath"
 
     ## function parameters
     local project=$(case_shift low $1)
@@ -25,19 +23,11 @@ create_new() {
       error_message "ERROR: Reserved name 'shcf' cannot be used. Aborting.";
     }
 
-    ## put projects in predictable location by default
-    ## TODO: Allow from outside using a switch
-    local project_root=$SHCF_PLATFORM_ROOT/projects/$project
+    ## put projects in predictable location by default, outside 'core ShSDK'
+    local project_root=$(define_rootpath "$project")
 
-    ## Ensure no conflicting namespace in $rc_file
-    local prj_namespace=$(create_namespace $project)
-    local rc_entry="${prj_namespace}=$project_root"
-    if [[ ! -e $rc_file ]]; then
-       echo $rc_entry > $rc_file
-    else
-       local prj_exist=$(grep -c ${prj_namespace} $rc_file)
-       [[ $prj_exist -gt 0 ]] && { error_message "ERROR: Project $project exist. Aborting."; } || echo $rc_entry >> $rc_file
-    fi
+    ## Make sure no existing conflicting project name exist. Otherwise, inform.
+    [[ -d $project_root ]] && { error_message "ERROR: Project '$project' exist. Aborting."; }
 
     ## copy template for new shcf
     local template_rootdir=$SHCF_PLATFORM_ROOT/etc/tpl/shcf_cli/new
@@ -50,7 +40,6 @@ create_new() {
     create_bin $project $new_entity
     if [[ $initial_skeleton -eq $SUCCESS ]] && [[ $? -eq $SUCCESS ]]; then
        echo "Successful creation of $project"
-       . $rc_file      ## to refresh what is known to shcf without consulting $rc_file
     else
        error_message "Failure creating $project"
     fi

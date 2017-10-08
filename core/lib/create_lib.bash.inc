@@ -2,7 +2,7 @@
 ##~For creating a library function in either an existing project or in ShSDK.
 ##~
 ##~usage: shcf_cli lib <project_name> <lib_name>
-##~  project_name    * existing project must be listed in 'shcf_cli show rcfile'
+##~  project_name    * existing project must be listed in 'shcf_cli projects'
 ##~                  * 'shcf' or '-' would mean relative to ShSDK root
 ##~
 ##==============================================================================

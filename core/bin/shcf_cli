@@ -10,15 +10,25 @@
 ##~   new       requires <project_name>
 ##~   bin       requires <project_name> <script_name>
 ##~   lib       requires <project_name> <lib_name>
-##~   show      requires <entity>
+##~   projects  <no_parameter>
 ##~
 ##~ For usage per command, use 'shcf_cli help <cmd>'
 ##~
 ##===================================================
 
-# Ensure environment has been set:
+## Are you asking to initialize environment?
+## TODO: Check if this block can be implemented better
+[[ "init" = "$1" ]] && {
+  tmp_platform_root=$(dirname $(dirname $0))                              ## outside run, e.g ./shcf/core/bin/shcf_cli init
+  [[ '.' = "$tmp_platform_root" ]] && tmp_platform_root=$(dirname $(pwd)) ## inside run, e.g ./shcf_cli init
+  . $tmp_platform_root/lib/create_init.bash.inc
+  create_init $*
+  exit 0
+}
+
+# Otherwise, ensure environment has been set:
 #
-[[ -z $SHCF_PLATFORM_ROOT ]] && { echo "[ERROR] SHCF environment not set. Run 'init_env.sh'"; exit 1; }
+[[ -z $SHCF_PLATFORM_ROOT ]] && { echo "[ERROR] SHCF environment not set. Run './shcf_cli init'"; exit 1; }
 
 # source framework orchestrator
 #
@@ -37,6 +47,7 @@ create_show
 create_spawn
 error_message
 usage
+create_projects
 "
 autoload_functions "$function_to_autoload"
 
@@ -52,11 +63,11 @@ _p3=$3
 # tool main()
 #
 # supported sub-commands:
-#  new  - to create a new shcf-based shell project
-#  bin  - creation of new 'bin' scripts
-#  lib  - creation of skeleton lib to a project
-#  help - shows the usage per command
-#  show - shows some entity's content, like $rc_file
+#  new      - to create a new shcf-based shell project
+#  bin      - creation of new 'bin' scripts
+#  lib      - creation of skeleton lib to a project
+#  help     - shows the usage per command
+#  projects - list of projects
 # --------------------------------------------------
 
 # For use in help files
@@ -86,8 +97,8 @@ case $cmd in
   "help")
     create_help $_p2
   ;;
-  "show")
-    create_show $_p2
+  "projects")
+    create_projects
   ;;
   *)
     err_msg="ERROR: Unsupported command ($cmd)"
