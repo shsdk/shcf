@@ -9,6 +9,7 @@ CONF_DIR=$TOOL_ROOTDIR/etc
 LOG_DIR=$TOOL_ROOTDIR/log
 TMP_DIR=$TOOL_ROOTDIR/tmp
 EXTTOOL_DIR=$TOOL_ROOTDIR/3rdparty                                  ## for '3rdparty'
+TEMPLATE_DIR=$CONF_DIR/tpl
 [[ -e $CONF_DIR/app_paths.conf ]] && . $CONF_DIR/app_paths.conf     # application specific paths
 
 . $CONF_DIR/init.conf
