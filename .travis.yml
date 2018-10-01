@@ -2,11 +2,10 @@ language: bash
 
 before_script:
     - git clone https://github.com/icasimpan/shcf.git
-    ## Initialize 'shcf'
-    - cd /home/travis/build/icasimpan/shcf/shcf/core/bin; ./shcf_cli init
-    - shcf_cli new hello_world
+    ## Initialize 'shcf' (cannot use usual initialize as it will create a subshell, falling travis into an endless loop)
+    - export SHCF_PLATFORM_ROOT=/home/travis/build/icasimpan/shcf/shcf/core; $SHCF_PLATFORM_ROOT/bin/shcf_cli new hello_world
     ## Now, use 'shcf_cli lib' to create the function greeter()
-    - shcf_cli lib hello_world greeter
+    - $SHCF_PLATFORM_ROOT/bin/shcf_cli lib hello_world greeter
     - sed -i '/function/d' /home/travis/build/icasimpan/shcf/shcf/projects/hello_world/lib/greeter.bash.inc
     - sed -i "s/.*END.*/echo 'Hello World\!'; \}" /home/travis/build/icasimpan/shcf/shcf/projects/hello_world/lib/greeter.bash.inc
     ## Insert greeter() into bin/hello_world
