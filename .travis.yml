@@ -14,15 +14,15 @@ env:
       - OS=el DIST=7
       - OS=fedora DIST=24
       - OS=fedora DIST=25
-      - OS=ubuntu DIST=trusty
-      - OS=ubuntu DIST=precise
-      - OS=ubuntu DIST=xenial
-      - OS=ubuntu DIST=yakkety
-      - OS=debian DIST=jessie
-      - OS=debian DIST=wheezy
-      - OS=debian DIST=stretch
-      - OS=ubuntu DIST=xenial ARCH=i386
-      - OS=debian DIST=jessie ARCH=i386
+#      - OS=ubuntu DIST=trusty
+#      - OS=ubuntu DIST=precise
+#      - OS=ubuntu DIST=xenial
+#      - OS=ubuntu DIST=yakkety
+#      - OS=debian DIST=jessie
+#      - OS=debian DIST=wheezy
+#      - OS=debian DIST=stretch
+#      - OS=ubuntu DIST=xenial ARCH=i386
+#      - OS=debian DIST=jessie ARCH=i386
 
 script:
  - git submodule update --init --recursive
