@@ -8,7 +8,7 @@ URL: http://ismael.casimpan.com/shcf
 Source0: shcf-%{version}.tar.gz
 BuildArch: noarch
 #~BuildRequires: tarantool-devel >= 1.6.8.0
-Requires: bash
+#~Requires: bash
 
 %description
 Shell Scripting Development Kit(ShSDK) currently supporting bash.
