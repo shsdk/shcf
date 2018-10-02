@@ -1,50 +1,38 @@
-###############################################################################
-# Spec file for SHCF - Shell Scripting Development Kit (ShSDK)
-################################################################################
-#
-Summary: Shell Scripting Development Kit(ShSDK) currently supporting bash.
-Name: shcf
+Name: Shell Scripting Development Kit(ShSDK) currently supporting bash.
 Version: 1.0.0
 Release: 1%{?dist}
+Summary: Shell Scripting Development Kit(ShSDK) currently supporting bash.
+Group: System
 License: MIT
 URL: http://ismael.casimpan.com/shcf
-Group: System
-Packager: Ismael Casimpan
+Source0: shcf-%{version}.tar.gz
+BuildArch: noarch
+#~BuildRequires: tarantool-devel >= 1.6.8.0
 Requires: bash
-Requires: git
-BuildRoot: ~/rpmbuild/
-
-# Build with the following syntax:
-# rpmbuild --target noarch -bb shcf.spec
 
 %description
 Shell Scripting Development Kit(ShSDK) currently supporting bash.
 
 %prep
-################################################################################
-# Create the build tree and copy the files from the development directories    #
-# into the build tree.                                                         #
-################################################################################
-echo "BUILDROOT = $RPM_BUILD_ROOT"
-mkdir -p $RPM_BUILD_ROOT/usr/local/bin/
+#%setup -q -n luakit-%{version}
+%setup -q -n shcf-%{version}
 
-cd $RPM_BUILD_ROOT/usr/local/bin/
-git clone --branch master https://github.com/icasimpan/shcf.git
+%check
+#./test/luakit.test.lua
 
-exit
+%install
+# Create /usr/share/shcf
+mkdir -p %{buildroot}%{_datadir}/shcf
+cp -Rfv shcf/* %{buildroot}%{_datadir}/shcf
 
 %files
-%attr(0744, root, root) /usr/local/bin/*
-
-%pre
-
-%post
-
-%postun
-
-%clean
-rm -rf $RPM_BUILD_ROOT/usr/local/bin
+%dir %{_datadir}/shcf
+%{_datadir}/shcf
+%doc README.md
+%{!?_licensedir:%global license %doc}
+%license LICENSE AUTHORS
 
 %changelog
-* Mon Oct 1, 2018: Ismael Angelo A. Casimpan Jr. <ismael.angelo@casimpan.com>
-  - First creation of rpm package.
+* Mon Oct 2 2018 Ismael Angelo Casimpan Jr <ismael.angelo@casimpan.com> 1.0.0-1
+- shcf initial rpm.
+
