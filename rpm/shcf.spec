@@ -1,4 +1,4 @@
-Name: Shell Scripting Development Kit(ShSDK) currently supporting bash.
+Name: shcf
 Version: 1.0.0
 Release: 1%{?dist}
 Summary: Shell Scripting Development Kit(ShSDK) currently supporting bash.
