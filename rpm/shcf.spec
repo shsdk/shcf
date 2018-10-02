@@ -5,7 +5,7 @@
 Summary: Shell Scripting Development Kit(ShSDK) currently supporting bash.
 Name: shcf
 Version: 1.0.0
-Release: 1
+Release: 1%{?dist}
 License: MIT
 URL: http://ismael.casimpan.com/shcf
 Group: System
