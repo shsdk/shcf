@@ -152,7 +152,7 @@ Same instructions as above, put the logic, make it executable and you're on.
 
 # PACKAGE BUILDS:
 
-For people who doesn't who are more comfortable with the usual package installation, SHCF is now available as an rpm package.
+For people who are more comfortable with the usual package installation, SHCF is now available as an rpm package.
 Debian packages would follow soon.
 
 To install, run the following:
