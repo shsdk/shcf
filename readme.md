@@ -1,4 +1,5 @@
 [![Build status](https://travis-ci.org/icasimpan/shcf.svg)](https://travis-ci.org/icasimpan/shcf)
+[![rpm](https://img.shields.io/badge/rpm-packagecloud.io-844fec.svg)](https://packagecloud.io/icasimpan/shcf)
 [![Code Climate](https://codeclimate.com/github/icasimpan/shcf/badges/gpa.svg)](https://codeclimate.com/github/icasimpan/shcf)
 
 # WHAT IS SHCF?
