@@ -1,7 +1,7 @@
 [![Build status](https://travis-ci.org/icasimpan/shcf.svg)](https://travis-ci.org/icasimpan/shcf)
 [![Code Climate](https://codeclimate.com/github/icasimpan/shcf/badges/gpa.svg)](https://codeclimate.com/github/icasimpan/shcf)
 
-#WHAT IS SHCF?
+# WHAT IS SHCF?
 
   It is a Shell Scripting Development Kit (ShSDK) that currently supports bash.
   ShCF gives you the ability to develop shell scripts in bash in a lightweight
@@ -12,7 +12,7 @@
   In the near future, it would even allow you to make standalone bash shell scripts.
 
 
-#QUICK GUIDE:
+# QUICK GUIDE:
 ### 1. Create new script
 Create a new shcf-based shell script
 ```sh
@@ -44,7 +44,7 @@ Further usage, help is available. Just run:
   ~$ shcf_cli help
 ```
 
-#DETAILED USAGE GUIDE:
+# DETAILED USAGE GUIDE:
 ### 1. Clone the shcf project:
 ```sh
   ~$ git clone https://github.com/icasimpan/shcf.git
@@ -149,16 +149,11 @@ Same instructions as above, put the logic, make it executable and you're on.
     $ shcf_cli help
 ```
 
-  TODO: 
-* Add how to create simple function that returns a string
-* Add how to get libraries from shcf_lib
-
-
-#CONTRIBUTING:
+# CONTRIBUTING:
   See docs/howto_contribute.txt
 
 
-#INSPIRATIONS
+# INSPIRATIONS
 
 ## 1. Model-View-Controller(MVC) pattern
 
