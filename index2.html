@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>SHCF: Open Source Shell Scripting Dev't Kit and Coding Framework by icasimpan</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>SHCF</h1>
+          <h2>Shell Coding Simplified!</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <!--<a href="https://github.com/icasimpan/shcf/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>-->
+          <a href="https://packagecloud.io/icasimpan/shcf" id="download-rpm class="button"></span>Install rpm</span></a>
+          <a href="https://github.com/icasimpan/shcf/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/icasimpan/shcf" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h3>
+<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>WHAT'S SHCF?</h3>
+<p>If you've used the previous version of SHCF, now you would use it even more. SHCF is no longer just a Shell Coding Framework but a Shell Scripting Development Kit as well. Where before you used to get one for free, now you'll get two and still for free!</p>
+
+<p>Ok, enough of the convincing lines. Seriously, I wrote this tool as I needed it myself and I've noticed that there's practically nothing that satisfies my definition of light and simple framework for shell scripting. I'm sharing this with you so that hopefully, it would help you create shell scripts faster and with focus on your scripting and not on how this framework works.</p>
+
+<p>A little disclaimer though: we only support bash at the moment.</p>
+
+<p>Anyway, as I've already told you, this is no longer just a shell coding framework. This is a scripting development kit and you generate the coding framework out of it. I'll show you how it works</p>
+
+<h3>
+<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>QUICK USAGE GUIDE</h3>
+
+  1. Create a new shcf-based shell script
+    <code>
+	   <pre>
+  ~$ git clone https://github.com/icasimpan/shcf.git
+  ~$ ./shcf/core/bin/shcf_cli init
+  ~$ shcf_cli new hello_world
+	   </pre>
+    </code>
+
+	2. Add basic logic, say the greeter() function
+    <code>
+		<pre>
+  ~$ shcf_cli lib hello_world greeter
+        </pre>
+    </code>
+
+	3. Modify hello_world/lib/greeter.bash.inc to say 'hello world'<br /><br />
+
+  4. Update main script hello_world/bin/hello_world so it calls `greeter'<br />
+       TIP: Add it to `autoload_functions' line<br /><br />
+
+  5. For additional scripts into your project say `whoami':
+    <code>
+	  <pre>
+  ~$ shcf_cli hello_world whoami
+	  </pre>
+    </code>
+
+  6. Further usage, help is available. Just run:
+    <code>
+	   <pre>
+  ~$ shcf_cli help
+	   </pre>
+    </code>
+
+
+<h3>
+<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>DETAILED USAGE GUIDE</h3>
+
+  1. Clone the shcf project:
+    <code>
+	   <pre>
+   $ git clone https://github.com/icasimpan/shcf.git
+	   </pre>
+    </code>
+
+  2. Initialize the environment
+    <code>
+	   <pre> 
+   $ ./shcf/core/bin/shcf_cli init
+     Platform environment has been set. See below:
+        SHCF_PLATFORM_ROOT=/home/your_username/shcf/core
+ 	   </pre>
+    </code>
+    
+   At this point, you can use `shcf_cli' from any path so long as you don't use `exit'.<br /><br />
+
+  3. Now, create a new project. Example, `hello_world'
+    <code>
+	   <pre>   
+   $ shcf_cli new your_project_dir/hello_world
+ 	   </pre>
+    </code>
+     A successful creation should be something like below:
+    <code>
+	   <pre> 
+   $ shcf_cli new your_project_dir/hello_world
+   template script created in your_project_dir/hello_world/bin/hello_world
+   Successful creation of your_project_dir/hello_world
+ 	   </pre>
+    </code>
+	
+  4. Make the template binary in `bin' executable
+    <code>
+	   <pre>
+   $ chmod u+x ./your_project_dir/bin/hello_world
+ 	   </pre>
+    </code>
+	
+  5. Template script is not yet ready. If you insist on running it like below:
+    <code>
+	   <pre>  
+   $ ./hello_world
+ 	   </pre>
+    </code>
+	
+     Expect to see the following error:
+    <code>
+	   <pre> 
+ /home/your_username/your_project_dir/hello_world/lib/autoload_functions.bash.inc: line 26: /home/your_username/your_project_dir/hello_world/lib/rename_function1.bash.inc: No such file or directory
+ ERROR: Missing required rename_function1
+ /home/your_username/your_project_dir/hello_world/lib/autoload_functions.bash.inc: line 26: /home/your_username/your_project_dir/hello_world/lib/rename_function2.bash.inc: No such file or directory
+ ERROR: Missing required rename_function2
+ /home/your_username/your_project_dir/hello_world/lib/autoload_functions.bash.inc: line 26: /home/your_username/your_project_dir/hello_world/lib/rename_functionX.bash.inc: No such file or directory
+ ERROR: Missing required rename_functionX
+ 	   </pre>
+    </code>
+     Template `View' (see MVC pattern in `INSPIRATION' section below) included 3
+     functions that where meant to be replaced or removed, hence the error.
+     To fix the problem, go to the `Model' (or `lib' directory) and create a
+     function named 'greeter()' (as file greeter.bash.inc) with contents below:
+    <code>
+	   <pre> 
+	greeter() {
+	   local message=$1
+	   echo "$message!"
+	}
+ 	   </pre>
+    </code>
+	
+     TIP: Another approach is to create a template file using command <code><pre>shcf_cli lib hello_world greeter</pre></code>
+
+     In `bin/hello_world', remove the 3 template functions namely:
+	 <pre>
+       rename_function1
+       rename_function2
+       rename_functionX
+     </pre>
+	 
+     and replace it with `greeter'.<br /><br />
+
+     Below, the comment block:<br />
+    <pre>
+       ## ..............................
+       ## main utility tool starts below
+       ## ..............................
+    </pre>
+     add the line:<br />
+    <pre>
+       greeter "Hello, World"
+    </pre>
+	
+     Of course, save the file.<br />
+
+     Rerun, again.
+    <pre>
+        $ ./hello_world
+    </pre>
+	
+     If you followed the instructions correctly, you should see the greeting:
+    <pre>
+        $ ./hello_world
+        Hello, World!
+    </pre>
+	
+   6. Now, if you want to add additional script to your project, that is easy. Let's assume
+      you want to create `whoami'. Just run the command:
+    <pre>
+        $ shcf_cli bin hello_world whoami
+    </pre>
+	
+      Same instructions as above, put the logic, make it executable and you're on.
+
+   7. For other usage, help is available. Just run:
+    <pre>
+       $ shcf_cli help
+    </pre>
+
+<h3>
+<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>PACKAGE BUILDS</h3>
+
+<p>
+For people who are more comfortable with the usual package installation, SHCF is now available as an rpm package. Debian packages would follow soon.<br />
+To install, run the following:
+    <pre>
+       ~$ curl -s https://packagecloud.io/install/repositories/icasimpan/shcf/script.rpm.sh | sudo bash
+    </pre>
+
+Package hosting generously provided by <a href="https://packagecloud.io/"><img height="46" width="158" alt="Private NPM registry and Maven, RPM, DEB, PyPi and RubyGem Repository · packagecloud" src="https://packagecloud.io/images/packagecloud-badge.png" /></a>.
+</p>
+
+<h3>
+<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>INSPIRATIONS</h3>
+
+
+<p>
+1. <b>Model-View-Controller(MVC) pattern</b>
+
+I am not fully sure if I understand the MVC pattern correctly, but in my own understanding:
+
+<pre>
+      * Model      - is the business logic or the "how" of this framework. It is the one that bears
+                     the burden on how a specific functionality is to be carried out. In this framework,
+                     you can see the 'model' inside "lib", like 'sqlQuery.bash.inc'
+      * View       - is the frontliner, the one that faces the demanding customer, the end-user. Up to 
+                     this point, there are no example 'view' yet but it the near future, it is the script
+                     that uses this framework which can be considered as the 'view'
+      * Controller - is the mediator/middle-man directing the requests of the demanding customer(via 'View')
+                     to the corresponding 'model'. For instance, we have a script that does an SQL query.
+                     The script(also called the 'view'), having been asked by the demanding customer to do
+                     an SQL query, would look up through the 'controller' if an sql-query 'model' can be found.
+                     Controller then knows how to locate such 'model'. In this framework, controller is called
+                     *etc/controller.bash.inc* which should be included in every scripts that uses this framework.  
+</pre>
+
+2. <b>auto-loading in PHP</b>
+
+Having seen a lot of shell scripts with functions being duplicated across scripts made me realize how
+it is a maintenance nightmare. A slight change in functionality on the main tool it is supporting would 
+mean changing a lot of scripts. So I made a roughly similar functionality in  this framework so that 
+only one function would be made and will simply be called in each script that needs it. Maintenance would 
+be easily done quickly.
+
+In this framework, it can be seen in <i>lib/autoload_functions.bash.inc</i> and will be called in script something
+like 
+<code>
+  <pre>autoload_functions "func1 func2 func3 etc"</pre>
+</code>
+
+    The above way to call <i>autoload_function</i> means that functions is directly accessible from <i>lib</i> and NOT
+    inside directories within <i>lib</i>. To reference a function stored in a directory within <i>lib</i> prefix it with
+    the directory relative to <i>lib</i>. For example to use <i>sqlQuery</i> function which is stored in <i>lib/db/sql/mysql</i>
+    and <i>ishost_up</i> located in <i>lib/box_mgt</i> you will call <i>autoload_function</i> like
+
+<code>
+  <pre>autoload_functions "lib/db/sql/mysql/sqlQuery box_mgt/ishost_up"</pre>
+</code>
+
+In short, calling stays relatively the same, only that you have to prefix each function with directory name in which it is stored
+</p>
+</section>
+
+        <footer>
+          Shcf is maintained by <a href="http://ismael.casimpan.com"><img src="http://ismael.casimpan.com/images/icasimpan_badge.png"></a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>. RPM icon by <a href="https://www.iconfinder.com/icons/6983/rpm_icon">Alessandro Rei</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>

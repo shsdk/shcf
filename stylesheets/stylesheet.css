@@ -155,6 +155,9 @@ a.button span {
 #download-zip span {
   background: transparent url(../images/zip-icon.png) 12px 50% no-repeat;
 }
+#download-rpm span {
+  background: transparent url(../images/if_rpm_6983.png) 12px 50% no-repeat;
+}
 #download-tar-gz span {
   background: transparent url(../images/tar-gz-icon.png) 12px 50% no-repeat;
 }
