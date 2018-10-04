@@ -149,6 +149,20 @@ Same instructions as above, put the logic, make it executable and you're on.
     $ shcf_cli help
 ```
 
+
+# PACKAGE BUILDS:
+
+For people who doesn't who are more comfortable with the usual package installation, SHCF is now available as an rpm package.
+Debian packages would follow soon.
+
+To install, run the following:
+```
+curl -s https://packagecloud.io/install/repositories/icasimpan/shcf/script.rpm.sh | sudo bash
+```
+
+Package hosting generously provided by Package Cloud. Visit https://packagecloud.io for details.
+ 
+
 # CONTRIBUTING:
   See docs/howto_contribute.txt
 
