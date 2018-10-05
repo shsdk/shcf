@@ -1,5 +1,6 @@
 [![Build status](https://travis-ci.org/icasimpan/shcf.svg)](https://travis-ci.org/icasimpan/shcf)
-[![rpm](https://img.shields.io/badge/rpm-packagecloud.io-844fec.svg)](https://packagecloud.io/icasimpan/shcf)
+[![rpm](https://img.shields.io/badge/rpm-packagecloud.io-844fec.svg)](https://packagecloud.io/icasimpan/shcf/search?q=rpm)
+[![deb](https://img.shields.io/badge/deb-packagecloud.io-844fec.svg)](https://packagecloud.io/app/icasimpan/shcf/search?q=deb)
 [![Code Climate](https://codeclimate.com/github/icasimpan/shcf/badges/gpa.svg)](https://codeclimate.com/github/icasimpan/shcf)
 
 # WHAT IS SHCF?
@@ -153,12 +154,17 @@ Same instructions as above, put the logic, make it executable and you're on.
 
 # PACKAGE BUILDS:
 
-For people who are more comfortable with the usual package installation, SHCF is now available as an rpm package.
-Debian packages would follow soon.
+For people who are more comfortable with the usual package installation, SHCF is now available 
+for the two major Linux packages: rpm and deb.
 
-To install, run the following:
+To install rpm, run the following:
 ```
 curl -s https://packagecloud.io/install/repositories/icasimpan/shcf/script.rpm.sh | sudo bash
+```
+
+For deb installation, run:
+```
+~$ curl -s https://packagecloud.io/install/repositories/icasimpan/shcf/script.deb.sh | sudo bash
 ```
 
 Package hosting generously provided by Package Cloud. Visit https://packagecloud.io for details.
