@@ -15,3 +15,26 @@ Yes, that's very possible with SHCF. You need not have to worry where that funct
 ** Coding in shell is quite straightforward. But mind you, when you get into huge projects fully written in shell, you get to see horrors (duplicate function calls, functions calling global variables, etc)
 
 ** Insert why this was called an SHSDK since it can create using it's own scaffolding tool shcf_cli.
+
+--------
+NOTE: Recovered from https://legacy.gitbook.com/book/icasimpan/shcf-shell-coding-simplified
+
+Background 
+
+Sometime in 2013, an idea has been cooking up in my head about how I could better simplify the job I had at hand. Here are the problems I had that time (all in bash):
+
+* a lot of functions repeatedly called from a lot of bash scripts
+* reading a very long bash script (>1k lines including comments)
+* changes to business logic multiplies maintenance effort
+I have to figure out how I can minimize effort to code maintenance and at the same time, improve my understanding in reading bash scripts. So, I tried searching for open source tools that could help me with my existing problems. But so far, I couldn't find any. So I told myself, perhaps I could leverage what I already know from other languages, mainly:
+
+*auto-loading from php
+* MVC pattern (also learning from prior exposure to Web Development)
+
+I never called it anything initially, but after a year of use, I thought that perhaps, if I want this tool to improve, I would need to open source it. I'm sure I made some attempts to name it, can't totally recall what I had in mind that time but perhaps, there was 'bashable' as this was purely written in bash but I said to myself that if this is to be used for the whole shell scripting community, then it has to be named neutral. So, I decided on the name (Sh)ell (C)oding (F)ramework, hence, ShCF.
+
+The one I initially published at github was admittedly lacking in example usage but the core code was there. After about 2 years of personal usage in various scenarios, I'd get some ideas that would lighten usage: divide the project into two:
+
+The development kit or what I call Shell Scripting Development Kit or ShSDK.
+The libraries (which is just a bunch of functions as of now) accessible from a separate git repo, https://github.com/icasimpan/shcf_lib
+So there. Current iteration of ShCF is now a DevKit for Shell Scripting.
