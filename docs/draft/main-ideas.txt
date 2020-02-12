@@ -13,3 +13,5 @@ Yes, that's very possible with SHCF. You need not have to worry where that funct
  * let you focus writing the function instead of getting distracted having to scroll over a very very long line of code
 
 ** Coding in shell is quite straightforward. But mind you, when you get into huge projects fully written in shell, you get to see horrors (duplicate function calls, functions calling global variables, etc)
+
+** Insert why this was called an SHSDK since it can create using it's own scaffolding tool shcf_cli.
