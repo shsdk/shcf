@@ -1,0 +1,14 @@
+** Introduction
+
+This came about after a search for better way to maintain a tool me and my teammate was having. Imagine having a script that's around 1k lines of code with a lot of duplicated functions here and there.
+
+
+** Hello World
+  I don't want to bore you with too long stories. Let's get started...
+  
+
+** Doing it the right way
+** Future
+  * TravisCI Test against each major supported bash versions
+  * Add sh2unit testing
+  * Unifying the script into a single shell
