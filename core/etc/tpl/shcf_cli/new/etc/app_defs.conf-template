@@ -1,0 +1,5 @@
+## Suggested location for app specific paths & variables.
+## Example, if you have an application/script that's named 'drupguard', 
+## suggested variable path is below, and corresponding path is in 'conf/drupguard'
+##
+#~APP_DRUPGUARD_ROOTCONF=$CONF_DIR/drupguard
