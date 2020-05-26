@@ -3,14 +3,21 @@
 ##~ usage: shcf_cli projects
 ##~
 ##=====================================
-
 create_projects() {
   autoload_functions "define_rootpath"
 
   local rootpath=$(define_rootpath)
   echo "Projects Root Location: $rootpath"
-  for each_project in $($LS_BIN -1d $rootpath/*); do
-     echo " * $($BASENAME_BIN $each_project)"
-  done
+
+  if [[ "$($LS_BIN -ld $rootpath/* 2>/dev/null)" ]]; then
+    for each_project in $($LS_BIN -1d $rootpath/*); do
+       echo " * $($BASENAME_BIN $each_project)"
+    done
+  else
+    echo '--- NO PROJECTS YET ---'
+    echo
+    echo 'To create projects use command:'
+    echo '  shcf_cli new'
+  fi
   echo
 } ## END: create_projects()
