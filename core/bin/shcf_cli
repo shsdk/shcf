@@ -1,5 +1,8 @@
 #!/bin/bash
 
+## Adding sub-commands? Add in below block as this doubles
+## as a help file for whole `shcf_cli'
+##
 ##===================================================
 ##~usage: shcf_cli <cmd> [<cmd_params>]
 ##~where:
@@ -10,6 +13,7 @@
 ##~   new       requires <project_name>
 ##~   bin       requires <project_name> <script_name>
 ##~   lib       requires <project_name> <lib_name>
+##~   getlib    requires <project_name> <lib_name>
 ##~   projects  <no_parameter>
 ##~
 ##~ For usage per command, use 'shcf_cli help <cmd>'
@@ -46,6 +50,7 @@ create_new
 error_message
 usage
 create_projects
+create_getlib
 "
 autoload_functions "$function_to_autoload"
 
@@ -64,6 +69,7 @@ _p3=$3
 #  new      - to create a new shcf-based shell project
 #  bin      - creation of new 'bin' scripts
 #  lib      - creation of skeleton lib to a project
+#  getlib   - pulling in new external lib to a project
 #  help     - shows the usage per command
 #  projects - list of projects
 # --------------------------------------------------
@@ -94,6 +100,9 @@ case $cmd in
   ;;
   "projects")
     create_projects
+  ;;
+  "getlib")
+    create_getlib $project $new_entity
   ;;
   *)
     err_msg="ERROR: Unsupported command ($cmd)"

@@ -151,6 +151,36 @@ Same instructions as above, put the logic, make it executable and you're on.
     $ shcf_cli help
 ```
 
+# SHCF ShSDK MAINTENANCE:
+1. When adding a new command (e.g. getlib), function name has to start with `create_'
+```sh
+    $ shcf_cli lib shcf create_getlib
+```
+2. Add in appropriate locations in core/bin/shcf_cli
+3. In actual library lib/create_getlib.bash.inc:
+3.1 Add the helpbox at the top
+```
+##==============================================================================
+##~For getting a library function in either an existing project or in ShSDK.
+##~
+##~usage: shcf_cli getlib <project_name> <vendor_name>
+##~  project_name    * existing project must be listed in 'shcf_cli projects'
+##~                  * 'shcf' or '-' would mean relative to ShSDK root
+##~
+##==============================================================================
+```
+3.2 Add the code to activate helpbox parsing
+```
+  local projname=$1
+  local vendor_lib=$2
+
+  ## list of functions to auto-load
+  autoload_functions "usage define_rootpath"
+
+  #show help if no parameters given
+  [[ $# -lt 2 ]] && { echo "ERROR: Parameter(s) missing!"; usage getlib; exit $FAILED; }
+
+```
 
 # PACKAGE BUILDS:
 
