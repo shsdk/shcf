@@ -21,8 +21,8 @@ create_getlib() {
   ## ..............................
   local libname=$(            $BASENAME_BIN $vendor_lib | $CUT_BIN -d':' -f1)
   local tagname=$(            $BASENAME_BIN $vendor_lib | $TR_BIN ':' '-')
-  local gitrepo_server_hint=$($DIRNAME_BIN  $vendor_lib)
-  local gitrepo_server=
+  local gitrepo_hint=$($DIRNAME_BIN  $vendor_lib)
+  local gitrepo=
   local vendor_name=
   local dest_dir=
 
@@ -31,19 +31,19 @@ create_getlib() {
   ##   2. external location - github.com/kyoszen/shcf-lib/abs_value:v1.0
   ## So both MUST be usable.
 
-  ## TODO: Add constant githubrepo_default to app_vars.conf
-  if [[ "$gitrepo_server_hint" = "shcf-lib" ]]; then
-    gitrepo_server="https://github.com/icasimpan/${gitrepo_server_hint}"
+  if [[ "$gitrepo_hint" = "shcf-lib" ]]; then
+    gitrepo="${git_serverurl_default}/${gitrepo_hint}"
     vendor_name=${gitrepo_server_hint}
   else
-    gitrepo_server="https://${gitrepo_server_hint}"
-    vendor_name=$(basename ${gitrepo_server_hint})
+    gitrepo="https://${gitrepo_hint}"
+    vendor_name=$(basename ${gitrepo_hint})
   fi
-  dest_dir=$(define_rootpath)/vendor/${vendor_name}/${libname}/
+  detected_rootdir=$(define_rootpath)
+  dest_dir=${detected_rootdir}/vendor/${vendor_name}/${libname}/
   $MKDIR_BIN -p $dest_dir ## Ensuring $dest_dir would exist
 
   ## Get this into disk, with only the most recent history
-  git clone --depth=1 --branch $tagname $gitrepo_server $dest_dir
+  git clone --depth=1 --branch $tagname $gitrepo $dest_dir
 
   ## TODO: Make the necessary cross-verifications:
   ##  1. vendor library's sha256sum 
@@ -51,4 +51,10 @@ create_getlib() {
   ##  2. sha256sum of library file only
   ##
   ##  3. Read dependencies.cfg of vendored library and get those too (if not yet in place).
+
+  ## Copy now the library file, binaries and dependencies
+  ## TODO:
+  ##   * copy etc/init.conf to etc/app_vars.conf
+  ##   * binaries.conf to etc/binaries.conf (MUST create a function that iterates over content of binaries.conf, and only insert those that are not yet there).
+  $CP_BIN ${dest_dir}/lib/${libname}.bash.inc ${detected_rootdir}/lib/
 } ## END: create_getlib()
