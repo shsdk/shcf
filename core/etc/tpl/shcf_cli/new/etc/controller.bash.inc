@@ -10,6 +10,7 @@ LOG_DIR=$TOOL_ROOTDIR/log
 TMP_DIR=$TOOL_ROOTDIR/tmp
 VENDOR_DIR=$TOOL_ROOTDIR/vendor                                     ## for vendor, aka 3rdparty
 TEMPLATE_DIR=$CONF_DIR/tpl
+OPT_DIR=$TOOL_ROOTDIR/opt
 
 . $CONF_DIR/init.conf
 . $LIB_DIR/autoload_functions.bash.inc
