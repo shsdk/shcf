@@ -18,7 +18,7 @@
 ### 1. Create new script
 Create a new shcf-based shell script
 ```sh
-  ~$ git clone https://github.com/icasimpan/shcf.git
+  ~$ git clone https://github.com/shcf/shcf.git
   ~$ ./shcf/core/bin/shcf_cli init
   ~$ shcf_cli new hello_world
 ```
@@ -49,7 +49,7 @@ Further usage, help is available. Just run:
 # DETAILED USAGE GUIDE:
 ### 1. Clone the shcf project:
 ```sh
-  ~$ git clone https://github.com/icasimpan/shcf.git
+  ~$ git clone https://github.com/shcf/shcf.git
 ```
 
 ### 2. Initialize the environment
@@ -173,39 +173,20 @@ Package hosting generously provided by Package Cloud. Visit https://packagecloud
 # CONTRIBUTING:
   See docs/howto_contribute.txt
 
-
 # INSPIRATIONS
 
 ## 1. Model-View-Controller(MVC) pattern
+   
+|What           | Brief Description                                                                                        | Framework Implementation     |
+|---------------|----------------------------------------------------------------------------------------------------------|------------------------------|
+|**Model**      |Business logic or the "how". Does the heavy lifting on how specific functionality is carried out.         |`lib` (e.g sqlQuery.bash.inc) |
+|**View**       |The frontliner, the one that faces the demanding customer, the end-user.                                  | scripts created in `bin`     |
+|**Controller** |Mediator/middle-man directing the requests of the demanding customer(via 'View') to corresponding 'model'.|`etc/controller.bash.inc`     |
 
-I am not fully sure if I understand the MVC pattern correctly, but in my own
-    understanding:
-* **Model**      - is the business logic or the "how" of this framework. It is 
-                   the one that bears the burden on how a specific functionality 
-                   is to be carried out. In this framework, you can see the 
-                   'model' inside "lib", like 'sqlQuery.bash.inc'
-
-* **View**       - is the frontliner, the one that faces the demanding customer,
-                   the end-user. Example is the script created in 'bin'
-
-* **Controller** - is the mediator/middle-man directing the requests of the 
-                   demanding customer(via 'View') to the corresponding 'model'. 
-                   For instance, we have a script that does an SQL query. The
-                   script(also called the 'view'), having been asked by the 
-                   demanding customer to do an SQL query, would look up through 
-                   the 'controller' if an sql-query 'model' can be found.
-                   Controller then knows how to locate such 'model'. In this 
-                   framework, controller is called etc/controller.bash.inc which
-                   should be included in every scripts that uses this framework.
-                     
 ## 2. Autoloading in PHP
 
-Having seen a lot of shell scripts with functions being duplicated across 
-    scripts made me recognize a shell maintenance nightmare. A slight change 
-    in functionality on the main tool would mean changing a lot of scripts.
-    So I made a roughly similar functionality in  this framework so that only
-    one function would be made and will simply be called in each script that 
-    needs it. Maintenance would be quickly and easy.
+I've seen a lot of shell scripts, coded a lot myself and as the code grows, so does the maintenance nightmare.
+Function duplication is one of the key headaches that it's a must for a simplified way of managing functions/libraries.
 
 In this framework, it can be seen in lib/autoload_functions.bash.inc and will be called in script something like 
 
@@ -213,9 +194,17 @@ In this framework, it can be seen in lib/autoload_functions.bash.inc and will be
    autoload_functions "func1 func2 func3 etc"
 ```
 
-The above way to call 'autoload_function' means that functions is directly accessible from 'lib' and NOT inside directories within 'lib'. To reference a function stored in a directory within 'lib' prefix it with the directory relative to 'lib'. For example to use sqlQuery function which is stored in 'lib/db/sql/mysql' and 'ishost_up' located in 'lib/box_mgt' you will call 'autoload_function' like
+The above way to call 'autoload_function' means that functions is directly accessible from 'lib' and NOT in subdirectories.
+
+Autoloading is very flexible and you can re-arrange libraries as you see fit. For example to use sqlQuery function which is stored in 'lib/db/sql/mysql' and 'ishost_up' located in 'lib/box_mgt' you will call 'autoload_function' like
 
 ```sh
    autoload_functions "lib/db/sql/mysql/sqlQuery box_mgt/ishost_up"
 ```
 In short, auto-loading stays relatively the same. Just prefix a function with the directory where it is stored and no directory name prefix if it is in same level as autoload_functions.bash.inc.
+
+## 3. Drupal concept of custom and contrib modules
+
+As you may have noticed by now, Auto-loading is very flexible. But my high-level experience of drupal clarified how auto-loading should be done right.
+Libraries that is specific to your script MUST be created inside `lib/custom` while those that are reusable and comes from external sources (e.g. https://github.com/shcf/shcf-lib) should be in `lib/contrib`
+
