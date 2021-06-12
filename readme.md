@@ -206,5 +206,5 @@ In short, auto-loading stays relatively the same. Just prefix a function with th
 ## 3. Drupal concept of custom and contrib modules
 
 As you may have noticed by now, Auto-loading is very flexible. But my high-level experience of drupal clarified how auto-loading should be done right.
-Libraries that is specific to your script MUST be created inside `lib/custom` while those that are reusable and comes from external sources (e.g. https://github.com/shcf/shcf-lib) should be in `lib/contrib`
+Libraries that is specific to your script MUST be created inside `lib/custom` while those that are reusable and comes from external sources (e.g. https://github.com/shsdk/shcf-lib) should be in `lib/contrib`
 
