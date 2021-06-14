@@ -13,7 +13,7 @@
 ##~   new       requires <project_name>
 ##~   bin       requires <project_name> <script_name>
 ##~   lib       requires <project_name> <lib_name>
-##~   getlib    requires <project_name> <lib_name>
+##~   getlib    requires <vendor_lib> <project_name>
 ##~   projects  <no_parameter>
 ##~
 ##~ For usage per command, use 'shcf_cli help <cmd>'
