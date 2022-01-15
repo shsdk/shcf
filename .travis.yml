@@ -1,7 +1,7 @@
 language: bash
 
 before_script:
-    - git clone https://github.com/icasimpan/shcf.git
+    - git clone https://github.com/shsdk/shcf.git
     ## Initialize 'shcf' (cannot use usual initialize as it will create a subshell, falling travis into an endless loop)
     - export SHCF_PLATFORM_ROOT=/home/travis/build/icasimpan/shcf/shcf/core; $SHCF_PLATFORM_ROOT/bin/shcf_cli new hello_world
     ## Now, use 'shcf_cli lib' to create the function greeter()
