@@ -19,7 +19,7 @@
 Create a new shcf-based shell script
 ```sh
   ~$ git clone https://github.com/shcf/shcf.git
-  ~$ ./shcf/core/bin/shcf_cli init
+  ~$ ./shcf/init.sh
   ~$ shcf_cli new hello_world
 ```
 ### 2. Add basic logic
