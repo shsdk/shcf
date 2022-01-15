@@ -31,6 +31,9 @@ create_help() {
       'lib')
         usage lib
       ;;
+      'spawn')
+        usage spawn
+      ;;
       'projects')
         usage projects
       ;;
