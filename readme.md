@@ -18,7 +18,7 @@
 ### 1. Create new script
 Create a new shcf-based shell script
 ```sh
-  ~$ git clone https://github.com/shcf/shcf.git
+  ~$ git clone https://github.com/shsdk/shcf.git
   ~$ ./shcf/init.sh
   ~$ shcf_cli new hello_world
 ```
