@@ -6,9 +6,6 @@
 TOOL_ROOTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/../ && pwd )"
 LIB_DIR=$TOOL_ROOTDIR/lib
 CONF_DIR=$TOOL_ROOTDIR/etc
-LOG_DIR=$TOOL_ROOTDIR/var/log
-TMP_DIR=$TOOL_ROOTDIR/var/tmp
-SPAWNED_DIR=$TOOL_ROOTDIR/opt/spawned
 
 . $CONF_DIR/init.conf
 . $LIB_DIR/autoload_functions.bash.inc

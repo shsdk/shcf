@@ -15,7 +15,7 @@ define_rootpath() {
     if [[ "$projname" =~ shcf|- ]]; then
        retval=$SHCF_PLATFORM_ROOT
     else
-       retval=$($DIRNAME_BIN $SHCF_PLATFORM_ROOT)/projects/$project
+       retval=$($DIRNAME_BIN $SHCF_PLATFORM_ROOT)/projects/${projname}
     fi
  
     # return string value    

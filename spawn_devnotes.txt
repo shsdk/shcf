@@ -1,0 +1,9 @@
+"spawn" was conceptualized way before shcf was fully turned into an ShSDK. Therefore,
+   - clean-up all reference to framework directories. MUST BE referencing 'project/projectname' directories
+   - ensure use of temp directory within 'project/projectname'
+   - Add the 'project/projectname/opt/spawned' reference in config file
+   - test on linux (specially syntax for usage of 'mktemp')
+   - any other optimizations
+   - test on 'spawning' shsdk itself
+
+NOTE: Delete this notes once ready to merge to master.

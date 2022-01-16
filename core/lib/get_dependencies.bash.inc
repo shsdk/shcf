@@ -10,7 +10,8 @@ get_dependencies() {
     # start from $shell_script
     local dynamic_rootpath=$(define_rootpath $project)
     local script_fullpath=$dynamic_rootpath/bin/$script_name
-    local full_temproot=$($MKTEMP_BIN -d shcf_cli-spawn.XXXXXX --tmpdir=$TMP_DIR)  ## always process in SHCF_PLATFORM 
+    local full_temproot=$($MKTEMP_BIN -d /tmp/shcf_cli-spawn.XXXXXX )  ## always process in SHCF_PLATFORM
+                                                                       ## TODO: Re-check how to put back $TMP_DIR
 
     local parse1_file=$full_temproot/p1_func.txt
     local func_all=$(list_alldeps $script_fullpath)  ## Get all the dependencies
