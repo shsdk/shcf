@@ -5,5 +5,9 @@
    - test on linux (specially syntax for usage of 'mktemp')
    - any other optimizations
    - test on 'spawning' shsdk itself
+   - simplify usage so that 2nd parameter to spawn is automatically the same as project name.
+	e.g. 'spawn hello hello' becomes just 'spawn hello' unless a new bin is used
+   - recreated needed config / directories input/output. Call it 'pre-spawn'
+   - check if last lib to concat has 1 space at end of file. Add if missing. (for cleaner output)
 
 NOTE: Delete this notes once ready to merge to master.
