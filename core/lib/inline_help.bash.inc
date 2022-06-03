@@ -10,7 +10,7 @@ inline_help() {
   ## source not given, auto-detect
   [[ -z $source ]] && {
     local idx="${#BASH_SOURCE[*]}"
-    source="${BASH_SOURCE[$idx-1]]}"
+    source="${BASH_SOURCE[$idx-1]}"
   }
  
   $GREP_BIN ^##~ $source | $SED_BIN 's/##~//g'
