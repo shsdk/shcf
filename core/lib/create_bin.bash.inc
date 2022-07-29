@@ -45,6 +45,7 @@ PROJECT_ROOTDIR="\$( cd "\$( dirname "\${BASH_SOURCE[0]}" )"/../ && pwd )"
 ## of course, edit function names
 ##
 function_to_autoload="
+check_required_bin
 rename_function1
 rename_function2
 rename_functionX
