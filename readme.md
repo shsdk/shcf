@@ -1,5 +1,5 @@
 [![Build status](https://travis-ci.org/icasimpan/shcf.svg)](https://travis-ci.org/icasimpan/shcf)
-[![rpm](https://img.shields.io/badge/rpm-packagecloud.io-844fec.svg)](https://packagecloud.io/icasimpan/shcf/search?q=rpm)
+[![rpm](https://img.shields.io/badge/rpm-packagecloud.io-844fec.svg)](https://packagecloud.io/app/icasimpan/shcf/search?q=rpm)
 [![deb](https://img.shields.io/badge/deb-packagecloud.io-844fec.svg)](https://packagecloud.io/app/icasimpan/shcf/search?q=deb)
 [![Code Climate](https://codeclimate.com/github/icasimpan/shcf/badges/gpa.svg)](https://codeclimate.com/github/icasimpan/shcf)
 
