@@ -3,9 +3,9 @@
 ## PURPOSE : controller (mediator) script between the models(individual functions) and view(each individual scripts)
 ## =================================================================================================================
 
-TOOL_ROOTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/../ && pwd )"
-LIB_DIR=$TOOL_ROOTDIR/lib
-CONF_DIR=$TOOL_ROOTDIR/etc
+SHCF_ROOTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/../ && pwd )"
+LIB_DIR=$SHCF_ROOTDIR/lib
+CONF_DIR=$SHCF_ROOTDIR/etc
 
 . $CONF_DIR/init.conf
 . $LIB_DIR/autoload_functions.bash.inc
