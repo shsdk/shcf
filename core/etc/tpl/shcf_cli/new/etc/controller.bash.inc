@@ -3,14 +3,14 @@
 ## PURPOSE : controller (mediator) script between the models(individual functions) and view(each individual scripts)
 ## =================================================================================================================
 
-TOOL_ROOTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/../ && pwd )"
-LIB_DIR=$TOOL_ROOTDIR/lib
-CONF_DIR=$TOOL_ROOTDIR/etc
-LOG_DIR=$TOOL_ROOTDIR/log
-TMP_DIR=$TOOL_ROOTDIR/tmp
-VENDOR_DIR=$TOOL_ROOTDIR/vendor                                     ## for vendor, aka 3rdparty
+SHCF_ROOTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/../ && pwd )"
+LIB_DIR=$SHCF_ROOTDIR/lib
+CONF_DIR=$SHCF_ROOTDIR/etc
+LOG_DIR=$SHCF_ROOTDIR/log
+TMP_DIR=$SHCF_ROOTDIR/tmp
+VENDOR_DIR=$SHCF_ROOTDIR/vendor                                     ## for vendor, aka 3rdparty
 TEMPLATE_DIR=$CONF_DIR/tpl
-OPT_DIR=$TOOL_ROOTDIR/opt
+OPT_DIR=$SHCF_ROOTDIR/opt
 
 . $CONF_DIR/init.conf
 . $LIB_DIR/autoload_functions.bash.inc
