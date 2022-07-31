@@ -11,10 +11,10 @@ create_lib() {
     local projname=$1
     local new_lib=$2
 
-    autoload_functions "usage define_rootpath ensure_proper_env"
+    autoload_functions "usage define_rootpath subinit"
 
-    ## Alert and abort if env not set
-    ensure_proper_env
+    ## anything needed to be run prior to function proper
+    subinit
 
     #show help if no parameters given
     [[ $# -lt 2 ]] && { echo "ERROR: Parameter(s) missing!"; usage lib; exit $FAILED; }

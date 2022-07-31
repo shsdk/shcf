@@ -11,10 +11,10 @@ create_bin() {
     local project=$1
     local new_script=$2
 
-    autoload_functions "usage ensure_proper_env define_rootpath"
+    autoload_functions "usage subinit define_rootpath"
 
-    ## Alert and abort if env not set
-    ensure_proper_env
+    ## anything needed to be run prior to function proper
+    subinit
 
     #show help if no parameters given
     [[ $# -lt 2 ]] && { echo "ERROR: Parameter(s) missing!"; usage bin; exit $FAILED; }
