@@ -4,7 +4,10 @@
 ##~
 ##=====================================
 create_projects() {
-  autoload_functions "define_rootpath"
+  autoload_functions "ensure_proper_env define_rootpath"
+
+  ## Alert and abort if env not set
+  ensure_proper_env
 
   local rootpath=$(define_rootpath)
   echo "Projects Root Location: $rootpath"

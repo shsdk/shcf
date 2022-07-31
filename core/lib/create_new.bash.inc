@@ -1,13 +1,16 @@
 ##======================================================
 ##~For creating a new shcf-based shell project.
 ##~Usage: shcf_cli new <project_name>
-##~ * project_name - cannot have an 'shcf' in it's name.
+##~ * project_name - cannot have an 'shcf' in its name.
 ##~
 ##======================================================
 
 create_new() {
     ## load dependencies
-    autoload_functions "usage create_bin case_shift error_message create_namespace define_rootpath"
+    autoload_functions "usage ensure_proper_env create_bin case_shift error_message create_namespace define_rootpath"
+
+    ## Alert and abort if env not set
+    ensure_proper_env
 
     ## function parameters
     local project=$(case_shift low $1)

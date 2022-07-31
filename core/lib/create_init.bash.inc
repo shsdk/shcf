@@ -32,6 +32,7 @@ create_init() {
 
   ## ..during 'exit', show reminder that platform exited.
   echo "  Thanks for using shcf ShSDK. SHCF_PLATFORM_ROOT unset."
-  echo '  => https://github.com/icasimpan/shcf'
+  echo '  => https://github.com/shsdk/shcf'
   echo
+  exit 0
 } ## END: create_init()
