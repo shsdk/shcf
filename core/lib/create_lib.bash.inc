@@ -11,7 +11,10 @@ create_lib() {
     local projname=$1
     local new_lib=$2
 
-    autoload_functions "usage define_rootpath"
+    autoload_functions "usage define_rootpath subinit"
+
+    ## anything needed to be run prior to function proper
+    subinit
 
     #show help if no parameters given
     [[ $# -lt 2 ]] && { echo "ERROR: Parameter(s) missing!"; usage lib; exit $FAILED; }

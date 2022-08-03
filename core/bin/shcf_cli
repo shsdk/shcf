@@ -16,27 +16,16 @@
 ##~
 ##===================================================
 
-## Are you asking to initialize environment?
-## TODO: Check if this block can be implemented better
-[[ "init" = "$1" ]] && {
-  tmp_platform_root=$(dirname $(dirname $0))                              ## outside run, e.g ./shcf/core/bin/shcf_cli init
-  [[ '.' = "$tmp_platform_root" ]] && tmp_platform_root=$(dirname $(pwd)) ## inside run, e.g ./shcf_cli init
-  . $tmp_platform_root/lib/create_init.bash.inc
-  create_init $*
-  exit 0
-}
-
-# Otherwise, ensure environment has been set:
-#
-[[ -z $SHCF_PLATFORM_ROOT ]] && { echo "[ERROR] SHCF environment not set. Run './shcf_cli init'"; exit 1; }
-
-# source framework orchestrator
-#
-. $SHCF_PLATFORM_ROOT/etc/controller.bash.inc
+## SHCF_ROOTDIR may have been named SHCF_PLATFORM_ROOTDIR and it won't matter functionality-wise...
+## However, this name is better since it denotes that "there is no platform yet" till 'init' is called.
+##
+SHCF_ROOTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/../ && pwd )"
+. $SHCF_ROOTDIR/etc/controller.bash.inc
 
 # list of functions to auto-load
 #
 function_to_autoload="
+create_init
 case_shift
 create_bin
 create_help
@@ -80,6 +69,9 @@ new_entity=$_p3
 # Now, start selection of sub-commands
 #
 case $cmd in
+  "init")
+    create_init $*
+  ;;
   "new")
     create_new $project
   ;;

@@ -1,13 +1,16 @@
 ##======================================================
 ##~For creating a new shcf-based shell project.
 ##~Usage: shcf_cli new <project_name>
-##~ * project_name - cannot have an 'shcf' in it's name.
+##~ * project_name - cannot have an 'shcf' in its name.
 ##~
 ##======================================================
 
 create_new() {
     ## load dependencies
-    autoload_functions "usage create_bin case_shift error_message create_namespace define_rootpath"
+    autoload_functions "usage subinit create_bin case_shift error_message create_namespace define_rootpath"
+
+    ## anything needed to be run prior to function proper
+    subinit
 
     ## function parameters
     local project=$(case_shift low $1)
@@ -33,7 +36,7 @@ create_new() {
     local template_rootdir=$SHCF_PLATFORM_ROOT/etc/tpl/shcf_cli/new
 
     mkdir -p $project_root
-    cp -Rfp $template_rootdir/* $project_root
+    $CP_BIN -Rfp $template_rootdir/* $project_root
     local initial_skeleton=$?
 
     new_entity=$($BASENAME_BIN $project)

@@ -14,6 +14,8 @@ define_rootpath() {
     # non-shcf, it's relative to 'project' dir
     if [[ "$projname" =~ shcf|- ]]; then
        retval=$SHCF_PLATFORM_ROOT
+    elif [[ "$projname" =~ tpl|template ]]; then
+       retval=$CONF_DIR/tpl/shcf_cli/new
     else
        retval=$($DIRNAME_BIN $SHCF_PLATFORM_ROOT)/projects/$project
     fi
