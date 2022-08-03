@@ -1,7 +1,6 @@
-[![Build status](https://travis-ci.org/icasimpan/shcf.svg)](https://travis-ci.org/icasimpan/shcf)
+[![basher install](https://www.basher.it/assets/logo/basher_install.svg)](https://www.basher.it/package/)
 [![rpm](https://img.shields.io/badge/rpm-packagecloud.io-844fec.svg)](https://packagecloud.io/app/icasimpan/shcf/search?q=rpm)
 [![deb](https://img.shields.io/badge/deb-packagecloud.io-844fec.svg)](https://packagecloud.io/app/icasimpan/shcf/search?q=deb)
-[![Code Climate](https://codeclimate.com/github/icasimpan/shcf/badges/gpa.svg)](https://codeclimate.com/github/icasimpan/shcf)
 
 # WHAT IS SHCF?
 
@@ -12,6 +11,15 @@
   ShCF is learnable in an hour or less, provided you already know how to do shell scripting and programming.
 
   In the near future, it would even allow you to make standalone bash shell scripts.
+
+# BASHER USERS:
+
+Install shcf as follows:
+```
+~$ basher install github.com/shsdk/shcf
+~$ shcf_init.sh
+```
+Then read the quick guide except the git clone part which is already done by `basher`
 
 # QUICK GUIDE:
 ### 1. Create new script
