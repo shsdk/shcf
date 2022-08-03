@@ -8,7 +8,11 @@ create_init() {
   [[ ! -z $SHCF_PLATFORM_ROOT ]] && {
     echo "WARNING: SHCF Platform environment already set as show below.";
     echo "  SHCF_PLATFORM_ROOT=$SHCF_PLATFORM_ROOT"
-    echo "Initialize to a different directory? Run 'exit' first.";
+    if [[ $(echo $SHCF_PLATFORM_ROOT|grep -c \.basher) -eq $TRUE ]]; then
+        echo "To re-initialize, run 'exit' first."
+    else
+        echo "Initialize to a different directory? Run 'exit' first.";
+    fi
     echo
     exit 1;
   }
