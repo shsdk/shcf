@@ -158,6 +158,15 @@ Same instructions as above, put the logic, make it executable and you're on.
     ~$ shcf_cli help
 ```
 
+# Standalone Script
+
+*NOTE: This is still an early version and might not work fully*
+
+If you need a standalone version of an shcf-based script, use the following:
+```sh
+    ~$ shcf_cli spawn hello_world hello_world
+```
+This assumes that your project is named `hello_world` and the main script to access it is `hello_world`
 
 # PACKAGE BUILDS:
 
