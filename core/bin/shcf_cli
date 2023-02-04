@@ -10,6 +10,7 @@
 ##~   new       requires <project_name>
 ##~   bin       requires <project_name> <script_name>
 ##~   lib       requires <project_name> <lib_name>
+##~   spawn     requires <project_name> <script_name>
 ##~   projects  <no_parameter>
 ##~
 ##~ For usage per command, use 'shcf_cli help <cmd>'
@@ -32,6 +33,7 @@ create_help
 create_lib
 create_namespace
 create_new
+create_spawn
 error_message
 usage
 create_projects
@@ -83,6 +85,9 @@ case $cmd in
   ;;
   "projects")
     create_projects
+  ;;
+  "spawn")
+     create_spawn $project $new_entity
   ;;
   *)
     err_msg="ERROR: Unsupported command ($cmd)"

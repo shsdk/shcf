@@ -17,7 +17,7 @@ define_rootpath() {
     elif [[ "$projname" =~ tpl|template ]]; then
        retval=$CONF_DIR/tpl/shcf_cli/new
     else
-       retval=$($DIRNAME_BIN $SHCF_PLATFORM_ROOT)/projects/$project
+       retval=$($DIRNAME_BIN $SHCF_PLATFORM_ROOT)/projects/${projname}
     fi
  
     # return string value    
