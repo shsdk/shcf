@@ -57,9 +57,6 @@ _p3=$3
 #  projects - list of projects
 # --------------------------------------------------
 
-# For use in help files
-main_cmd=$($BASENAME_BIN $0)
-
 # Define common usage of shcf_cli parameter(s).
 # Override in respective sub-command as needed
 #
