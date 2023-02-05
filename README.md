@@ -1,18 +1,25 @@
-[![Build status](https://travis-ci.org/icasimpan/shcf.svg)](https://travis-ci.org/icasimpan/shcf)
+[![basher install](https://www.basher.it/assets/logo/basher_install.svg)](https://www.basher.it/package/)
 [![rpm](https://img.shields.io/badge/rpm-packagecloud.io-844fec.svg)](https://packagecloud.io/app/icasimpan/shcf/search?q=rpm)
 [![deb](https://img.shields.io/badge/deb-packagecloud.io-844fec.svg)](https://packagecloud.io/app/icasimpan/shcf/search?q=deb)
-[![Code Climate](https://codeclimate.com/github/icasimpan/shcf/badges/gpa.svg)](https://codeclimate.com/github/icasimpan/shcf)
 
 # WHAT IS SHCF?
 
   It is a Shell Scripting Development Kit (ShSDK) that currently supports bash.
-  ShCF gives you the ability to develop shell scripts in bash in a lightweight
-  manner, meaning, you can concentrate on the core logic of your scripts, NOT
-  on how you would use the framework. ShCF is learnable in an hour, provided
-  you already know how to do shell scripting and programming.
+  ShCF helps you develop bash shell scripts in a lightweight manner.
+  This means that you can focus on the core logic of your scripts, NOT on how you use the framework.
+
+  ShCF is learnable in an hour or less, provided you already know how to do shell scripting and programming.
 
   In the near future, it would even allow you to make standalone bash shell scripts.
 
+# BASHER USERS:
+
+Install shcf as follows:
+```
+~$ basher install github.com/shsdk/shcf
+~$ shcf_init.sh
+```
+Then read the quick guide except the git clone part which is already done by `basher`
 
 # QUICK GUIDE:
 ### 1. Create new script
@@ -37,7 +44,7 @@ Update main script hello_world/bin/hello_world so it calls `greeter'
 ### 3. For adding another script
 To create additional scripts into your project, say `whoami':
 ```sh
-  ~$ shcf_cli hello_world whoami
+  ~$ shcf_cli bin hello_world whoami
 ```
 
 ### 4. Further help
@@ -49,18 +56,18 @@ Further usage, help is available. Just run:
 # DETAILED USAGE GUIDE:
 ### 1. Clone the shcf project:
 ```sh
-  ~$ git clone https://github.com/shcf/shcf.git
+  ~$ git clone https://github.com/shsdk/shcf.git
 ```
 
 ### 2. Initialize the environment
 ```sh
-  ~$ ./shcf/core/bin/shcf_cli init
+  ~$ ./init.sh
    Platform environment has been set. See below:
    SHCF_PLATFORM_ROOT=/home/your_username/shcf/core
 ```
- At this point, you can use `shcf_cli' from any path so long as you don't`exit'.
+ At this point, you can use `shcf_cli` from any path.
 
-### 3. Now, create a new project. Example, `hello_world'
+### 3. Now, create a new project. Example, `hello_world`
 ```sh
   ~$ shcf_cli new your_project_dir/hello_world
 ```
@@ -100,16 +107,16 @@ Template `View' (see MVC pattern in `INSPIRATION' section below) included 3 func
     }
 ```
 
-TIP: Another approach is to create a template file using command `shcf_cli lib hello_world greeter'
+TIP: Another approach is to create a template file using command `shcf_cli lib hello_world greeter`
 
-In `bin/hello_world', remove the 3 template functions namely:
+In `bin/hello_world`, remove the 3 template functions namely:
 ```sh     
     rename_function1
     rename_function2
     rename_functionX
 ```
 
-and replace it with `greeter'.
+and replace it with `greeter`.
 
 Below, the comment block:
 
@@ -130,7 +137,7 @@ Of course, save the file.
 Rerun, again.
 
 ```sh
-    ~ $ ./hello_world
+    ~$ ./hello_world
 ```
 If you followed the instructions correctly, you should see the greeting:
 ```sh
@@ -139,7 +146,7 @@ If you followed the instructions correctly, you should see the greeting:
 ```
 
 ### 6. Now, if you want to add additional script to your project, that is easy. Let's assume
-      you want to create `whoami'. Just run the command:
+      you want to create `whoami`. Just run the command:
 ```sh
     ~$ shcf_cli bin hello_world whoami
 ```
@@ -148,9 +155,18 @@ Same instructions as above, put the logic, make it executable and you're on.
 
 ### 7. For other usage, help is available. Just run:
 ```sh
-    $ shcf_cli help
+    ~$ shcf_cli help
 ```
 
+# Standalone Script
+
+*NOTE: This is still an early version and might not work fully*
+
+If you need a standalone version of an shcf-based script, use the following:
+```sh
+    ~$ shcf_cli spawn hello_world hello_world
+```
+This assumes that your project is named `hello_world` and the main script to access it is `hello_world`
 
 # PACKAGE BUILDS:
 
@@ -185,8 +201,8 @@ Package hosting generously provided by Package Cloud. Visit https://packagecloud
 
 ## 2. Autoloading in PHP
 
-I've seen a lot of shell scripts, coded a lot myself and as the code grows, so does the maintenance nightmare.
-Function duplication is one of the key headaches that it's a must for a simplified way of managing functions/libraries.
+I've seen a lot of shell scripts and coded a lot myself. As the code grows, so does the maintenance nightmare.
+Function duplication is one such headache that needs to be addressed.
 
 In this framework, it can be seen in lib/autoload_functions.bash.inc and will be called in script something like 
 
@@ -206,5 +222,6 @@ In short, auto-loading stays relatively the same. Just prefix a function with th
 ## 3. Drupal concept of custom and contrib modules
 
 As you may have noticed by now, Auto-loading is very flexible. But my high-level experience of drupal clarified how auto-loading should be done right.
-Libraries that is specific to your script MUST be created inside `lib/custom` while those that are reusable and comes from external sources (e.g. https://github.com/shsdk/shcf-lib) should be in `lib/contrib`
+Libraries that is specific to your script MUST be created inside `lib/custom` while those that are reusable and comes from external sources (e.g. https://github.com/shsdk/shcf-lib) should be in `lib/contrib`.
 
+This concept is not yet enforced in the ShCF but will be in the near future.

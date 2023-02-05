@@ -1,1 +1,3 @@
 projects
+core/etc/tpl/shcf_cli/new/etc/init.conf
+core/etc/tpl/shcf_cli/new/lib/autoload_functions.bash.inc

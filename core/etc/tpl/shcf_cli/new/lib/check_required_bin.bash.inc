@@ -13,13 +13,14 @@
 ## -----------------------------------------------------------------------------------------
 ##
 check_required_bin() {
+
+  autoload_functions "found_inarray"
+
   ##
   ## $binlist = Only needed if checking for specific binary.
   ## Defaults to checking src/etc/binaries.conf
   ##
   local binlist=${1:-"$($GREP_BIN -v ^\# $CONF_DIR/binaries.conf|$CUT_BIN -d'=' -f1)"}
-
-  autoload_functions "found_inarray"
 
   for each_bin in $binlist; do
     if [[ "${!each_bin}" = "" ]]; then

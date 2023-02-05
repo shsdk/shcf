@@ -8,7 +8,11 @@ create_init() {
   [[ ! -z $SHCF_PLATFORM_ROOT ]] && {
     echo "WARNING: SHCF Platform environment already set as show below.";
     echo "  SHCF_PLATFORM_ROOT=$SHCF_PLATFORM_ROOT"
-    echo "Initialize to a different directory? Run 'exit' first.";
+    if [[ $(echo $SHCF_PLATFORM_ROOT|grep -c \.basher) -eq $TRUE ]]; then
+        echo "To re-initialize, run 'exit' first."
+    else
+        echo "Initialize to a different directory? Run 'exit' first.";
+    fi
     echo
     exit 1;
   }
@@ -32,6 +36,7 @@ create_init() {
 
   ## ..during 'exit', show reminder that platform exited.
   echo "  Thanks for using shcf ShSDK. SHCF_PLATFORM_ROOT unset."
-  echo '  => https://github.com/icasimpan/shcf'
+  echo '  => https://github.com/shsdk/shcf'
   echo
+  exit 0
 } ## END: create_init()
