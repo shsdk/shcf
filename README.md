@@ -159,7 +159,7 @@ Same instructions as above, put the logic, make it executable and you're on.
 
 # Standalone Script
 
-*NOTE: This is still an early version and might not work fully*
+*NOTE: This is still an early version and might not work fully, for example [autoad_functions is expected tp be defined at the top](https://github.com/shsdk/shcf/issues/37)*
 
 If you need a standalone version of an shcf-based script, use the following:
 ```sh
