@@ -9,8 +9,7 @@
   This means that you can focus on the core logic of your scripts, NOT on how you use the framework.
 
   ShCF is learnable in an hour or less, provided you already know how to do shell scripting and programming.
-
-  In the near future, it would even allow you to make standalone bash shell scripts.
+  It even allows you to create a standalone script. See Standalone section.
 
 # BASHER USERS:
 
