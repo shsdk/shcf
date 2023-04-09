@@ -145,8 +145,8 @@ If you followed the instructions correctly, you should see the greeting:
       Hello, World!
 ```
 
-### 6. Now, if you want to add additional script to your project, that is easy. Let's assume
-      you want to create `whoami`. Just run the command:
+### 6. Now, if you want to add additional script to your project, that is easy.
+Let's assume you want to create `whoami`. Just run the command:
 ```sh
     ~$ shcf_cli bin hello_world whoami
 ```
@@ -167,6 +167,48 @@ If you need a standalone version of an shcf-based script, use the following:
     ~$ shcf_cli spawn hello_world hello_world
 ```
 This assumes that your project is named `hello_world` and the main script to access it is `hello_world`
+
+An alternative way to spawn is to simply leave out the script name. It works seemlessly with both
+single or multiple-script project. So, assuming the same project as earlier presented, syntax
+now becomes:
+```sh
+   ~$ shcf_cli spawn hello_world
+```
+
+Optional optimization:
+
+Now, there are parts of the framework that you may not want to use and you want to get rid of it in the resulting
+spawned code. An example of this are the constants defined in `etc/init.conf`:
+```
+declare -r INVALID_VAL=-1
+declare -r INVALID=$INVALID_VAL
+declare -r FAILED=1
+declare -r SUCCESS=0
+declare -r FALSE=0
+declare -r TRUE=1
+```
+you can define a spawn conf for it. There is NO project-wide spawn conf so you need to define one each in
+`projects/<project_name>/etc/spawn.<script_name>`
+
+So for a "hello_world" project with a `hello_world` script, it would be in:
+`projects/hello_world/etc/spawn.hello_world`
+with content like:
+
+No constants used:
+```
+spawn_used_const() {
+   used_const('__NONE__')
+}
+```
+
+Only TRUE or FALSE are used. Send it as string input separated by comma.
+```
+spawn_used_const() {
+   used_const('TRUE,FALSE')
+}
+```
+
+As mentioned, this optimization is optional. Spawn will work without it.
 
 # PACKAGE BUILDS:
 

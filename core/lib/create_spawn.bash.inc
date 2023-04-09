@@ -5,13 +5,15 @@
 ##========================================================
 create_spawn() {
   ## list of functions to auto-load
-  autoload_functions "case_shift define_rootpath get_dependencies get_stripped_funcblock fileblock_after_autoload"
+  autoload_functions "case_shift define_rootpath get_dependencies get_stripped_funcblock fileblock_after_autoload used_const"
 
   ## ----- function parameter
   ##
   local project=$(case_shift low $1)
   local script_name=$2
 
+  ## Get the list of scripts to process IF it's not specified in input
+  ##
   local this_rootpath=$(define_rootpath "$project")
   [[ "$script_name" = "" ]] && {
     script_name=$(ls -1p $this_rootpath/bin/ 2> /dev/null | $GREP_BIN -v /$)
@@ -22,7 +24,11 @@ create_spawn() {
 
   local temp_file=
   local app_defs_conf=
+  local filter_this=
+  local SPAWN_CONF=
 
+  ## Process the script(s) now...
+  ##
   for each_script in $script_name; do
      # xxxxxxxxxxxxxxx
      # main code below
@@ -61,8 +67,16 @@ create_spawn() {
      fileblock_after_autoload $this_rootpath/bin/$each_script $temp_file
      [[ $(echo ${PIPESTATUS[@]} | $TR_BIN " " "+" | $BC_BIN) -gt 0 ]] && exit 1
 
-     ## 6. Rename $temp_file to $SPAWNED_DIR/$each_script
-     cp $temp_file ${SPAWN_DIR}/$each_script
+     ## 6. Check if there's a spawn config for script and process it...
+     ##    Otherwise, no problem.
+     SPAWN_CONF="$this_rootpath/etc/spawn.${each_script}"
+     if [[ -e "$SPAWN_CONF" ]]; then
+         source $SPAWN_CONF
+         filter_this="$(spawn_used_const)"
+         $GREP_BIN -v "declare -r ${filter}" $temp_file > ${SPAWN_DIR}/$each_script
+     else
+         cp $temp_file ${SPAWN_DIR}/$each_script
+     fi
 
      ## Remove temp file
      rm -rf $temp_file
