@@ -159,7 +159,7 @@ Same instructions as above, put the logic, make it executable and you're on.
 
 # Standalone Script
 
-*NOTE: This is still an early version and might not work fully, for example [autoad_functions is expected tp be defined at the top](https://github.com/shsdk/shcf/issues/37)*
+*NOTE: This is still an early version and might not work fully, for example [autoad_functions is expected to be defined at the top](https://github.com/shsdk/shcf/issues/37) and [autoloload_functions' func list must be defined in s specific way](https://github.com/shsdk/shcf/issues/38)*
 
 If you need a standalone version of an shcf-based script, use the following:
 ```sh
@@ -196,7 +196,7 @@ with content like:
 No constants used:
 ```
 spawn_used_const() {
-   used_const('__NONE__')
+   used_const '__NONE__'
 }
 ```
 
