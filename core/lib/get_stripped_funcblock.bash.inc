@@ -10,6 +10,9 @@ get_stripped_funcblock() {
    ## get autoload-line
    local al_line=$(get_autoload_line $func_fullpath)
 
+   ## Add blank line between function
+   echo "" >> $fullpath_tmpfile
+
    ## if no al_line, directly write to temp file
    ## Otherwise, write the function name, strip-off auto-load lines
    ## Dump the rest to temp file
