@@ -159,9 +159,12 @@ Same instructions as above, put the logic, make it executable and you're on.
 
 # Standalone Script
 
-*NOTE: This is still an early version and might not work fully, for example [autoad_functions is expected to be defined at the top](https://github.com/shsdk/shcf/issues/37) and [autoloload_functions' func list must be defined in s specific way](https://github.com/shsdk/shcf/issues/38)*
+:warning:
+This is still an early version and might not work fully. Limitations as follows:
+* [autoad_functions is expected to be defined at the top](https://github.com/shsdk/shcf/issues/37) - autoload within functions is not supported yet
+* [autoloload_functions' func list must be defined in s specific way](https://github.com/shsdk/shcf/issues/38)
 
-If you need a standalone version of an shcf-based script, use the following:
+So, with the limitations noted above, if you need a standalone version of an shcf-based script, use the following:
 ```sh
     ~$ shcf_cli spawn hello_world hello_world
 ```
@@ -203,7 +206,7 @@ spawn_used_const() {
 Only TRUE or FALSE are used. Send it as string input separated by comma.
 ```
 spawn_used_const() {
-   used_const('TRUE,FALSE')
+   used_const 'TRUE,FALSE'
 }
 ```
 
