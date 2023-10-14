@@ -4,12 +4,26 @@
 ##
 #~APP_DRUPGUARD_ROOTCONF=$CONF_DIR/drupguard
 
-## #41 - provision for app_defs.local.conf
+CALLING_SCRIPTNAME=$(basename $0)
+
+## #41 - provision for app_defs.local.conf, so you need not be editing production config just to override it.
+##       If "local" exist, then it's automatically used. Global one is ignored.
 ##
 LOCAL_APPDEFS=$CONF_DIR/app_defs.local.conf
 if [[ -e $LOCAL_APPDEFS ]]; then
     source $LOCAL_APPDEFS
+
+    ## Script specific vars are definable in app_defs.local.d too
+    ##
+    LOCAL_APPDEFS_D=$CONF_DIR/app_defs.local.d
+    SCRIPT_SPECIFIC_APPDEFS_LOCAL=$LOCAL_APPDEFS_D/$CALLING_SCRIPTNAME
+    [[ -e $SCRIPT_SPECIFIC_APPDEFS_LOCAL ]] && source $SCRIPT_SPECIFIC_APPDEFS_LOCAL
 else
     ## Define here the global app-defs (e.g. something you would use for your production
     :
+
+    ## Script specific app_defs goes here...
+    APPDEFS_D=$CONF_DIR/app_defs.d
+    SCRIPT_SPECIFIC_APPDEFS=$APPDEFS_D/$CALLING_SCRIPTNAME
+    [[ -e $SCRIPT_SPECIFIC_APPDEFS ]] && source $SCRIPT_SPECIFIC_APPDEFS
 fi
