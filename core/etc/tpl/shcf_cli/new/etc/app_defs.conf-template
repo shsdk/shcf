@@ -3,3 +3,13 @@
 ## suggested variable path is below, and corresponding path is in 'conf/drupguard'
 ##
 #~APP_DRUPGUARD_ROOTCONF=$CONF_DIR/drupguard
+
+## #41 - provision for app_defs.local.conf
+##
+LOCAL_APPDEFS=$CONF_DIR/app_defs.local.conf
+if [[ -e $LOCAL_APPDEFS ]]; then
+    source $LOCAL_APPDEFS
+else
+    ## Define here the global app-defs (e.g. something you would use for your production
+    :
+fi
