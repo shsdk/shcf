@@ -23,7 +23,10 @@ OPT_DIR=$SHCF_ROOTDIR/opt
 ##
 ## Of course this doesn't have to be set IF the application seemlessly auto-forwards http to https accordingly.
 ##
-[[ -e $LIB_DIR/bootstrap.bash.inc ]] && source $LIB_DIR/bootstrap.bash.inc
+if [[ -e $LIB_DIR/bootstrap.bash.inc ]]; then
+  autoload_functions bootstrap
+  boostrap
+fi
 
 ## in each utility script, this controller should be  sourced + functions to autoload as follows:
 ## ----------------- START: autoloading -----------------------
