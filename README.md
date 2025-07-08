@@ -2,6 +2,12 @@
 [![rpm](https://img.shields.io/badge/rpm-packagecloud.io-844fec.svg)](https://packagecloud.io/app/icasimpan/shcf/search?q=rpm)
 [![deb](https://img.shields.io/badge/deb-packagecloud.io-844fec.svg)](https://packagecloud.io/app/icasimpan/shcf/search?q=deb)
 
+# Archive/Deprecation Notice
+
+As of 2025 Jul 8, shcf will no longer be updated. 
+
+Please use successor framework [combish](https://github.com/shsdk/combish.git)(https://github.com/shsdk/combish.git) moving forward.
+
 # WHAT IS SHCF?
 
   It is a Shell Scripting Development Kit (ShSDK) that currently supports bash.
